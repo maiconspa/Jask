@@ -10,9 +10,6 @@ import java.sql.SQLException;
 
 public class UsuarioDao {
 	
-	/**
-	 * 
-	 */
 	private Connection conexao;
 	
 	public UsuarioDao (Connection conexao) {

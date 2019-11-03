@@ -1,3 +1,4 @@
+package modelos;
 
 /**
  * Processa mensagem entre usuários

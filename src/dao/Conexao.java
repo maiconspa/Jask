@@ -1,9 +1,15 @@
+/**
+ * Data Acess Object (DAO)
+ */
 package dao;
 
 import  java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Estabelece a conexao com o banco de dados
+ */
 public class Conexao {
 	
 	/**
@@ -17,7 +23,7 @@ public class Conexao {
 		
 		try {
 			
-			System.out.println("procurando drive..");
+			System.out.println("procurando driver..");
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("Drive encontrado !");
 			
@@ -33,17 +39,17 @@ public class Conexao {
 	}
 	
 	/**
-	 * Criando um m√©todo para realizar a conex√£o com o banco de dados.
+	 * Criando um mÈtodo para realizar a conex√£o com o banco de dados.
 	 */
 	
 	public static Connection conectar() {
 		
 		try {
 			
-			System.out.println("Estabelecendo conex√£o...");
+			System.out.println("Estabelecendo conex„o...");
 			
 			Connection c = DriverManager.getConnection("jdbc:mysql://localhost/colecao?useSSL=false","Jask","alunos");
-			System.out.println("Conex√£o estabelecida com sucesso !");
+			System.out.println("Conex„o estabelecida com sucesso !");
 			
 			return c;
 			
