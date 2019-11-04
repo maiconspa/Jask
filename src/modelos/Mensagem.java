@@ -5,9 +5,9 @@ package modelos;
  */
 public class Mensagem
 {
-    // ComposiÃ§Ã£o:
+    // Composição:
     /**
-     * ComposiÃ§Ã£o da classe Usuario
+     * Composição da classe Usuario
      */
     Usuario u = new Usuario();
     
@@ -103,5 +103,5 @@ public class Mensagem
     }
     public void setViewState(boolean viewState) {
         this.viewState = viewState;
-    }  
+    }
 }

@@ -1,6 +1,12 @@
 package modelos;
 
-import java.awt.Image;
+//import java.awt.Image;
+//import java.awt.image.BufferedImage;
+
+
+import java.awt.image.BufferedImage;
+import java.io.*;
+import javax.imageio.ImageIO;
 
 public class Usuario {
 	
@@ -9,7 +15,7 @@ public class Usuario {
 	private String telefone;
 	private String apelido;
 	private String senha;
-	private Image foto;
+	private BufferedImage imagem = ImageIO.read(new File("imagem.extensao"));
 	
 	public Usuario () {}
 	

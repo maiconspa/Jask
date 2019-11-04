@@ -1,5 +1,8 @@
 package dao;
 
+// manipulação de imagens
+import java.awt.Image;
+
 import java.security.KeyStore.ProtectionParameter;
 import modelos.Usuario;
 import java.awt.Image;
