@@ -1,6 +1,7 @@
-<h1>Jask.</h1>
-<h3>Otimizar tarefas, organizar trabalhos.</h3>
+<h1>Jask: otimizar tarefas, organizar trabalhos.</small> </h1>
+
 <br />
+
 <h2>Colaboradores:</h2>
 <ul>
   <li>@cayoni8</li>
