@@ -1,4 +1,4 @@
-<h1>Jask: otimizar tarefas, organizar trabalhos.</small> </h1>
+<h1>Jask: otimizar tarefas, organizar projetos.</small> </h1>
 
 <br />
 
