@@ -1,13 +1,13 @@
 package modelos;
 
 /**
- * Processa mensagem entre usuÃ¡rios
+ * Processa mensagem entre usuarios
  */
 public class Mensagem
 {
-    // Composição:
+    // Composicao:
     /**
-     * Composição da classe Usuario
+     * Composicao da classe Usuario
      */
     Usuario u = new Usuario();
     
@@ -29,7 +29,7 @@ public class Mensagem
      */
     private String dhSend;
     /**
-     * data e hora de visualizaÃ§Ã£o
+     * data e hora de visualizacaoo
      */
     private String dhView;
     /**
@@ -103,5 +103,5 @@ public class Mensagem
     }
     public void setViewState(boolean viewState) {
         this.viewState = viewState;
-    }
+    }  
 }

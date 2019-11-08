@@ -1,8 +1,5 @@
 package dao;
 
-// manipulação de imagens
-import java.awt.Image;
-
 import java.security.KeyStore.ProtectionParameter;
 import modelos.Usuario;
 import java.awt.Image;
@@ -20,8 +17,8 @@ public class UsuarioDao {
 	}
 	
 	public void cadastrarUsuario(Usuario usuario) {
-		String inserir = "INSERT INTO Usuario(       INSERIR OS CAMPOS AQUI              )"
-				+ "VALUES (            INSERIR OS CAMPOS AQUI                    )";
+		String inserir = "INSERT INTO Usuario(nome,email,telefone,apelido,senha,foto)"
+				+ "VALUES (?, ?, ?, ?, ?, ?)";
 		
 		/**Objeto de execucao de comando SQL para **/
 		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {
@@ -33,13 +30,18 @@ public class UsuarioDao {
 			pst.setString(5,usuario.getSenha());
 			pst.setImage(6,usuario.getFoto());
 			
-			//ATE AQUI SO FOI CRIADA UMA STRING
+			//ATE AQUI SO FOI CRIADA a STRING da linha cadastrarUsuario
 			
+			/**
+			 * Comando para executar a String no banco de dados
+			 */
 			pst.execute();
 			
-			//EXECUTANDO O COMANDO
-			
 		} catch (SQLException ex) {
+			
+			/**
+			 * Tratando as excessoes
+			 */
 			ex.printStackTrace();
 		}
 		
@@ -48,7 +50,7 @@ public class UsuarioDao {
 	/**
 	 * Preparando a parte de consultas
 	 * @param apelido
-	 * @return
+	 * @return apelido do Usuario
 	 */
 	
 	
@@ -68,7 +70,7 @@ public class UsuarioDao {
 			ResultSet resultado = pst.executeQuery();
 			
 			/**
-			 * Perguntar ao professor --------------------------------------------------------------
+			 *---------------------- Perguntar ao professor  ------------------------------------
 			 */
 			Usuario usuario = null;
 			
@@ -80,7 +82,7 @@ public class UsuarioDao {
 				*/
 				
 				usuario.setApelido(apelidoUsuario);
-				/*-----------------------------nao sei o motivo da linha a baixo ter sido criada
+				/*----------------------------- nao sei o motivo da linha a baixo ter sido criada
 				 * usuario.setNomeTipo(nome);
 				 */
 				
