@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;view.welcome.java&apos; to &apos;Welcome.java&apos;&#x0D;&#x0A;- Original project: &apos;guiJask&apos;&#x0D;&#x0A;- Original element: &apos;view.welcome.java&apos;&#x0D;&#x0A;- Renamed element: &apos;view.Welcome.java&apos;" description="Rename compilation unit &apos;welcome.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;view{welcome.java" name="Welcome.java" references="false" stamp="1573833187828" version="1.0"/>
+</session>

@@ -1,0 +1,59 @@
+package view;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextPane;
+import java.awt.Font;
+
+public class Welcome {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Welcome window = new Welcome();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Welcome() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 400, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JTextPane txtpnJAS = new JTextPane();
+		txtpnJAS.setFont(new Font("Verdana", Font.BOLD, 40));
+		txtpnJAS.setText("J A S K");
+		txtpnJAS.setBounds(114, 80, 160, 54);
+		frame.getContentPane().add(txtpnJAS);
+		
+		JTextPane textSubt1 = new JTextPane();
+		textSubt1.setText("   otimizar tarefas,\norganizar projetos.");
+		textSubt1.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textSubt1.setBounds(147, 133, 127, 54);
+		frame.getContentPane().add(textSubt1);
+		
+	}
+}

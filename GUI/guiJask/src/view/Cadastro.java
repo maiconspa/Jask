@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class Cadastro extends JFrame {
 
@@ -45,61 +47,115 @@ public class Cadastro extends JFrame {
 	 */
 	public Cadastro() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 400, 500);
+		setBounds(100, 100, 400, 600);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		//label do botao de voltar
+		JLabel lblVoltar = new JLabel("Voltar");
+		lblVoltar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblVoltar.setFont(new Font("Dialog", Font.BOLD, 10));
+		lblVoltar.setBounds(22, 12, 45, 16);
+		contentPane.add(lblVoltar);
+		//Botao de voltar
+		JButton btnBack = new JButton("");
+		btnBack.setForeground(Color.WHITE);
+		btnBack.setBackground(Color.WHITE);
+		btnBack.setIcon(new ImageIcon(Cadastro.class.getResource("/view/arrow_back_ios.png")));
+		btnBack.setBounds(22, 26, 45, 45);
+		btnBack.setBorderPainted(false); //método para retirar as bordas do JButton e deixar somente a imagem.
+		contentPane.add(btnBack);		
+		
+		
+		//label do botao de avançar
+		JLabel lblNext = new JLabel("Avançar");
+		lblNext.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNext.setFont(new Font("Dialog", Font.BOLD, 10));
+		lblNext.setBounds(320, 12, 45, 16);
+		contentPane.add(lblNext);
+		//botao de avançar
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon(Cadastro.class.getResource("/view/arrow_foward_ios.png")));
+		button.setForeground(Color.WHITE);
+		button.setBorderPainted(false);
+		button.setBackground(Color.WHITE);
+		button.setBounds(320, 26, 45, 45);
+		contentPane.add(button);
+		
+		
+		//icone abelha do jask
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(Cadastro.class.getResource("/view/logo_bee_v1.png")));
+		label.setBounds(100, 90, 200, 85);
+		contentPane.add(label);
+		
+		
+		//elementos de formulário
+		JLabel lblNome = new JLabel("Nome");
+		lblNome.setBounds(100, 193, 55, 16);
+		contentPane.add(lblNome);
+		
 		txtNomeCompleto = new JTextField();
-		txtNomeCompleto.setText("Nome completo");
-		txtNomeCompleto.setBounds(110, 50, 154, 36);
+		txtNomeCompleto.setBounds(100, 209, 200, 25);
 		contentPane.add(txtNomeCompleto);
 		txtNomeCompleto.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(110, 87, 55, 16);
-		contentPane.add(lblNewLabel);
+		
+		JLabel lblEmail = new JLabel("E-mail:");
+		lblEmail.setBounds(100, 246, 55, 16);
+		contentPane.add(lblEmail);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(110, 127, 114, 20);
+		textField_1.setBounds(100, 263, 200, 25);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
+		
 		JLabel lblTelefone = new JLabel("Telefone:");
-		lblTelefone.setBounds(110, 162, 55, 16);
+		lblTelefone.setBounds(100, 300, 55, 16);
 		contentPane.add(lblTelefone);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(110, 190, 114, 20);
+		textField_2.setBounds(100, 318, 200, 25);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
+		
 		lblApelido = new JLabel("Apelido:");
-		lblApelido.setBounds(110, 222, 55, 16);
+		lblApelido.setBounds(100, 353, 55, 16);
 		contentPane.add(lblApelido);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(110, 250, 114, 20);
+		textField_3.setBounds(100, 371, 200, 25);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 		
+		
 		lblSenha = new JLabel("Senha:");
-		lblSenha.setBounds(110, 282, 55, 16);
+		lblSenha.setBounds(100, 408, 55, 16);
 		contentPane.add(lblSenha);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(110, 310, 114, 20);
+		textField_4.setBounds(100, 425, 200, 25);
 		contentPane.add(textField_4);
 		textField_4.setColumns(10);
 		
-		JButton btnSelecioneUmaImagem = new JButton("Selecione uma imagem");
-		btnSelecioneUmaImagem.setBounds(110, 354, 167, 26);
-		contentPane.add(btnSelecioneUmaImagem);
 		
-		JLabel lblNadaSelecionado = new JLabel("nada selecionado...");
-		lblNadaSelecionado.setBounds(115, 392, 109, 16);
-		contentPane.add(lblNadaSelecionado);
+		JButton btnSelectImg = new JButton("Selecione uma imagem");
+		btnSelectImg.setFont(new Font("Calibri", Font.BOLD, 14));
+		btnSelectImg.setForeground(new Color(255, 255, 255));
+		btnSelectImg.setBackground(new Color(65, 105, 225));
+		btnSelectImg.setBounds(115, 462, 170, 30);
+		contentPane.add(btnSelectImg);
+		
+		JLabel lblSelectionState = new JLabel("nada selecionado ainda...");
+		lblSelectionState.setForeground(Color.DARK_GRAY);
+		lblSelectionState.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSelectionState.setBounds(115, 492, 170, 16);
+		contentPane.add(lblSelectionState);
+		
 	}
 }

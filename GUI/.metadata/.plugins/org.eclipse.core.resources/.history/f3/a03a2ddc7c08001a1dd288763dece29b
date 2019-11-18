@@ -1,0 +1,68 @@
+package view;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextPane;
+import java.awt.Font;
+import javax.swing.JButton;
+
+public class Welcome {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Welcome window = new Welcome();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Welcome() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 400, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JTextPane txtpnJask = new JTextPane();
+		txtpnJask.setFont(new Font("Verdana", Font.BOLD, 40));
+		txtpnJask.setText("J A S K");
+		txtpnJask.setBounds(114, 80, 160, 54);
+		frame.getContentPane().add(txtpnJask);
+		
+		JTextPane textSubt1 = new JTextPane();
+		textSubt1.setText("    otimizar tarefas,\norganizar projetos.");
+		textSubt1.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textSubt1.setBounds(147, 133, 127, 54);
+		frame.getContentPane().add(textSubt1);
+		
+		JButton btnEntrar = new JButton("Entre");
+		btnNewButton.setBounds(147, 304, 89, 23);
+		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnCadastro = new JButton("Cadastre-se");
+		btnNewButton.setBounds(147, 304, 89, 23);
+		frame.getContentPane().add(btnNewButton);
+		
+	}
+}
