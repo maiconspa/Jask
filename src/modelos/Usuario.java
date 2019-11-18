@@ -1,6 +1,6 @@
 package modelos;
 
-import java.awt.Image;
+import java.io.*;
 
 	/**
 	 * Classe que representa um usuario dentro do projeto
@@ -41,7 +41,7 @@ public class Usuario {
 	/**
 	 * Atributo do tipo ??? para armazenar a foto			do Usuario
 	 */
-	private Image foto; // /!\ --------------------------------------------> Verificar como fazer isso.
+	private File foto; // /!\ --------------------------------------------> Verificar como fazer isso.
 	
 	//<---------------------------------------------------------------------------------------------------------------------------->//
 	
@@ -120,7 +120,7 @@ public class Usuario {
 	 * Retorna a foto do Usuario
 	 * @return	this.foto
 	 */
-	public Image getFoto() {
+	public File getFoto() {
 		return this.foto;
 	} // /!\ --------------------------------------------> Verificar como fazer isso.
 
@@ -175,7 +175,7 @@ public class Usuario {
 	 * Altera a foto do Usuario
 	 * @param foto
 	 */
-	public void setFoto(Image foto) {
+	public void setFoto(File foto) {
 		this.foto = foto;
 	} // /!\ --------------------------------------------> Verificar como fazer isso.
 	

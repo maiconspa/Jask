@@ -2,7 +2,9 @@ package dao;
 
 import java.security.KeyStore.ProtectionParameter;
 import modelos.Usuario;
-import java.awt.Image;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +18,13 @@ public class UsuarioDao {
 		this.conexao = conexao;
 	}
 	
+	
+	
+	/**
+	 * Metodo de criacao de 
+	 * @param usuario
+	 */
+	
 	public void cadastrarUsuario(Usuario usuario) {
 		String inserir = "INSERT INTO Usuario(nome,email,telefone,apelido,senha,foto)"
 				+ "VALUES (?, ?, ?, ?, ?, ?)";
@@ -28,7 +37,7 @@ public class UsuarioDao {
 			pst.setString(3,usuario.getTelefone());
 			pst.setString(4,usuario.getApelido());
 			pst.setString(5,usuario.getSenha());
-			pst.setImage(6,usuario.getFoto());
+			pst.setImage(6,usuario.getFoto()); // /!\ --------------------------------------------> Verificar como fazer isso.
 			
 			//ATE AQUI SO FOI CRIADA a STRING da linha cadastrarUsuario
 			
@@ -47,8 +56,41 @@ public class UsuarioDao {
 		
 	}
 	
+	
 	/**
-	 * Preparando a parte de consultas
+	 * Metodo para insercao de imagem:
+	 * @param foto
+	 */
+	
+	public void armazenarImagens(File foto) {
+			
+		//Preparando a String para insecao:
+		String inserir = "INSERT INTO Usuario (foto)"
+				+ "VALUES (?)";
+		
+		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {
+			
+			//criando fluxo de manipulacao de arquivo
+			FileInputStream inputStream = new FileInputStream(foto);
+			
+			pst.setBinaryStream(1, ///posição do Sql
+					(InputStream) inputStream, //Fluxo de informacao
+					(int) (foto.length()) //Quantidade de bytes
+					);
+			
+			//Enviando um comando para o MySQL
+			pst.execute();
+			
+		} catch (Exception e) {
+			//Imprimido a pilha de erros:
+			e.printStackTrace();
+		}
+			
+	}
+	
+	
+	/**
+	 * Metodos de consultas
 	 * @param apelido
 	 * @return apelido do Usuario
 	 */
@@ -70,32 +112,31 @@ public class UsuarioDao {
 			ResultSet resultado = pst.executeQuery();
 			
 			/**
-			 *---------------------- Perguntar ao professor  ------------------------------------
+			 *---------------------- Perguntar ao professor o motivo desta instancia  ------------------------------------
 			 */
 			Usuario usuario = null;
 			
+			//---------------------- 	Porque existe este if ?
 			if (resultado.next()) {
 				usuario = new Usuario();
 				String apelidoUsuario = resultado.getString("apelido");
-				/*-----------------------------nao sei o motivo da linha a baixo ter sido criada
-				String nome = resultado.getString("nomeTipo");
-				*/
+				String nome = resultado.getString("nome");
 				
 				usuario.setApelido(apelidoUsuario);
-				/*----------------------------- nao sei o motivo da linha a baixo ter sido criada
-				 * usuario.setNomeTipo(nome);
-				 */
+				usuario.setNome(nome);
+				
 				
 				return usuario;
 				
 			}
 			
 		} catch (SQLException ex) {
+			//Imprimindo a pilha de erros
 			ex.printStackTrace();
 		}
 		
 		return null;
 		
 	}
-
+		
 }
