@@ -21,7 +21,7 @@ public class UsuarioDao {
 	
 	
 	/**
-	 * Metodo de criacao de 
+	 * Metodo de criacao
 	 * @param usuario
 	 */
 	
@@ -37,7 +37,7 @@ public class UsuarioDao {
 			pst.setString(3,usuario.getTelefone());
 			pst.setString(4,usuario.getApelido());
 			pst.setString(5,usuario.getSenha());
-			pst.setImage(6,usuario.getFoto()); // /!\ --------------------------------------------> Verificar como fazer isso.
+			//pst.setImage(6,usuario.getFoto()); // /!\ --------------------------------------------> Verificar como fazer isso.
 			
 			//ATE AQUI SO FOI CRIADA a STRING da linha cadastrarUsuario
 			
@@ -121,9 +121,17 @@ public class UsuarioDao {
 				usuario = new Usuario();
 				String apelidoUsuario = resultado.getString("apelido");
 				String nome = resultado.getString("nome");
+				String email = resultado.getString("email");
+				String telefone = resultado.getString("telefone");
+				String senha = resultado.getString("senha");
+				//File foto = resultado.getFile("foto"); // /!\ --------------------------------------------> Verificar como fazer isso. seria um int ?
 				
 				usuario.setApelido(apelidoUsuario);
 				usuario.setNome(nome);
+				usuario.setEmail(email);
+				usuario.setTelefone(telefone);
+				usuario.setSenha(senha);
+				//usuario.setNome(senha); // /!\ --------------------------------------------> Verificar como fazer isso.
 				
 				
 				return usuario;

@@ -14,7 +14,7 @@ public class Conexao {
 	
 	/**
 	 * Devemos comecar com Static para nao haver a necessidade
-	 * de instanciar um  objeto para esta classe destemodo e executado
+	 * de instanciar um  objeto para esta classe deste modo e executado
 	 * uma unica vez durante todo o programa.
 	 * 
 	 * O metodo statico a seguir tem como funcao encontrar o driver do mysql
@@ -29,7 +29,7 @@ public class Conexao {
 			
 		} catch (ClassNotFoundException ex) {
 
-			System.out.println("Driver N�O encontrado...");
+			System.out.println("Driver NAO encontrado...");
 			
 			/**imprime a pilha de erros "linhas vermelhas"**/
 			ex.printStackTrace();
