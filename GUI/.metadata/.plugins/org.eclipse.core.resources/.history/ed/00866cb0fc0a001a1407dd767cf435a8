@@ -11,19 +11,11 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JSplitPane;
-import javax.swing.SwingConstants;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.border.MatteBorder;
-import javax.swing.JSeparator;
 
 public class visaoGeral extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -45,7 +37,6 @@ public class visaoGeral extends JFrame {
 	 * Create the frame.
 	 */
 	public visaoGeral() {
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
@@ -54,9 +45,12 @@ public class visaoGeral extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		textField = new JTextField();
+		textField.setBounds(354, 11, 86, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
 		
 		JButton btnViewprojects = new JButton("");
-		btnViewprojects.setToolTipText("Listar projetos");
 		btnViewprojects.setForeground(Color.WHITE);
 		btnViewprojects.setBackground(Color.WHITE);
 		btnViewprojects.setBorderPainted(false);
@@ -65,56 +59,27 @@ public class visaoGeral extends JFrame {
 		contentPane.add(btnViewprojects);
 		
 		JButton btnViewcolaborators = new JButton("");
-		btnViewcolaborators.setToolTipText("Colaboradores");
 		btnViewcolaborators.setForeground(Color.WHITE);
 		btnViewcolaborators.setBackground(Color.WHITE);
-		btnViewcolaborators.setBorderPainted(false);
-		btnViewcolaborators.setBounds(105, 10, 45, 45); //150
+		btnViewprojects.setBorderPainted(false);
+		btnViewcolaborators.setBounds(105, 10, 45, 45);
 		btnViewcolaborators.setIcon(new ImageIcon(Cadastro.class.getResource("/view/icons/collaborators.png")));
 		contentPane.add(btnViewcolaborators);
-
-		
-		//Caixa de busca:
-		textField = new JTextField();
-		textField.setToolTipText("insira aqui um termo para buscar");
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setBounds(302, 20, 200, 25);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
 		
 		JButton btnViewChat = new JButton("");
-		btnViewChat.setToolTipText("Mensagens");
 		btnViewChat.setForeground(Color.WHITE);
 		btnViewChat.setBackground(Color.WHITE);
 		btnViewChat.setBorderPainted(false);
-		btnViewChat.setBounds(644, 10, 45, 45);
+		btnViewChat.setBounds(546, 10, 45, 45);
 		btnViewChat.setIcon(new ImageIcon(Cadastro.class.getResource("/view/icons/message.png")));
 		contentPane.add(btnViewChat);
 		
 		JButton btnUserConfig = new JButton("");
-		btnUserConfig.setToolTipText("Op\u00E7\u00F5es");
 		btnUserConfig.setForeground(Color.WHITE);
 		btnUserConfig.setBackground(Color.WHITE);
 		btnUserConfig.setBorderPainted(false);
-		btnUserConfig.setBounds(739, 10, 45, 45);
+		btnUserConfig.setBounds(634, 10, 45, 45);
 		btnUserConfig.setIcon(new ImageIcon(Cadastro.class.getResource("/view/icons/moreHorizontal.png")));
 		contentPane.add(btnUserConfig);
-		
-		table = new JTable();
-		table.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(105, 105, 105)));
-		table.setBackground(new Color(176, 196, 222));
-		table.setBounds(149, 149, 487, 246);
-		contentPane.add(table);
-		
-		JLabel lblProjetos = new JLabel("Projetos");
-		lblProjetos.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblProjetos.setBounds(149, 102, 134, 37);
-		contentPane.add(lblProjetos);
-		
-		JSeparator separator = new JSeparator();
-		separator.setForeground(new Color(0, 0, 0));
-		separator.setBounds(0, 65, 794, 13);
-		contentPane.add(separator);
 	}
 }
