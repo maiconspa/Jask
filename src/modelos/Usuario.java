@@ -6,7 +6,7 @@ import java.io.*;
 	 * Classe que representa um usuario dentro do projeto
 	 * 
 	 * @author Davi Fonseca
-	 * @version 1.0
+	 * @version 2.0
 	 * @since 1.0 -> desde qual versão esta classe está no projeto
 	 *
 	 */
@@ -60,7 +60,7 @@ public class Usuario {
 	 * @param senha		Armazena a senha	do Usuario
 	 * @param foto		Armazena a foto		do Usuario
 	 */
-	public Usuario (String nome, String email, String telefone, String apelido, String senha, Image foto) {
+	public Usuario (String nome, String email, String telefone, String apelido, String senha, File foto) {
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
