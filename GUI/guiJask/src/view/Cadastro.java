@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Cadastro extends JFrame {
 
@@ -46,6 +48,7 @@ public class Cadastro extends JFrame {
 	 * Create the frame.
 	 */
 	public Cadastro() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 400, 600);
 		contentPane = new JPanel();
@@ -64,7 +67,7 @@ public class Cadastro extends JFrame {
 		JButton btnBack = new JButton("");
 		btnBack.setForeground(Color.WHITE);
 		btnBack.setBackground(Color.WHITE);
-		btnBack.setIcon(new ImageIcon(Cadastro.class.getResource("/view/arrow_back_ios.png")));
+		btnBack.setIcon(new ImageIcon(Cadastro.class.getResource("/view/icons/arrowBack.png")));
 		btnBack.setBounds(22, 26, 45, 45);
 		btnBack.setBorderPainted(false); //método para retirar as bordas do JButton e deixar somente a imagem.
 		contentPane.add(btnBack);		
@@ -78,7 +81,7 @@ public class Cadastro extends JFrame {
 		contentPane.add(lblNext);
 		//botao de avançar
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(Cadastro.class.getResource("/view/arrow_foward_ios.png")));
+		button.setIcon(new ImageIcon(Cadastro.class.getResource("/view/icons/arrowFoward.png")));
 		button.setForeground(Color.WHITE);
 		button.setBorderPainted(false);
 		button.setBackground(Color.WHITE);
@@ -144,17 +147,24 @@ public class Cadastro extends JFrame {
 		textField_4.setColumns(10);
 		
 		
-		JButton btnSelectImg = new JButton("Selecione uma imagem");
+		JButton btnSelectImg = new JButton("");
+		btnSelectImg.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+		}
+		});
+		
+		btnSelectImg.setIcon(new ImageIcon(Cadastro.class.getResource("/view/icons/addImage.png")));
 		btnSelectImg.setFont(new Font("Calibri", Font.BOLD, 14));
 		btnSelectImg.setForeground(new Color(255, 255, 255));
-		btnSelectImg.setBackground(new Color(65, 105, 225));
-		btnSelectImg.setBounds(115, 462, 170, 30);
+		btnSelectImg.setBackground(Color.WHITE);
+		btnSelectImg.setBorderPainted(false);
+		btnSelectImg.setBounds(100, 468, 40, 45);
 		contentPane.add(btnSelectImg);
 		
 		JLabel lblSelectionState = new JLabel("nada selecionado ainda...");
 		lblSelectionState.setForeground(Color.DARK_GRAY);
 		lblSelectionState.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSelectionState.setBounds(115, 492, 170, 16);
+		lblSelectionState.setBounds(140, 495, 160, 16);
 		contentPane.add(lblSelectionState);
 		
 	}

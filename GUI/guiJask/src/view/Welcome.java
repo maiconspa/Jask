@@ -68,6 +68,7 @@ public class Welcome {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 400, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
