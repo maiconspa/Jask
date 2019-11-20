@@ -33,8 +33,9 @@ public class Projeto {
 	/**
 	 * Atributo do tipo ArrayList pra armazenar os usuarios participantes		do Projeto
 	 */
-	private ArrayList<Usuario> usuario;
-
+	private ArrayList<Usuario> usuarios; // /!\ --------------------------------------------> Verificar como fazer isso.
+										 // /!\ Como e um Array list não seria uma consulta apenas e nao um atributo ?
+	
 	//<---------------------------------------------------------------------------------------------------------------------------->//
 	
 	/**
@@ -42,11 +43,99 @@ public class Projeto {
 	 */
 	public Projeto() {}
 	
-	public Projeto(int idProjeto, ) {
-		
+	/**
+	 * Criacao de um contrutor cheio:
+	 * 
+	 * @param idProjeto				Armazena o ID						do Projeto
+	 * @param nomeProjeto			Armazena o nome						do Projeto
+	 * @param apelidoProprietario	Armazena o Apelido do Proprietario	do Projeto
+	 * @param usuarios				Armazena os Usuarios atrelados	 	ao Projeto
+	 */
+	public Projeto(int idProjeto, String nomeProjeto, String apelidoProprietario, ArrayList<Usuario> usuarios) {
+		this.idProjeto = idProjeto;
+		this.nomeProjeto = nomeProjeto;
+		this.usuarios = usuarios; // /!\ --------------------------------------------> Verificar como fazer isso.
+								  // /!\ Como e um Array list e possivelmente uma consulta, aqui não devia ser criado um metodo
+								  //     para exibição dos usários ?
 	}
 	
+	//<---------------------------------------------------------------------------------------------------------------------------->//
 	
+	/**
+	 * Criação de retornos de consulta	(get)
+	 *
+	 */
+	
+	/**
+	 * Retorna o ID do Projeto
+	 * @return	this.idProjeto
+	 */
+	public int getIdProjeto() {
+		return this.idProjeto;
+	}
+	
+	/**
+	 * Retorna o Nome do Projeto
+	 * @return	this.nomeProjeto
+	 */
+	public String getNomeProjeto() {
+		return this.nomeProjeto;
+	}
+
+	/**
+	 * Retorna o Apelido do Proprietario do Projeto
+	 * @return			   this.apelidoProprietario
+	 */
+	public String getApelidoProprietario() {
+		return this.apelidoProprietario;
+	}
+	
+	/**
+	 * Retorna os Usuarios atrelados ao Projeto
+	 * @return					  this.usuarios
+	 */
+	public ArrayList<Usuario> getUsuarios() {
+		return this.usuarios;
+	}
+	
+	//<---------------------------------------------------------------------------------------------------------------------------->//
+	
+	/**
+	 * Criação de metodos de alteracao	(set)
+	 *
+	 */
+	
+	/**
+	 * Altera o ID do Projeto
+	 * @param		idProjeto
+	 */
+	public void setIdProjeto(int idProjeto) {
+		this.idProjeto = idProjeto;
+	}
+	
+	/**
+	 * Altera o Nome do Projeto
+	 * @param		nomeProjeto
+	 */
+	public void setNomeProjeto(String nomeProjeto) {
+		this.nomeProjeto = nomeProjeto;
+	}
+	
+	/**
+	 * Altera o Apelido do Proprieterio do Projeto
+	 * @param 				   apelidoProprietario
+	 */
+	public void setApelidoProprietario(String apelidoProprietario) {
+		this.apelidoProprietario = apelidoProprietario;
+	}
+	
+	/**
+	 * Aletra os Usuarios participantes do projeto
+	 * @param usuarios
+	 */
+	public void setUsuarios(ArrayList<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	} // /!\ --------------------------------------------> Verificar como fazer isso.
 	
 	
 	

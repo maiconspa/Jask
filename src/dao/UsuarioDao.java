@@ -1,6 +1,5 @@
 package dao;
 
-import java.security.KeyStore.ProtectionParameter;
 import modelos.Usuario;
 import java.io.File;
 import java.io.FileInputStream;
