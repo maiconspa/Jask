@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 
 /**
- * Classe que representa um usuario dentro do projeto
+ * Classe que representa um projeto
  * 
  * @author Davi Fonseca
  * @version 2.0
@@ -136,8 +136,20 @@ public class Projeto {
 	public void setUsuarios(ArrayList<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	} // /!\ --------------------------------------------> Verificar como fazer isso.
+	  // /!\ Por ser um Arraylist não deveria ter um metódo para alterar estes registros ?.
 	
+	//<---------------------------------------------------------------------------------------------------------------------------->//
 	
-	
+		/**
+		 * Sobescrevendo o metodo toString:
+		 */
+		@Override
+		public String toString() {
+			return "Projeto{Id Projeto: " + this.idProjeto
+					+ ", Nome: " + this.nomeProjeto
+					+ ", Proprietário: " + this.apelidoProprietario
+					+ ", Usuários: " + this.usuarios // /!\ --------------------------------------------> Verificar como fazer isso.
+				   +"}";							 // /!\ Por ser um Arraylist não deveria ter um metódo para trazer está infomação ?
+		}
 	
 }

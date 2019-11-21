@@ -9,6 +9,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Classe DAO para o usuario
+ * 
+ * @author Davi Fonseca
+ * @version 4.0
+ * @since 1.0 -> desde qual versão esta classe está no projeto
+ *
+ */
+
 public class UsuarioDao {
 	
 	private Connection conexao;
