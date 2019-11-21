@@ -16,10 +16,14 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import java.awt.Font;
+
+
 import javax.swing.border.MatteBorder;
 import javax.swing.JSeparator;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class visaoGeral extends JFrame {
+public class VisaoGeral extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -32,7 +36,7 @@ public class visaoGeral extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					visaoGeral frame = new visaoGeral();
+					VisaoGeral frame = new VisaoGeral();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +48,7 @@ public class visaoGeral extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public visaoGeral() {
+	public VisaoGeral() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
@@ -84,6 +88,12 @@ public class visaoGeral extends JFrame {
 		
 		
 		JButton btnViewChat = new JButton("");
+		btnViewChat.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Chat we = new Chat();
+				we.setVisible(true);
+			}
+		});
 		btnViewChat.setToolTipText("Mensagens");
 		btnViewChat.setForeground(Color.WHITE);
 		btnViewChat.setBackground(Color.WHITE);
@@ -92,6 +102,7 @@ public class visaoGeral extends JFrame {
 		btnViewChat.setIcon(new ImageIcon(Cadastro.class.getResource("/view/icons/message.png")));
 		contentPane.add(btnViewChat);
 		
+
 		JButton btnUserConfig = new JButton("");
 		btnUserConfig.setToolTipText("Op\u00E7\u00F5es");
 		btnUserConfig.setForeground(Color.WHITE);
@@ -117,4 +128,6 @@ public class visaoGeral extends JFrame {
 		separator.setBounds(0, 65, 794, 13);
 		contentPane.add(separator);
 	}
+
+
 }
