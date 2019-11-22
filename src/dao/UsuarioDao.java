@@ -110,7 +110,7 @@ public class UsuarioDao {
 		 * Criando a String de consulta
 		 */
 		
-		String consulta = "SELECT * FROM Usuario WHERE apelido = '?'";
+		String consulta = "SELECT * FROM Usuario WHERE apelido = ?";
 		
 		try (PreparedStatement pst = conexao.prepareStatement(consulta)) {
 			
@@ -124,13 +124,12 @@ public class UsuarioDao {
 			 */
 			Usuario usuario = null;
 			
-			//---------------------- 	Porque existe este if ?
 			if (resultado.next()) {
 				usuario = new Usuario();
-				String apelidoUsuario = resultado.getString("apelido");
 				String nome = resultado.getString("nome");
 				String email = resultado.getString("email");
 				String telefone = resultado.getString("telefone");
+				String apelidoUsuario = resultado.getString("apelido");
 				String senha = resultado.getString("senha");
 				//File foto = resultado.getFile("foto"); // /!\ --------------------------------------------> Verificar como fazer isso. seria um int ?
 				
@@ -139,7 +138,7 @@ public class UsuarioDao {
 				usuario.setEmail(email);
 				usuario.setTelefone(telefone);
 				usuario.setSenha(senha);
-				//usuario.setNome(senha); // /!\ --------------------------------------------> Verificar como fazer isso.
+				//usuario.setFoto(foto); // /!\ --------------------------------------------> Verificar como fazer isso.
 				
 				
 				return usuario;

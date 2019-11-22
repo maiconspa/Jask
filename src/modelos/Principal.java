@@ -1,22 +1,19 @@
 package modelos;
 
 import dao.Conexao;
+import dao.UsuarioDao;
 //import dao.TipoDAO;
 
 public class Principal {
 
 	public static void main(String[] args) {
 		
-		Conexao.conectar();
+		UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
 		
-		/*TipoDAO tipoDAO = new TipoDAO(Conexao.conectar());
+		Usuario resultado = userDao.consultarUsuario("Bike");
 		
-		Tipo tipoPokemon = new Tipo(7, "Venenoso");
-		
-		tipoDAO.cadastrarTipo(tipoPokemon);
-		
-		System.out.println("Cadastrado com sucesso !");*/
-
+		System.out.println("Nome: " + resultado.getApelido());
+				
 	}
 
 }

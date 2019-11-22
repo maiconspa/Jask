@@ -1,9 +1,9 @@
+package dao;
 /**
  * Data Acess Object (DAO)
  */
-package dao;
 
-import  java.sql.Connection;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -24,7 +24,9 @@ public class Conexao {
 		try {
 			
 			System.out.println("procurando driver..");
+			
 			Class.forName("com.mysql.cj.jdbc.Driver");
+			
 			System.out.println("Drive encontrado !");
 			
 		} catch (ClassNotFoundException ex) {
@@ -39,26 +41,28 @@ public class Conexao {
 	}
 	
 	/**
-	 * Criando um método para realizar a conexÃ£o com o banco de dados.
+	 * Criando um método para realizar a conexao com o banco de dados.
 	 */
 	
 	public static Connection conectar() {
 		
 		try {
-			
+	
 			System.out.println("Estabelecendo conexão...");
+			Connection c = null;
 			
-			Connection c = DriverManager.getConnection("jdbc:mysql://localhost/colecao?useSSL=false","Jask","alunos");
+			c = DriverManager.getConnection("jdbc:mysql://localhost/jask?useSSL=false","root","");
+			
 			System.out.println("Conexão estabelecida com sucesso !");
 			
 			return c;
 			
 		} catch (SQLException ex) {
 			
+			ex.printStackTrace();
 			return null;
 			
 		}
-		
+			
 	}
-
 }

@@ -144,7 +144,15 @@ public class Tarefa {
 		this.descricao = descricao;
 	}
 	
-
+	@Override
+	public String toString() {
+		return "Tarefa{Id Tarefa:"	+ this.idTarefa
+				+ ", Id Projeto:"	+ this.idProjeto
+				+ ", Estado:"		+ this.estado
+				+ ", Titulo:"		+ this.titulo
+			   +"}";
+	}
+	
 }
 
 	

@@ -60,13 +60,13 @@ public class Usuario {
 	 * @param senha		Armazena a senha	do Usuario
 	 * @param foto		Armazena a foto		do Usuario
 	 */
-	public Usuario (String nome, String email, String telefone, String apelido, String senha, File foto) {
+	public Usuario (String nome, String email, String telefone, String apelido, String senha) {
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
 		this.apelido = apelido;
 		this.senha = senha;
-		this.foto = foto; // /!\ --------------------------------------------> Verificar como fazer isso.
+		//this.foto = foto; // /!\ --------------------------------------------> Verificar como fazer isso.
 	}
 	
 	//<---------------------------------------------------------------------------------------------------------------------------->//
