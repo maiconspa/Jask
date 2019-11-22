@@ -1,3 +1,0 @@
-corrigido:
-Mensagem>id_mensagem: estava como VARCHAR, alterado para INTEGER
-data_hora
