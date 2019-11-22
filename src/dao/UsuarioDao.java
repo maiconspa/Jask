@@ -22,6 +22,8 @@ public class UsuarioDao {
 	
 	private Connection conexao;
 	
+	public UsuarioDao() {}
+	
 	public UsuarioDao (Connection conexao) {
 		this.conexao = conexao;
 	}
@@ -66,15 +68,15 @@ public class UsuarioDao {
 	
 	
 	/**
-	 * Metodo para insercao de imagem:
+	 * Metodo para alteração de imagem:
 	 * @param foto
 	 */
 	
-	public void armazenarImagens(File foto) {
+	public void armazenarImagens(File foto, String apelido) {
 			
 		//Preparando a String para insecao:
-		String inserir = "INSERT INTO Usuario (foto)"
-				+ "VALUES (?)";
+		String inserir = "Update Usuario SET foto ="
+				+ "? WHERE apelido = ?";
 		
 		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {
 			
@@ -85,6 +87,7 @@ public class UsuarioDao {
 					(InputStream) inputStream, //Fluxo de informacao
 					(int) (foto.length()) //Quantidade de bytes
 					);
+			pst.setString(2, apelido);
 			
 			//Enviando um comando para o MySQL
 			pst.execute();
