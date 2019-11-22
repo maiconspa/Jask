@@ -12,8 +12,8 @@ public class Principal {
 		
 		Usuario resultado = userDao.consultarUsuario("Bike");
 		
-		System.out.println("Nome: " + resultado.getApelido());
-				
+		System.out.println("Apelido: " + resultado.getApelido());
+		
 	}
 
 }
