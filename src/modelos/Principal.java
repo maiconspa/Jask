@@ -10,14 +10,22 @@ public class Principal {
 
 	public static void main(String[] args) {
 		
-		UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
+		/**
+		 * @author Davi Fonseca
+		 * Consultando Usuario
+		 */
+		/**UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
 		
 		Usuario resultado = userDao.consultarUsuario("Bike");
 		
 		System.out.println("Apelido: " + resultado.getApelido());
 		System.out.println("Nome: " + resultado.getNome());
+		**/
+		
+		//<---------------------------------------------------------------------------------------------------------------------------->//
 		
 		/**
+		 * @author Davi Fonseca
 		 * Inserindo uma imagem:
 		 */
 		/*try {
@@ -27,6 +35,10 @@ public class Principal {
 		} catch (Exception e) {
 				e.printStackTrace();	
 		}*/
+		
+		//<---------------------------------------------------------------------------------------------------------------------------->//
+		
+		
 		
 	}
 

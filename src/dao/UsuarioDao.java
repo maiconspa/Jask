@@ -22,13 +22,11 @@ public class UsuarioDao {
 	
 	private Connection conexao;
 	
-	public UsuarioDao() {}
-	
 	public UsuarioDao (Connection conexao) {
 		this.conexao = conexao;
 	}
 	
-	
+	//<---------------------------------------------------------------------------------------------------------------------------->//
 	
 	/**
 	 * Metodo de criacao
@@ -66,6 +64,7 @@ public class UsuarioDao {
 		
 	}
 	
+	//<---------------------------------------------------------------------------------------------------------------------------->//
 	
 	/**
 	 * Metodo para alteração de imagem:
@@ -99,6 +98,7 @@ public class UsuarioDao {
 			
 	}
 	
+	//<---------------------------------------------------------------------------------------------------------------------------->//
 	
 	/**
 	 * Metodos de consultas
