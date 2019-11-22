@@ -61,4 +61,4 @@ foreign key(fk_id_tarefa) references Tarefa(id_tarefa)
 );
 */
 
-/*drop database Jask;*/
+#drop database Jask;
