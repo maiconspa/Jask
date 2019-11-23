@@ -56,7 +56,7 @@ public class Tarefa {
 	 */
 	public Tarefa(int idTarefa, int idProjeto, String estado, String titulo, String descricao) {
 		this.idTarefa = idTarefa;
-		this.idProjeto = idProjeto; // /!\ --------------------------------------------> Verificar como fazer isso.
+		this.idProjeto = idProjeto;// /!\ --------------------------------------------> Verificar como fazer isso.
 		this.estado = estado;
 		this.titulo = titulo;
 		this.descricao = descricao;

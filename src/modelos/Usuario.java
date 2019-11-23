@@ -6,7 +6,7 @@ import java.io.*;
 	 * Classe que representa um usuario dentro do projeto
 	 * 
 	 * @author Davi Fonseca
-	 * @version 2.0
+	 * @version 3.0
 	 * @since 1.0 -> desde qual versão esta classe está no projeto
 	 *
 	 */
