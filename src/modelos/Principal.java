@@ -1,7 +1,6 @@
 package modelos;
 
 import java.io.File;
-
 import dao.Conexao;
 import dao.UsuarioDao;
 //import dao.TipoDAO;
@@ -28,13 +27,13 @@ public class Principal {
 		 * @author Davi Fonseca
 		 * Inserindo uma imagem:
 		 */
-		/*try {
+		try {
 			UsuarioDao teste = new UsuarioDao(Conexao.conectar());
 			teste.armazenarImagens(new File("github.png"), "Bike");
 			
 		} catch (Exception e) {
 				e.printStackTrace();	
-		}*/
+		}
 		
 		//<---------------------------------------------------------------------------------------------------------------------------->//
 		
