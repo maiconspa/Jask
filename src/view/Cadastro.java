@@ -7,18 +7,31 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileFilter;
 import java.awt.event.ActionEvent;
 
 public class Cadastro extends JFrame {
 
+	/**
+	 * Atributo de composição de tela, utilizado para adiconar elementos à exibição
+	 */
 	private JPanel contentPane;
 	private JTextField txtNomeCompleto;
 	private JTextField textField_1;
@@ -27,16 +40,74 @@ public class Cadastro extends JFrame {
 	private JTextField textField_3;
 	private JLabel lblSenha;
 	private JTextField textField_4;
-
+	private JTextField txtFile;
+	
+	
+	//<-------------------------------- COMPORTAMENTO(métodos) ------------------------------------------->\\
 	/**
-	 * Launch the application.
+	 * Abre janela de seleção de imagens, recebe um objeto do tipo JButton.
+	 */
+	public static void selectImg(JButton botao, JTextField campoDetexto) {
+		botao.addActionListener(new ActionListener() {
+			/**
+			 * variavel utilizada posteriormente para capturar o retorno de seleção (seja ele: selecionado alguma coisa OU não)
+			 */
+			private int retorno;
+
+			public void actionPerformed(ActionEvent e) {
+				//Instância do JFileChooser
+				JFileChooser jfc = new JFileChooser();
+				
+				//Definindo título da barra superior:
+				jfc.setDialogTitle("Selecionar imagem");
+				
+				//Restrição de tipo de arquivo (filtro de extensões, oculta arquivos com outras extensões, permitindo somente a seleção daquelas predefinidas):
+				jfc.setFileFilter(new FileNameExtensionFilter("Imagem", "jpg", "jpeg", "png"));
+				
+				//Restrição para seleção de arquivos ao invés de diretórios completos:
+				jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				
+				//Abrir menu de contexto de seleção de arquivos:
+				retorno = jfc.showOpenDialog(jfc);
+				
+				//Alteração do campo "nada selecionado ainda..." de acordo com ter selecionado ou não alguma coisa
+				if (retorno == JFileChooser.APPROVE_OPTION) {
+					/**
+					 * Captura o arquivo selecionado
+					 */
+					File file = jfc.getSelectedFile();
+					campoDetexto.setText(file.getPath());
+				}
+			}});
+	}
+	
+	//<-------------------------------- --------------------------------------->\\
+	
+	/**
+	 * Iniciando a aplicação
 	 */
 	public static void main(String[] args) {
+		
+		/**
+		 * Look and feel
+		 */
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Metal".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (Exception e) {}
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Cadastro frame = new Cadastro();
-					frame.setVisible(true);
+					Cadastro janela = new Cadastro();
+					/**
+					 * Exibindo a janela de cadastro
+					 */
+					janela.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -44,10 +115,14 @@ public class Cadastro extends JFrame {
 		});
 	}
 
+	
 	/**
-	 * Create the frame.
+	 * Janela de cadastro
 	 */
 	public Cadastro() {
+		/**
+		 * Configurações da janela
+		 */
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 400, 600);
@@ -63,6 +138,7 @@ public class Cadastro extends JFrame {
 		lblVoltar.setFont(new Font("Dialog", Font.BOLD, 10));
 		lblVoltar.setBounds(22, 12, 45, 16);
 		contentPane.add(lblVoltar);
+		
 		//Botao de voltar
 		JButton btnBack = new JButton("");
 		btnBack.setForeground(Color.WHITE);
@@ -126,46 +202,73 @@ public class Cadastro extends JFrame {
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
-		
+		/**
+		 * Label do campo do apelido
+		 */
 		lblApelido = new JLabel("Apelido:");
 		lblApelido.setBounds(100, 353, 55, 16);
 		contentPane.add(lblApelido);
 		
+		/**
+		 * Campo de texto do apelido
+		 */
 		textField_3 = new JTextField();
 		textField_3.setBounds(100, 371, 200, 25);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 		
+		/**
+		 * Botao de verificacao de apelido existente
+		 */
+		JButton btnVerificaApelido = new JButton();
+		btnVerificaApelido.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btnVerificaApelido.setText("Verificar");
+		btnVerificaApelido.setForeground(Color.BLACK);
+		btnVerificaApelido.setBackground(Color.WHITE);
+		btnVerificaApelido.setBounds(305, 371, 77, 20);
+		contentPane.add(btnVerificaApelido);
 		
+		/**
+		 * Label do campo de senha
+		 */
 		lblSenha = new JLabel("Senha:");
 		lblSenha.setBounds(100, 408, 55, 16);
 		contentPane.add(lblSenha);
 		
+		/**
+		 * Campo de texto de inserção da senha
+		 */
 		textField_4 = new JTextField();
 		textField_4.setBounds(100, 425, 200, 25);
 		contentPane.add(textField_4);
 		textField_4.setColumns(10);
 		
-		
+		/**
+		 * Botão de seleção de imagem
+		 */
 		JButton btnSelectImg = new JButton("");
-		btnSelectImg.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-		}
-		});
-		
 		btnSelectImg.setIcon(new ImageIcon(Cadastro.class.getResource("/view/img/icons/addImage.png")));
-		btnSelectImg.setFont(new Font("Calibri", Font.BOLD, 14));
-		btnSelectImg.setForeground(new Color(255, 255, 255));
+		btnSelectImg.setForeground(Color.WHITE);
 		btnSelectImg.setBackground(Color.WHITE);
 		btnSelectImg.setBorderPainted(false);
 		btnSelectImg.setBounds(100, 468, 40, 45);
 		contentPane.add(btnSelectImg);
 		
-		JLabel lblSelectionState = new JLabel("nada selecionado ainda...");
-		lblSelectionState.setForeground(Color.DARK_GRAY);
-		lblSelectionState.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSelectionState.setBounds(140, 495, 160, 16);
-		contentPane.add(lblSelectionState);
+		/**
+		 * Campo de texto de informação (imagem selecionada)
+		 */
+		txtFile = new JTextField();
+		txtFile.setText("Nada selecionado ainda...");
+		txtFile.setBounds(150, 482, 150, 20);
+		contentPane.add(txtFile);
+		txtFile.setColumns(10);
+		
+		//<------------------------  AÇÕES DE BOTÕES  ---------------------------->\\
+		
+		/**
+		 * Selecionar imagem
+		 */
+		selectImg(btnSelectImg, txtFile);
 		
 	}
 }

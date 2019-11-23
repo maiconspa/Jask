@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 public class Chat extends JFrame {
 
@@ -20,6 +22,19 @@ public class Chat extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		/**
+		 * Look and feel
+		 */
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Metal".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (Exception e) {}
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -36,7 +51,7 @@ public class Chat extends JFrame {
 	 * Create the frame.
 	 */
 	public Chat() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 400, 600);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);

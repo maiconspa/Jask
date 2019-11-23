@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JPasswordField;
 
 public class Entrada extends JFrame {
@@ -32,6 +34,19 @@ public class Entrada extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		/**
+		 * Look and feel
+		 */
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Metal".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (Exception e) {}
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
