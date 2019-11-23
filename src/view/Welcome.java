@@ -41,9 +41,7 @@ public class Welcome {
 		            break;
 		        }
 		    }
-		} catch (Exception e) {
-		    // If Nimbus is not available, you can set the GUI to another look and feel.
-		}
+		} catch (Exception e) {}
 		
 		
 		EventQueue.invokeLater(new Runnable() {
@@ -78,8 +76,8 @@ public class Welcome {
 		
 		// LOGOTIPO JASK
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(Welcome.class.getResource("/view/img/logos/logo_jask_v1.png")));
-		label.setBounds(100, 85, 200, 200);
+		label.setIcon(new ImageIcon(Welcome.class.getResource("/view/img/logos/workingBee-CROP-blue-Jask_by_Miglena_Spasova.png")));
+		label.setBounds(53, 39, 300, 300);
 		frame.getContentPane().add(label);
 		
 		// BOTÃO DE ENTRAR
