@@ -9,6 +9,8 @@ package modelos;
  *
  */
 
+//<---------------------------------------------------------------------------------------------------------------------------->//
+
 public class Tarefa {
 	
 	/**
@@ -21,6 +23,12 @@ public class Tarefa {
 	 * // /!\ --------------------------------------------> Verificar como fazer isso.
 	 */
 	private int idProjeto;
+	
+	/**
+	 * Atributo do tipo int para armazenar o apelido proprietario da Tarefa
+	 * // /!\ --------------------------------------------> Verificar como fazer isso.
+	 */
+	private String apelidoProprietario;
 	
 	/**
 	 * Atributo do tipo String para armazenar o estado			  da Tarefa
@@ -48,15 +56,17 @@ public class Tarefa {
 
 	/**
 	 * Criacao de um contrutor cheio
-	 * @param idTarefa		Armazena o id da 		Tarefa
-	 * @param idProjeto		Armazena o id do Porjeto que está tarefa pertence
-	 * @param estado		Armazena o estado da 	Tarefa (do, to do, concluida)
-	 * @param titulo		Armazena o titulo da 	Tarefa
-	 * @param descricao		Armazena a descricao da Tarefa
+	 * @param idTarefa				Armazena o id da 		Tarefa
+	 * @param idProjeto				Armazena o id do Porjeto que está tarefa pertence
+	 * @param apelidoProprietario	Armazena o apelido do proprietario da Tarefa
+	 * @param estado				Armazena o estado da 	Tarefa (do, to do, concluida)
+	 * @param titulo				Armazena o titulo da 	Tarefa
+	 * @param descricao				Armazena a descricao da Tarefa
 	 */
-	public Tarefa(int idTarefa, int idProjeto, String estado, String titulo, String descricao) {
+	public Tarefa(int idTarefa, int idProjeto, String apelidoProprietario, String estado, String titulo, String descricao) {
 		this.idTarefa = idTarefa;
-		this.idProjeto = idProjeto;// /!\ --------------------------------------------> Verificar como fazer isso.
+		this.idProjeto = idProjeto;						// /!\ --------------------------------------------> Verificar como fazer isso.
+		this.apelidoProprietario = apelidoProprietario;	// /!\ --------------------------------------------> Verificar como fazer isso.
 		this.estado = estado;
 		this.titulo = titulo;
 		this.descricao = descricao;
@@ -82,7 +92,15 @@ public class Tarefa {
 	 * @return	this.idProjeto
 	 */
 	public int getIdProjeto() {
-		return this.idProjeto;
+		return this.idProjeto;				// /!\ --------------------------------------------> Verificar como fazer isso.
+	}
+	
+	/**
+	 * Retorna o apelido do proprietario		da Tarefa
+	 * @return	this.proprietario
+	 */
+	public String getApelidoProprietario() {
+		return this.apelidoProprietario;	// /!\ --------------------------------------------> Verificar como fazer isso.
 	}
 	
 	/**
@@ -131,19 +149,44 @@ public class Tarefa {
 	public void setIdProjeto(int idProjeto) {
 		this.idProjeto = idProjeto;
 	}
-
+	
+	/**
+	 * Altera o Apelido do proprietario da Tarefa
+	 * @param apelidoProprietario
+	 */
+	public void setApelidoProprietario(String apelidoProprietario) {
+		this.apelidoProprietario = apelidoProprietario;
+	}
+	
+	/**
+	 * Altera o estado da Tarefa
+	 * @param estado
+	 */
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-
+	
+	/**
+	 * Altera o titulo da Tarefa
+	 * @param titulo
+	 */
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-
+	
+	/**
+	 * Altera a descricao da Tarefa
+	 * @param descricao
+	 */
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
 	
+	//<---------------------------------------------------------------------------------------------------------------------------->//
+	
+	/**
+	 * Sobescrevendo o metodo toString:
+	 */
 	@Override
 	public String toString() {
 		return "Tarefa{Id Tarefa:"	+ this.idTarefa

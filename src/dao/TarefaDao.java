@@ -32,13 +32,19 @@ public class TarefaDao {
 	 * @param tarefa
 	 */
 	public void cadastrarTarefa(Tarefa tarefa) {
-		String inserir = "INSERT INTO Tarefa()"
-				+ "VALUES (?)";
+		String inserir = "INSERT INTO Tarefa(id_tarefa, fk_id_projeto, fk_apelido_proprietario, estado, titulo, descricao)"
+				+ "VALUES (?, ?, ?, ?, ?, ?)";
 		
 		/**Objeto de execucao de comando SQL para **/
 		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {
 			
-			pst.setString(1,"! Alguma coisa aqui!");
+			pst.setInt(1,	 tarefa.getIdTarefa());
+			pst.setInt(2,	 tarefa.getIdProjeto());
+			pst.setString(3, tarefa.getApelidoProprietario());
+			pst.setString(4, tarefa.getEstado());
+			pst.setString(5, tarefa.getTitulo());
+			pst.setString(6, tarefa.getDescricao());
+			
 			
 			//ATE AQUI SO FOI CRIADA a STRING da linha cadastrarUsuario
 			
