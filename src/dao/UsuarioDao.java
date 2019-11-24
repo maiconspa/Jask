@@ -45,7 +45,7 @@ public class UsuarioDao {
 			pst.setString(3,usuario.getTelefone());
 			pst.setString(4,usuario.getApelido());
 			pst.setString(5,usuario.getSenha());
-			//pst.setImage(6,usuario.getFoto()); // /!\ --------------------------------------------> Verificar como fazer isso.
+			//pst.setImage(6,usuario.getFoto()); 		// /!\ --------------------------------------------> Verificar como fazer isso.
 			
 			//ATE AQUI SO FOI CRIADA a STRING da linha cadastrarUsuario
 			
@@ -103,7 +103,6 @@ public class UsuarioDao {
 	/**
 	 * Metodos de consultas
 	 * @param apelido
-	 * @return apelido do Usuario
 	 */
 	
 	
@@ -123,7 +122,7 @@ public class UsuarioDao {
 			ResultSet resultado = pst.executeQuery();
 			
 			/**
-			 *---------------------- Perguntar ao professor o motivo desta instancia  ------------------------------------
+			 * // /!\ ---------------------- Perguntar ao professor o motivo desta instancia  ------------------------------------
 			 */
 			Usuario usuario = null;
 			
@@ -141,7 +140,7 @@ public class UsuarioDao {
 				usuario.setEmail(email);
 				usuario.setTelefone(telefone);
 				usuario.setSenha(senha);
-				//usuario.setFoto(foto); // /!\ --------------------------------------------> Verificar como fazer isso.
+				//usuario.setFoto(foto); 				 // /!\ --------------------------------------------> Verificar como fazer isso.
 				
 				
 				return usuario;

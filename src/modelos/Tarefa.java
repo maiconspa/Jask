@@ -4,7 +4,7 @@ package modelos;
  * Classe que representa uma tarefa dentro do projeto
  * 
  * @author Davi Fonseca
- * @version 1.0
+ * @version 2.0
  * @since 2.0 -> desde qual versão esta classe está no projeto
  *
  */
