@@ -22,12 +22,6 @@ public class Entrada extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNomeCompleto;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JLabel lblApelido;
-	private JTextField textField_3;
-	private JLabel lblSenha;
-	private JTextField textField_4;
 	private JPasswordField passwordField;
 
 	/**
