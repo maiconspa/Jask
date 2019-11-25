@@ -12,7 +12,7 @@ import modelos.Usuario;
  * Classe DAO para uma Tarefa
  * 
  * @author Davi Fonseca
- * @version 1.0
+ * @version 3.0
  * @since 6.0 -> desde qual versão esta classe está no projeto
  *
  */
@@ -64,4 +64,64 @@ public class TarefaDao {
 	}
 	
 	//<---------------------------------------------------------------------------------------------------------------------------->//
+	
+	/**
+	 * Metodos de consultas
+	 * @param apelido
+	 */
+	public Tarefa consultarTarefa(int idTarefa) {
+		
+		/**
+		 * Criando a String de consulta
+		 */
+		String consulta = "SELECT * FROM Tarefa WHERE id_tarefa = ?";
+		
+		try (PreparedStatement pst = conexao.prepareStatement(consulta)){
+			
+			pst.setInt(1, idTarefa);
+			
+			//quando precisa de retorno do banco "ResultSet"//
+			ResultSet resultado = pst.executeQuery();
+			
+			/**
+			 * 	Instanciando um objeto com valor nulo para preencimento com
+			 *  base no retorno da consulta realizada.
+			 */
+			Tarefa tarefa = null;
+			
+			/**
+			 *  /!\ Perguntar ao professor a explicacao deste if
+			 */
+			if (resultado.next()) {
+				tarefa = new Tarefa();
+				int idTarefa = resultado.getInt("id_tarefa"); // /!\ --------------------------------------------> Verificar como resolver isso.
+				int idProjeto = resultado.getInt("fk_id_projeto");
+				String apelidoProprietario = resultado.getString("fk_apelido_proprietario");
+				String estado = resultado.getString("estado");
+				String titulo = resultado.getString("titulo");
+				String descricao = resultado.getString("descricao");
+				
+				tarefa.setIdTarefa(idTarefa);
+				tarefa.setIdProjeto(idProjeto);
+				tarefa.setApelidoProprietario(apelidoProprietario);
+				tarefa.setEstado(estado);
+				tarefa.setTitulo(titulo);
+				tarefa.setDescricao(descricao);
+				
+				return tarefa;
+				
+			}
+			
+		} catch (SQLException ex){
+			
+			/**
+			 * Tratando as excessoes
+			 */
+			ex.printStackTrace();
+			
+		}
+		
+		return null;
+		
+	}
 }
