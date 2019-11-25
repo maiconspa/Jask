@@ -18,6 +18,14 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JPasswordField;
 
+/**
+ * Tela de Entrada de um usuário já cadastrado
+ * 
+ * @author Maicon Souza
+ * @version 2.0
+ * @since 1.0
+ *
+ */
 public class Entrada extends JFrame {
 
 	private JPanel contentPane;

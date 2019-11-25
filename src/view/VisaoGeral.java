@@ -26,6 +26,14 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
+/**
+ * Tela de visão geral do projeto, interações com tarefas, mensagens e etc.
+ * 
+ * @author Maicon Souza
+ * @version 3.0
+ * @since 1.0
+ *
+ */
 public class VisaoGeral extends JFrame {
 	
 	/**
@@ -64,11 +72,21 @@ public class VisaoGeral extends JFrame {
 	int bgJpDarkTheme [] = {50, 50, 50};
 			
 	//Tema PADRÃO
+	/**
+	 * Array de cores RGB para o background da janela
+	 */
 	int bg [] = {bgBlueTheme[0], bgBlueTheme[1], bgBlueTheme[2]};
+	/**
+	 * Array de cores RGB para o background da barra de navegação
+	 */
 	int bgNav [] = {bgNavBlueTheme[0], bgNavBlueTheme[1], bgNavBlueTheme[2]};
+	/**
+	 * Array de cores RGB para o background dos paineis internos
+	 */
 	int bgJp [] = {bgJpBlueTheme[0], bgJpBlueTheme[1], bgJpBlueTheme[2]};
 
 	
+	//<---------------------------------------------------------------------->\\
 	/**
 	 * Launch the application.
 	 */

@@ -14,6 +14,14 @@ import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+/**
+ * Tela de troca de mensagens entre usuários
+ * 
+ * @author Maicon Souza
+ * @version 1.1
+ * @since 1.0
+ *
+ */
 public class Chat extends JFrame {
 
 	private JPanel contentPane;
@@ -65,8 +73,8 @@ public class Chat extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblMensagens = new JLabel("Chats");
-		lblMensagens.setBounds(10, 11, 75, 37);
+		JLabel lblMensagens = new JLabel("Mensagens");
+		lblMensagens.setBounds(10, 11, 150, 37);
 		lblMensagens.setFont(new Font("Tahoma", Font.BOLD, 25));
 		panel.add(lblMensagens);
 		
@@ -74,8 +82,7 @@ public class Chat extends JFrame {
 		scrollPane.setBounds(40, 60, 297, 468);
 		panel.add(scrollPane);
 		
-		JButton btnNewButton = new JButton("New button");
-		scrollPane.setColumnHeaderView(btnNewButton);
+		
 		
 		
 	}

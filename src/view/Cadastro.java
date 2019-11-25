@@ -27,6 +27,15 @@ import java.io.File;
 import java.io.FileFilter;
 import java.awt.event.ActionEvent;
 
+/**
+ * Tela de cadastro de uma nova conta
+ * 
+ * @author Maicon Souza
+ * @version 2.0
+ * @since 1.0
+ *
+ */
+
 public class Cadastro extends JFrame {
 
 	/**

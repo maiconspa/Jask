@@ -22,6 +22,14 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
+/**
+ * Tela de Boas vindas, onde o usuário escolhe entrar com uma conta existente ou cadastrar uma nova conta.
+ * 
+ * @author Maicon Souza
+ * @version 2.0
+ * @since 1.0
+ *
+ */
 public class Welcome {
 
 	private JFrame frame;

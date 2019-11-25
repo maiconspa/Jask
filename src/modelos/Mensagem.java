@@ -1,10 +1,14 @@
 package modelos;
 
 /**
- * Processa mensagem entre usuarios
+ * Representa mensagem no projeto
+ * 
+ * @author Maicon Souza
+ * @version 2.0
+ * @since 1.0
+ *
  */
-public class Mensagem
-{
+public class Mensagem {
     // Composicao:
     /**
      * Composicao da classe Usuario
@@ -13,52 +17,57 @@ public class Mensagem
     
     
     // Atributos:
-    private String remetente = u.getApelido();
-    private String destinatario = u.getApelido(); // /!\ Verificar como diferenciar remetente e destinatario.
-    
     /**
      * id da mensagem
      */
     private int id;
+    
+	/**
+     * apelido do destinatário
+     */
+    private String apelidoDestinatario;
+    
+    /**
+     * apelido do remetente
+     */
+    private String apelidoRemetente;
+    
     /**
      * corpo da mensagem
      */
     private String texto;
+    
     /**
      * data e hora de envio
      */
-    private String dhSend;
+    private String dhEnvio;
+    
     /**
      * data e hora de visualizacaoo
      */
-    private String dhView;
-    /**
-     * data e hora de recebimento
-     */
-    private String dhRecept;
+    private String dhVisualizacao;
+    
     /**
      * estado de visualização
      */
-    private boolean viewState;
+    private boolean estadoVisualizacao;
     
     
-    // Construtor:
-    
+    // Construtores:
     /**
      * @param int id
      * @param String texto
-     * @param String dhSend
-     * @param String dhView
-     * @param String dhRecept
-     * @param boolean viewState
+     * @param String dhEnvio
+     * @param String dhVisualizacao
+     * @param String dhRecebimento
+     * @param boolean estadoVisualizacao
      */
-    public Mensagem(int id, String texto, String dhSend, String dhView, String dhRecept, boolean viewState) {
+    public Mensagem(int id, String texto, String dhEnvio, String dhVisualizacao, boolean estadoVisualizacao) {
         this.id = id;
         this.texto = texto;
-        this.dhSend = dhSend;
-        this.dhView = dhView;
-        this.dhRecept = dhRecept;
-        this.viewState = viewState;
+        this.dhEnvio = dhEnvio;
+        this.dhVisualizacao = dhVisualizacao;
+        this.estadoVisualizacao = estadoVisualizacao;
     }
     
     
@@ -69,39 +78,47 @@ public class Mensagem
     public void setId(int id) {
         this.id = id;
     }
+    public String getApelidoRemetente() {
+		return apelidoRemetente;
+	}
+
+	public void setApelidoRemetente(String apelidoRemetente) {
+		this.apelidoRemetente = apelidoRemetente;
+	}
+
+	public String getApelidoDestinatario() {
+		return apelidoDestinatario;
+	}
+
+	public void setApelidoDestinatario(String apelidoDestinatario) {
+		this.apelidoDestinatario = apelidoDestinatario;
+	}
     
     public String getTexto() {
         return this.texto;
     }
     public void setTexto(String texto) {
-        this.texto = texto;
+        this.texto = texto; 
     }
     
-    public String getDhSend() {
-        return this.dhSend;
+    public String getDhEnvio() {
+        return this.dhEnvio;
     }
-    public void setDhSend(String dhSend) {
-        this.dhSend = dhSend;
-    }
-    
-    public String getDhView() {
-        return this.dhView;
-    }
-    public void setDhView(String dhView) {
-        this.dhView = dhView;
+    public void setDhEnvio(String dhEnvio) {
+        this.dhEnvio = dhEnvio;
     }
     
-    public String getDhRecept() {
-        return this.dhRecept;
+    public String getDhVisualizacao() {
+        return this.dhVisualizacao;
     }
-    public void setDhRecept(String dhRecept) {
-        this.dhRecept = dhRecept;
+    public void setDhVisualizacao(String dhVisualizacao) {
+        this.dhVisualizacao = dhVisualizacao;
     }
     
-    public boolean getViewState() {
-        return this.viewState;
+    public boolean getEstadoVisualizacao() {
+        return this.estadoVisualizacao;
     }
-    public void setViewState(boolean viewState) {
-        this.viewState = viewState;
+    public void setEstadoVisualizacao(boolean estadoVisualizacao) {
+        this.estadoVisualizacao = estadoVisualizacao;
     }  
 }
