@@ -12,7 +12,7 @@ import modelos.Usuario;
  * Classe DAO para uma Tarefa
  * 
  * @author Davi Fonseca
- * @version 3.0
+ * @version 4.0
  * @since 6.0 -> desde qual versão esta classe está no projeto
  *
  */
