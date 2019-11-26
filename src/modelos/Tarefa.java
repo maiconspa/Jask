@@ -45,6 +45,11 @@ public class Tarefa {
 	 */
 	private String descricao;
 	
+	/**
+	 *  Atributo do tipo String para armazenar a prioridade		  da Tarefa
+	 */
+	private String prioridade;
+	
 	//<---------------------------------------------------------------------------------------------------------------------------->//
 
 	/**
@@ -64,7 +69,8 @@ public class Tarefa {
 	 * @param descricao				Armazena a descricao da Tarefa
 	 */
 	public Tarefa(int idTarefa, int idProjeto, String apelidoProprietario, String estado, String titulo, String descricao) {
-		this.idTarefa = idTarefa;
+		idTarefa = 0;	
+		this.idTarefa = idTarefa;						// /!\ --------------------------------------------> Verificar como fazer isso.
 		this.idProjeto = idProjeto;						// /!\ --------------------------------------------> Verificar como fazer isso.
 		this.apelidoProprietario = apelidoProprietario;	// /!\ --------------------------------------------> Verificar como fazer isso.
 		this.estado = estado;
@@ -126,6 +132,14 @@ public class Tarefa {
 	public String getDescricao() {
 		return this.descricao;
 	}
+	
+	/**
+	 * Retorna o prioridade 	da Tarefa
+	 * @return	this.prioridade
+	 */
+	public String getPrioridade() {
+		return this.prioridade;
+	}
 
 	//<---------------------------------------------------------------------------------------------------------------------------->//
 	
@@ -180,6 +194,14 @@ public class Tarefa {
 	 */
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	
+	/**
+	 * Altera a prioridade da Tarefa
+	 * @param prioridade
+	 */
+	public void setPrioridade(String prioridade) {
+		this.prioridade = prioridade;
 	}
 	
 	//<---------------------------------------------------------------------------------------------------------------------------->//

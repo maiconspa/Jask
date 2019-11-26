@@ -39,12 +39,11 @@ public class TarefaDao {
 		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {
 			
 			pst.setInt(1,	 tarefa.getIdTarefa());
-			pst.setInt(2,	 tarefa.getIdProjeto());
-			pst.setString(3, tarefa.getApelidoProprietario());
+			pst.setInt(2,	 tarefa.getIdProjeto());			// /!\ --> Verificar como fazer isso, devemos criar um metodo para consultar se o valor existe na tabela em questão ?
+			pst.setString(3, tarefa.getApelidoProprietario());	// /!\ --> Verificar como fazer isso. '' ?
 			pst.setString(4, tarefa.getEstado());
 			pst.setString(5, tarefa.getTitulo());
 			pst.setString(6, tarefa.getDescricao());
-			
 			
 			//ATE AQUI SO FOI CRIADA a STRING da linha cadastrarUsuario
 			
@@ -69,7 +68,7 @@ public class TarefaDao {
 	 * Metodos de consultas
 	 * @param apelido
 	 */
-	public Tarefa consultarTarefa(int idTarefa) {
+	public Tarefa consultarTarefa(int id) {
 		
 		/**
 		 * Criando a String de consulta
@@ -78,7 +77,7 @@ public class TarefaDao {
 		
 		try (PreparedStatement pst = conexao.prepareStatement(consulta)){
 			
-			pst.setInt(1, idTarefa);
+			pst.setInt(1, id);
 			
 			//quando precisa de retorno do banco "ResultSet"//
 			ResultSet resultado = pst.executeQuery();
@@ -94,7 +93,7 @@ public class TarefaDao {
 			 */
 			if (resultado.next()) {
 				tarefa = new Tarefa();
-				int idTarefa = resultado.getInt("id_tarefa"); // /!\ --------------------------------------------> Verificar como resolver isso.
+				int idTarefa = resultado.getInt("id_tarefa");
 				int idProjeto = resultado.getInt("fk_id_projeto");
 				String apelidoProprietario = resultado.getString("fk_apelido_proprietario");
 				String estado = resultado.getString("estado");
