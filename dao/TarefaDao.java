@@ -89,7 +89,7 @@ public class TarefaDao {
 			if (resultado.next()) {
 				tarefa = new Tarefa();
 				int idTarefa = resultado.getInt("id_tarefa");
-				int idProjeto = resultado.getInt("fk_id_projeto");
+				int idProjeto = resultado.getInt("fk_id_projeto"); // /!\ ---> Como vamos exibir as tarefas no lugar correto se não existir este atributo ?
 				String apelidoProprietario = resultado.getString("fk_apelido_proprietario");
 				String estado = resultado.getString("estado");
 				String titulo = resultado.getString("titulo");
