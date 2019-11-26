@@ -19,16 +19,9 @@ public class Tarefa {
 	private int idTarefa;
 	
 	/**
-	 * Atributo do tipo int para armazenar o id do projeto desta 	Tarefa
-	 * // /!\ --------------------------------------------> Verificar como fazer isso.
+	 * Atributo do tipo Usuario para armazenar o proprietario	 da Tarefa
 	 */
-	private int idProjeto;
-	
-	/**
-	 * Atributo do tipo int para armazenar o apelido proprietario da Tarefa
-	 * // /!\ --------------------------------------------> Verificar como fazer isso.
-	 */
-	private String apelidoProprietario;
+	private Usuario proprietario;
 	
 	/**
 	 * Atributo do tipo String para armazenar o estado			  da Tarefa
@@ -68,14 +61,13 @@ public class Tarefa {
 	 * @param titulo				Armazena o titulo da 	Tarefa
 	 * @param descricao				Armazena a descricao da Tarefa
 	 */
-	public Tarefa(int idTarefa, int idProjeto, String apelidoProprietario, String estado, String titulo, String descricao) {
-		idTarefa = 0;	
-		this.idTarefa = idTarefa;						// /!\ --------------------------------------------> Verificar como fazer isso.
-		this.idProjeto = idProjeto;						// /!\ --------------------------------------------> Verificar como fazer isso.
-		this.apelidoProprietario = apelidoProprietario;	// /!\ --------------------------------------------> Verificar como fazer isso.
+	public Tarefa(int idTarefa, int idProjeto, Usuario proprietario, String estado, String titulo, String descricao, String prioridade) {	
+		this.idTarefa = idTarefa;
+		this.proprietario = proprietario;
 		this.estado = estado;
 		this.titulo = titulo;
 		this.descricao = descricao;
+		this.prioridade = prioridade;
 	}
 	
 	//<---------------------------------------------------------------------------------------------------------------------------->//
@@ -94,19 +86,11 @@ public class Tarefa {
 	}
 	
 	/**
-	 * Retorna o ID 		da Tarefa
-	 * @return	this.idProjeto
-	 */
-	public int getIdProjeto() {
-		return this.idProjeto;				// /!\ --------------------------------------------> Verificar como fazer isso.
-	}
-	
-	/**
 	 * Retorna o apelido do proprietario		da Tarefa
 	 * @return	this.proprietario
 	 */
-	public String getApelidoProprietario() {
-		return this.apelidoProprietario;	// /!\ --------------------------------------------> Verificar como fazer isso.
+	public Usuario getProprietario() {
+		return this.proprietario;
 	}
 	
 	/**
@@ -157,19 +141,11 @@ public class Tarefa {
 	}
 	
 	/**
-	 * Altera o ID do Projeto ao Qual a Tarefa esta associada
-	 * @param idProjeto
-	 */
-	public void setIdProjeto(int idProjeto) {
-		this.idProjeto = idProjeto;
-	}
-	
-	/**
 	 * Altera o Apelido do proprietario da Tarefa
-	 * @param apelidoProprietario
+	 * @param Proprietario
 	 */
-	public void setApelidoProprietario(String apelidoProprietario) {
-		this.apelidoProprietario = apelidoProprietario;
+	public void setProprietario(Usuario proprietario) {
+		this.proprietario = proprietario;
 	}
 	
 	/**
@@ -211,10 +187,10 @@ public class Tarefa {
 	 */
 	@Override
 	public String toString() {
-		return "Tarefa{Id Tarefa:"	+ this.idTarefa
-				+ ", Id Projeto:"	+ this.idProjeto
-				+ ", Estado:"		+ this.estado
-				+ ", Titulo:"		+ this.titulo
+		return "Tarefa{Id Tarefa:"			+ this.idTarefa
+				+ ", Proprietario:{"		+ this.proprietario.toString()
+				+ ", Estado:"				+ this.estado
+				+ ", Titulo:"				+ this.titulo
 			   +"}";
 	}
 	

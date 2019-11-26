@@ -34,8 +34,8 @@ public class UsuarioDao {
 	 */
 	
 	public void cadastrarUsuario(Usuario usuario) {
-		String inserir = "INSERT INTO Usuario(nome,email,telefone,apelido,senha,foto)"
-				+ "VALUES (?, ?, ?, ?, ?, ?)";
+		String inserir = "INSERT INTO Usuario(nome,email,telefone,apelido,senha)"
+				+ "VALUES (?, ?, ?, ?, ?)";
 		
 		/**Objeto de execucao de comando SQL para **/
 		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {
@@ -45,7 +45,6 @@ public class UsuarioDao {
 			pst.setString(3,usuario.getTelefone());
 			pst.setString(4,usuario.getApelido());
 			pst.setString(5,usuario.getSenha());
-			//pst.setImage(6,usuario.getFoto()); 		// /!\ --------------------------------------------> Verificar como fazer isso.
 			
 			//ATE AQUI SO FOI CRIADA a STRING da linha cadastrarUsuario
 			
@@ -133,14 +132,14 @@ public class UsuarioDao {
 				String telefone = resultado.getString("telefone");
 				String apelidoUsuario = resultado.getString("apelido");
 				String senha = resultado.getString("senha");
-				//File foto = resultado.getFile("foto"); // /!\ --------------------------------------------> Verificar como fazer isso. seria um int ?
+				File foto = resultado.getFile("foto"); // /!\ --------------------------------------------> Verificar como fazer isso. seria um int ?
 				
 				usuario.setApelido(apelidoUsuario);
 				usuario.setNome(nome);
 				usuario.setEmail(email);
 				usuario.setTelefone(telefone);
 				usuario.setSenha(senha);
-				//usuario.setFoto(foto); 				 // /!\ --------------------------------------------> Verificar como fazer isso.
+				usuario.setFoto(foto); 				 // /!\ --------------------------------------------> Verificar como fazer isso.
 				
 				
 				return usuario;

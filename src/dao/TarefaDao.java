@@ -31,19 +31,18 @@ public class TarefaDao {
 	 * Metodo de criacao de uma Tarefa
 	 * @param tarefa
 	 */
-	public void cadastrarTarefa(Tarefa tarefa) {
-		String inserir = "INSERT INTO Tarefa(id_tarefa, fk_id_projeto, fk_apelido_proprietario, estado, titulo, descricao)"
-				+ "VALUES (?, ?, ?, ?, ?, ?)";
+	public void cadastrarTarefa(Tarefa tarefa, int idProjeto) {
+		String inserir = "INSERT INTO Tarefa(null, fk_id_projeto, fk_apelido_proprietario, estado, titulo, descricao)"
+				+ "VALUES (?, ?, ?, ?, ?)";
 		
 		/**Objeto de execucao de comando SQL para **/
 		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {
 			
-			pst.setInt(1,	 tarefa.getIdTarefa());
-			pst.setInt(2,	 tarefa.getIdProjeto());			// /!\ --> Verificar como fazer isso, devemos criar um metodo para consultar se o valor existe na tabela em questão ?
-			pst.setString(3, tarefa.getApelidoProprietario());	// /!\ --> Verificar como fazer isso. '' ?
-			pst.setString(4, tarefa.getEstado());
-			pst.setString(5, tarefa.getTitulo());
-			pst.setString(6, tarefa.getDescricao());
+			pst.setInt(1,	 idProjeto);
+			pst.setString(2, tarefa.getProprietario().getApelido());
+			pst.setString(3, tarefa.getEstado());
+			pst.setString(4, tarefa.getTitulo());
+			pst.setString(5, tarefa.getDescricao());
 			
 			//ATE AQUI SO FOI CRIADA a STRING da linha cadastrarUsuario
 			
@@ -82,15 +81,11 @@ public class TarefaDao {
 			//quando precisa de retorno do banco "ResultSet"//
 			ResultSet resultado = pst.executeQuery();
 			
-			/**
-			 * 	Instanciando um objeto com valor nulo para preencimento com
-			 *  base no retorno da consulta realizada.
-			 */
+			/*	Instanciando um objeto com valor nulo para preencimento com
+			    base no retorno da consulta realizada.  */
 			Tarefa tarefa = null;
 			
-			/**
-			 *  /!\ Perguntar ao professor a explicacao deste if
-			 */
+			// Verifica se há um resultado para a consulta relizada.
 			if (resultado.next()) {
 				tarefa = new Tarefa();
 				int idTarefa = resultado.getInt("id_tarefa");
@@ -100,9 +95,10 @@ public class TarefaDao {
 				String titulo = resultado.getString("titulo");
 				String descricao = resultado.getString("descricao");
 				
+				UsuarioDao user = new UsuarioDao(conexao);
+				
 				tarefa.setIdTarefa(idTarefa);
-				tarefa.setIdProjeto(idProjeto);
-				tarefa.setApelidoProprietario(apelidoProprietario);
+				tarefa.setProprietario(user.consultarUsuario(apelidoProprietario));
 				tarefa.setEstado(estado);
 				tarefa.setTitulo(titulo);
 				tarefa.setDescricao(descricao);
