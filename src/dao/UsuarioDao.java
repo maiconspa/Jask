@@ -3,6 +3,7 @@ package dao;
 import modelos.Usuario;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,6 +26,7 @@ public class UsuarioDao {
 	public UsuarioDao (Connection conexao) {
 		this.conexao = conexao;
 	}
+	
 	
 	//<---------------------------------------------------------------------------------------------------------------------------->//
 	
@@ -64,6 +66,7 @@ public class UsuarioDao {
 		
 	}
 	
+	
 	//<---------------------------------------------------------------------------------------------------------------------------->//
 	
 	/**
@@ -98,20 +101,65 @@ public class UsuarioDao {
 			
 	}
 	
-	//<---------------------------------------------------------------------------------------------------------------------------->//
 	
+	//<----------------------------------------------------------------------->//
+	/**
+	 * Método para captura de imagem do banco de dados de acordo com o apelido.
+	 * @param usuario
+	 */
+	public void recuperarImagem(String apelido) {
+		//
+        // Criando o SQL de consulta:
+		String selectImg = "select foto from Usuario where apelido = ?";
+		PreparedStatement pst = null; // inicialização
+		// Pegar uma conexão com o banco de dados:
+		this.conexao = Conexao.conectar();
+		
+		try {
+			
+			pst = conexao.prepareStatement(selectImg);
+			pst.setString(1, apelido);
+			
+			ResultSet resultado = pst.executeQuery();
+			// Arquivo onde a imagem será armazenada no disco:
+			File file = new File("teste2.jpg");
+			// Objeto para tratar saída de dados para um arquivo:
+			FileOutputStream output = new FileOutputStream(file);
+			
+			// Verificando se encontrou registro para o select:
+			if (resultado.next()) {
+				// Pegando o campo do tipo blob, chamado "foto":
+				InputStream input = resultado.getBinaryStream("foto");
+				// Preparando um vetor de bytes para enviar para o arquivo:
+		        byte[] buffer = new byte[1024];
+		        // Enquanto existir conteúdo no fluxo de dados, continua:
+		        while (input.read(buffer) > 0) {
+		        	// Escreve o conteúdo no arquivo de destino no disco:
+		            output.write(buffer);
+		        }
+				// Fechando a entrada:
+		        input.close();
+			}
+			// Encerra a saída:
+			output.close();
+			resultado.close();
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	
+	//<----------------------------------------------------------------------->//
 	/**
 	 * Metodos de consultas
 	 * @param apelido
 	 */
-	
-	
 	public Usuario consultarUsuario(String apelido) {
 		
 		/**
 		 * Criando a String de consulta
 		 */
-		
 		String consulta = "SELECT * FROM Usuario WHERE apelido = ?";
 		
 		try (PreparedStatement pst = conexao.prepareStatement(consulta)) {
