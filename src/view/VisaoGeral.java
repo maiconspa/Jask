@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -10,20 +9,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JSplitPane;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
 import javax.swing.JLabel;
 import java.awt.Font;
 
 
-import javax.swing.border.MatteBorder;
-import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 /**

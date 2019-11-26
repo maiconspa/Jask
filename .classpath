@@ -5,7 +5,11 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/davif/Documentos/Arquivos Java/mysql-connector-java-8.0.12.jar"/>
+=======
+>>>>>>> branch 'master' of https://github.com/maiconspa/Jask
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/819160889/Downloads/mysql-connector-java-8.0.12.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
