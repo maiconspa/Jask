@@ -6,6 +6,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  * Estabelece a conexao com o banco de dados
@@ -31,7 +32,9 @@ public class Conexao {
 			
 		} catch (ClassNotFoundException ex) {
 
-			System.out.println("Driver NAO encontrado...");
+			//System.out.println("Driver NAO encontrado...");
+			JOptionPane.showMessageDialog(null, "Driver NAO encontrado...", "Problemas !", JOptionPane.WARNING_MESSAGE); // /!\ --> Verificar como fazer isso Lancar um aexceção para a interface grafica tratar(propagação de exceção"!
+			
 			
 			/**imprime a pilha de erros "linhas vermelhas"**/
 			ex.printStackTrace();

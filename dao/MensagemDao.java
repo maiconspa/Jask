@@ -3,7 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+import java.sql.Date;
 import modelos.Mensagem;
 
 /**
@@ -35,13 +35,15 @@ private Connection conexao;
 		 * Objeto de execucao de comando SQL
 		 */
 		try (PreparedStatement pst = conexao.prepareStatement(novaMensagem)) {
+			//compareTo para comparar datas
+			
 			
 			pst.setInt(1,	 mensagem.getId());
 			pst.setString(2,	 mensagem.getApelidoDestinatario());
 			pst.setString(3,	 mensagem.getApelidoRemetente());
 			pst.setString(4,	 mensagem.getTexto());
-			pst.setString(5,	 mensagem.getDhEnvio());
-			pst.setString(6,	 mensagem.getDhVisualizacao());
+			pst.set(5,	 mensagem.getDhEnvio());
+			pst.set(6,	 mensagem.getDhVisualizacao());
 			pst.setBoolean(7,	 mensagem.getEstadoVisualizacao());
 			
 			//ATE AQUI SO FOI CRIADA a STRING da linha cadastrarUsuario
