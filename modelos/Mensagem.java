@@ -1,4 +1,6 @@
 package modelos;
+import java.util.GregorianCalendar;
+import java.sql.Date;
 
 /**
  * Representa mensagem no projeto
@@ -14,7 +16,6 @@ public class Mensagem {
      * Composicao da classe Usuario
      */
     Usuario u = new Usuario();
-    
     
     // Atributos:
     /**
@@ -40,20 +41,24 @@ public class Mensagem {
     /**
      * data e hora de envio
      */
-    private String dhEnvio;
+    private GregorianCalendar dhEnvio;
     
     /**
      * data e hora de visualizacaoo
      */
-    private String dhVisualizacao;
+    private GregorianCalendar dhVisualizacao;
     
     /**
      * estado de visualização
      */
-    private boolean estadoVisualizacao;
+    private String estadoVisualizacao;
     
     
     // Construtores:
+    /**
+     * Construtor vazio
+     */
+    public Mensagem() {}
     /**
      * @param int id
      * @param String texto
@@ -62,7 +67,7 @@ public class Mensagem {
      * @param String dhRecebimento
      * @param boolean estadoVisualizacao
      */
-    public Mensagem(int id, String texto, String dhEnvio, String dhVisualizacao, boolean estadoVisualizacao) {
+    public Mensagem(int id, String texto, GregorianCalendar dhEnvio, GregorianCalendar dhVisualizacao, String estadoVisualizacao) {
         this.id = id;
         this.texto = texto;
         this.dhEnvio = dhEnvio;
@@ -71,7 +76,7 @@ public class Mensagem {
     }
     
     
-    // Getters e setters:
+    // Getters e setters: 
     public int getId() {
         return this.id;
     }
@@ -85,40 +90,55 @@ public class Mensagem {
 	public void setApelidoRemetente(String apelidoRemetente) {
 		this.apelidoRemetente = apelidoRemetente;
 	}
-
 	public String getApelidoDestinatario() {
 		return apelidoDestinatario;
 	}
-
 	public void setApelidoDestinatario(String apelidoDestinatario) {
 		this.apelidoDestinatario = apelidoDestinatario;
 	}
-    
     public String getTexto() {
         return this.texto;
     }
     public void setTexto(String texto) {
         this.texto = texto; 
     }
-    
-    public String getDhEnvio() {
+    public GregorianCalendar getDhEnvio() {
         return this.dhEnvio;
     }
-    public void setDhEnvio(String dhEnvio) {
+    public void setDhEnvio(GregorianCalendar dhEnvio) {
         this.dhEnvio = dhEnvio;
     }
-    
-    public String getDhVisualizacao() {
+    public GregorianCalendar getDhVisualizacao() {
         return this.dhVisualizacao;
     }
-    public void setDhVisualizacao(String dhVisualizacao) {
+    public void setDhVisualizacao(GregorianCalendar dhVisualizacao) {
         this.dhVisualizacao = dhVisualizacao;
     }
-    
-    public boolean getEstadoVisualizacao() {
+    public String getEstadoVisualizacao() {
         return this.estadoVisualizacao;
     }
-    public void setEstadoVisualizacao(boolean estadoVisualizacao) {
+    public void setEstadoVisualizacao(String estadoVisualizacao) {
         this.estadoVisualizacao = estadoVisualizacao;
-    }  
+    }
+    
+    //<----------------------------------------------------------------------->//
+    public java.sql.Date convertSqlDate(GregorianCalendar gc) {
+    	gc.set(GregorianCalendar.YEAR, 2017);
+    	
+    	// Convertendo para java.util.Date:
+		java.util.Date dataUtil = new java.util.Date();
+		dataUtil.setTime(gc.getTimeInMillis());
+    	
+		// Convertendo para java.sql.Date:
+		java.sql.Date dataSql = new java.sql.Date(gc.getTimeInMillis());
+		
+		return dataSql;
+    }
 }
+
+//@Override
+
+
+
+
+

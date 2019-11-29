@@ -54,7 +54,7 @@ public class Conexao {
 			System.out.println("Estabelecendo conexão...");
 			Connection c = null;
 			
-			c = DriverManager.getConnection("jdbc:mysql://localhost/jask?useSSL=false","Alunos","alunos");
+			c = DriverManager.getConnection("jdbc:mysql://localhost/jask?useSSL=false","root","");
 			
 			System.out.println("Conexão estabelecida com sucesso !");
 			
