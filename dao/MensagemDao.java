@@ -1,6 +1,5 @@
 package dao;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,26 +7,24 @@ import java.sql.SQLException;
 import java.util.GregorianCalendar;
 import java.sql.Date;
 import modelos.Mensagem;
-import modelos.Usuario;
 
 /**
- * Classe DAO para troca de mensagens
+ * Data Acess Object para troca de mensagens
  * 
  * @author Maicon Souza
- * @version 1.0
+ * @version 3.0
  * @since 1.0
- *
  */
 public class MensagemDao {
 
-private Connection conexao;
+	private Connection conexao;
 	
-	public MensagemDao (Connection conexao) {
+	public MensagemDao(Connection conexao) {
 		this.conexao = conexao;
 	}
 	//<----------------------------------->//
 	
-	//caractere separador de mensagens '%%'
+	
 	public void armazenaNovaMensagem(Mensagem mensagem) {
 		String novaMensagem = "INSERT INTO Mensagem"
 				+ "(null, fk_apelido_destinatario, fk_apelido_remetente, "
