@@ -22,51 +22,54 @@ public class MensagemDao {
 	public MensagemDao(Connection conexao) {
 		this.conexao = conexao;
 	}
-	//<----------------------------------->//
 	
-	
+	/**
+	 * 
+	 * @param mensagem objeto de manipulacao de elementos da classe
+	 */
 	public void armazenaNovaMensagem(Mensagem mensagem) {
 		String novaMensagem = "INSERT INTO Mensagem"
 				+ "(null, fk_apelido_destinatario, fk_apelido_remetente, "
 				+ "texto, data_hora_envio, data_hora_visualizacao, estado_visualizacao) "
 				+ "VALUES (?, ?, ?, ?, ?, ?)";
 		
-		
-		/**
-		 * Objeto de execucao de comando SQL
-		 */
+		//Objeto de execucao de comando SQL
 		try (PreparedStatement pst = conexao.prepareStatement(novaMensagem)) {
-			//compareTo para comparar datas
 			
-			pst.setString(1,	 mensagem.getApelidoDestinatario());
-			pst.setString(2,	 mensagem.getApelidoRemetente());
-			pst.setString(3,	 mensagem.getTexto());
+			// /!\ verificar como utilizar 'compareTo' para comparar datas
+			pst.setString(1, mensagem.getApelidoDestinatario());
+			pst.setString(2, mensagem.getApelidoRemetente());
+			pst.setString(3, mensagem.getTexto());
+			
 			java.sql.Date dataEnvio = new Date(GregorianCalendar.getInstance().getTimeInMillis());
-			pst.setDate(4,	dataEnvio);	   		//data
+			pst.setDate(4, dataEnvio);
+			
 			java.sql.Date dataVisualizacao = new Date(GregorianCalendar.getInstance().getTimeInMillis());
-			pst.setDate(5,	 dataVisualizacao);	//data
-			pst.setString(6,	 mensagem.getEstadoVisualizacao());
+			pst.setDate(5, dataVisualizacao);
 			
-			//ATE AQUI SO FOI CRIADA a STRING da linha cadastrarUsuario
+			pst.setString(6, mensagem.getEstadoVisualizacao());
 			
-			/**
-			 * Comando para executar a String no banco de dados
-			 */
+			// /!\ ATE AQUI SO FOI CRIADA a STRING da linha cadastrarUsuario
+			
+			//Comando para executar a String no banco de dados
 			pst.execute();
 			
 		} catch (SQLException ex) {
 			
-			/**
-			 * Tratando as excessoes
-			 */
 			ex.printStackTrace();
-		} //fechamento do metodo
+		}
 	}
-		
+	
+	
+	/**
+	 * 
+	 * @param id utilizado para condicionar a consulta
+	 * @return
+	 */
 	public Mensagem consultarMensagem(int id) {
 		
 		/**
-		 * Criando a String de consulta
+		 * String de consulta
 		 */
 		String consulta = "SELECT * FROM Mensagem WHERE id_mensagem = ?";
 		
@@ -76,7 +79,6 @@ public class MensagemDao {
 			
 			//quando precisa de retorno do banco "ResultSet"//
 			ResultSet resultado = pst.executeQuery();
-			
 			
 			Mensagem mensagem = null;
 			
@@ -95,26 +97,18 @@ public class MensagemDao {
 				mensagem.setApelidoDestinatario(apelidoDestino);
 				mensagem.setApelidoRemetente(apelidoRemete);
 				mensagem.setTexto(texto);
-					GregorianCalendar dataEnvio = new GregorianCalendar();
-					dataEnvio.setTimeInMillis(dhEnvio.getTime());
-				mensagem.setDhEnvio(dataEnvio);
-					GregorianCalendar dataVisualizacao = new GregorianCalendar();
-					dataVisualizacao.setTimeInMillis(dhVisualizacao.getTime());
-				mensagem.setDhVisualizacao(dataVisualizacao);
+				mensagem.setDhEnvio(mensagem.toGregorian(dhEnvio));
+				mensagem.setDhVisualizacao(mensagem.toGregorian(dhVisualizacao));
 				mensagem.setEstadoVisualizacao(estadoVisualizacao);
 				
-				
 				return mensagem;
-				
 			}
-			
-		} catch (SQLException ex) {
+		} catch (SQLException ex) {	
 			//Imprimindo a pilha de erros
 			ex.printStackTrace();
 		}
 		
 		return null;
-		
 	}
 	
 }

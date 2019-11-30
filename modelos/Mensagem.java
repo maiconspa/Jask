@@ -5,48 +5,21 @@ import java.util.GregorianCalendar;
  * Manipulação de mensagens
  * 
  * @author Maicon Souza
- * @version 3.0
+ * @version 4.0
  * @since 1.0
  *
  */
 public class Mensagem {
     // Composicao da classe Usuario:
-    Usuario u = new Usuario();
+    Usuario u = new Usuario(); // /!\ verificar se tem REALMENTE importancia, pois não está sendo utilizado e uma vez removida, não retorna erro.
     
     // Atributos:
-    /**
-     * id da mensagem
-     */
     private int id;
-    
-	/**
-     * apelido do destinatário
-     */
     private String apelidoDestinatario;
-    
-    /**
-     * apelido do remetente
-     */
     private String apelidoRemetente;
-    
-    /**
-     * corpo da mensagem
-     */
     private String texto;
-    
-    /**
-     * data e hora de envio
-     */
     private GregorianCalendar dhEnvio;
-    
-    /**
-     * data e hora de visualizacaoo
-     */
     private GregorianCalendar dhVisualizacao;
-    
-    /**
-     * estado de visualização
-     */
     private String estadoVisualizacao;
 
 
@@ -120,6 +93,8 @@ public class Mensagem {
         this.estadoVisualizacao = estadoVisualizacao;
     }
     
+    
+    //Métodos conversores de dados:
     /**
      * @param gc data coletada do sistema no formato GregorianCalendar
      * @return dataSql uma data formatada em java.sql.Date 
@@ -134,4 +109,31 @@ public class Mensagem {
 		
 		return dataSql;
     }
+    
+    /**
+     * 
+     * @param valorSql data coletada do banco de dados
+     * @return data em formato GregorianCalendar
+     */
+    public GregorianCalendar toGregorian(java.sql.Date valorSql) {
+    	GregorianCalendar valorGregorian = new GregorianCalendar();
+    	valorGregorian.setTimeInMillis(valorSql.getTime());
+    	
+    	return valorGregorian;
+    }
+    
+    /**
+     * 
+     * @param objetoGc
+     */
+    public void dhToString(GregorianCalendar objetoGc) {
+    	int dia = objetoGc.get(GregorianCalendar.DAY_OF_MONTH);
+    	// Soma-se 1 ao valor obtido por esse ser zero based.
+    	int mes = objetoGc.get(GregorianCalendar.MONTH) + 1;
+    	int ano = objetoGc.get(GregorianCalendar.YEAR);
+    	
+    	System.out.printf("%d/%d/%d", dia, mes, ano);
+    }
+    
+    
 }

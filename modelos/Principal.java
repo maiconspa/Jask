@@ -71,14 +71,13 @@ public class Principal {
 		*/
 		
 		//Teste da classe mensagem
-		MensagemDao userDao = new MensagemDao(Conexao.conectar());
+		MensagemDao mensagemDao = new MensagemDao(Conexao.conectar());
 		
-		Mensagem resultado = userDao.consultarMensagem(1);
+		Mensagem mensagem = mensagemDao.consultarMensagem(1);
 		
-		System.out.println("Dh env: " + resultado.getDhEnvio().get(GregorianCalendar.DAY_OF_MONTH)+"/"+resultado.getDhEnvio().get(GregorianCalendar.MONTH)+"/"+resultado.getDhEnvio().get(GregorianCalendar.YEAR));
-		System.out.println("Dh Visu: " + resultado.getDhVisualizacao().get(GregorianCalendar.DAY_OF_MONTH)+"/"+resultado.getDhEnvio().get(GregorianCalendar.MONTH)+"/"+resultado.getDhEnvio().get(GregorianCalendar.YEAR));
-		;
-
+		mensagem.dhToString(mensagem.getDhEnvio());
+		
+		mensagem.dhToString(mensagem.getDhVisualizacao());
 	}
 
 }
