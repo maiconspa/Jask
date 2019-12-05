@@ -23,9 +23,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Tela de cadastro de uma nova conta
- * 
  * @author Maicon Souza
- *
  */
 
 public class Cadastro{
@@ -81,7 +79,7 @@ public class Cadastro{
 		
 		
 		JLabel lblLogo = new JLabel();
-		lblLogo.setIcon(new ImageIcon(Cadastro.class.getResource("/view/img/logos/logo_bee_v1.png")));
+		lblLogo.setIcon(new ImageIcon(Cadastro.class.getResource("/view/img/logos/crop-blue.png")));
 		lblLogo.setBounds(100, 90, 200, 85);
 		lblLogo.setText("");
 		painel.add(lblLogo);
