@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JFrame;
@@ -14,61 +13,27 @@ import javax.swing.UIManager.LookAndFeelInfo;
 
 /**
  * Tela de troca de mensagens entre usuários
- * 
  * @author Maicon Souza
- * @version 1.1
- * @since 1.0
- *
  */
-public class Chat extends JFrame {
+public class Chat{
 
-	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
+	
+	
+	public void composeChat() {
+		JFrame janelaChat = new JFrame();
+		janelaChat.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		janelaChat.setBounds(100, 100, 400, 600);
 		
-		/**
-		 * Look and feel
-		 */
-		try {
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Metal".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            break;
-		        }
-		    }
-		} catch (Exception e) {}
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Chat frame = new Chat();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public Chat() {
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 400, 600);
-		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		JPanel painelPrincipal = new JPanel();
+		painelPrincipal.setBackground(Color.WHITE);
+		painelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
+		painelPrincipal.setLayout(null);
+		janelaChat.setContentPane(painelPrincipal);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(10, 11, 364, 539);
-		contentPane.add(panel);
+		painelPrincipal.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblMensagens = new JLabel("Mensagens");
@@ -79,9 +44,22 @@ public class Chat extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(40, 60, 297, 468);
 		panel.add(scrollPane);
+			
+	}
+	
+	
+	public static void main(String[] args) {
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        // Tenta capturar o look and feel 'Metal'
+		    	if ("Metal".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (Exception e) {}
 		
-		
-		
+		new Chat().composeChat();
 		
 	}
 }

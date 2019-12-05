@@ -21,19 +21,9 @@ import java.awt.event.ActionEvent;
 
 /**
  * Tela de visão geral do projeto, interações com tarefas, mensagens e etc.
- * 
  * @author Maicon Souza
- * @version 3.0
- * @since 1.0
- *
  */
-public class VisaoGeral extends JFrame {
-	
-	/**
-	 * Atributo de composição de tela, utilizado para adiconar elementos à exibição
-	 */
-	private JPanel contentPane;
-	private JTextField textField;
+public class VisaoGeral {
 	
 	//<----------------------------------- TEMAS ---------------------------------------->\\
 	// TEMA AZUL
@@ -79,38 +69,6 @@ public class VisaoGeral extends JFrame {
 	int bgJp [] = {bgJpBlueTheme[0], bgJpBlueTheme[1], bgJpBlueTheme[2]};
 
 	
-	//<---------------------------------------------------------------------->\\
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		
-		/**
-		 * Look and feel
-		 */
-		try {
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Metal".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            break;
-		        }
-		    }
-		} catch (Exception e) {}
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VisaoGeral frame = new VisaoGeral();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		
-		
-	}
-
 	//<-------------------------------- COMPORTAMENTO(métodos) ------------------------------------------->\\
 	private void switchTheme(JButton botao, String tema, JPanel nav, JPanel geral, JPanel paineis [], JLabel labels []) {
 		botao.addActionListener(new ActionListener() {
@@ -141,8 +99,7 @@ public class VisaoGeral extends JFrame {
 	public static void chamarChat(JButton botao) {
 		botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Chat we = new Chat();
-				we.setVisible(true);
+				new Chat().composeChat();
 			}
 		});
 	}
@@ -181,22 +138,22 @@ public class VisaoGeral extends JFrame {
 		 */
 		int maxHeight = 600;
 		
+		JFrame janela = new JFrame();
+		janela.setResizable(false);
+		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setBounds(100, 100, maxWidth, maxHeight);
 		
-		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, maxWidth, maxHeight);
-		
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(bg[0], bg[1], bg[2]));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		JPanel painelPrincipal = new JPanel();
+		painelPrincipal.setBackground(new Color(bg[0], bg[1], bg[2]));
+		painelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
+		painelPrincipal.setLayout(null);
+		janela.setContentPane(painelPrincipal);
 		
 		//<------------- BARRA DE NAVEGAÇÃO (JPanel) --------------->\\
 		JPanel navbar = new JPanel();
 		navbar.setBounds(0, 0, maxWidth, 40);
 		navbar.setBackground(new Color (bgNav[0], bgNav[1], bgNav[2]));
-		contentPane.add(navbar);
+		painelPrincipal.add(navbar);
 		navbar.setLayout(null);
 		
 		JButton btnViewProjetos = new JButton("");
@@ -221,13 +178,13 @@ public class VisaoGeral extends JFrame {
 		/**
 		 * caixa de busca
 		 */
-		textField = new JTextField();
-		textField.setToolTipText("insira aqui um termo para buscar");
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setBounds(302, 7, 200, 26);
-		textField.setColumns(10);
-		textField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 0, true));
-		navbar.add(textField);
+		JTextField campoBusca = new JTextField();
+		campoBusca.setToolTipText("insira aqui um termo para buscar");
+		campoBusca.setHorizontalAlignment(SwingConstants.CENTER);
+		campoBusca.setBounds(302, 7, 200, 26);
+		campoBusca.setColumns(10);
+		campoBusca.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 0, true));
+		navbar.add(campoBusca);
 		
 		
 		/**
@@ -269,7 +226,7 @@ public class VisaoGeral extends JFrame {
 		painelProjetos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 0, true));
 		painelProjetos.setLayout(null);
 		painelProjetos.setVisible(true);
-		contentPane.add(painelProjetos);
+		painelPrincipal.add(painelProjetos);
 		
 		JLabel lblProjetos = new JLabel("Projetos Ativos");
 		lblProjetos.setBounds(10, 11, maxWidthPanels, 40);
@@ -285,7 +242,7 @@ public class VisaoGeral extends JFrame {
 		painelColab.setBackground(new Color(bgJp[0], bgJp[1], bgJp[2]));
 		painelColab.setLayout(null);
 		painelColab.setVisible(false);
-		contentPane.add(painelColab);
+		painelPrincipal.add(painelColab);
 		
 		JLabel lblCollab = new JLabel("Colaboradores");
 		lblCollab.setBounds(10, 11, maxWidthPanels, 40);
@@ -301,7 +258,7 @@ public class VisaoGeral extends JFrame {
 		painelConfig.setBackground(new Color(bgJp[0], bgJp[1], bgJp[2]));
 		painelConfig.setLayout(null);
 		painelConfig.setVisible(false);
-		contentPane.add(painelConfig);
+		painelPrincipal.add(painelConfig);
 		
 		/**
 		 * Label de título do JPanel
@@ -358,13 +315,23 @@ public class VisaoGeral extends JFrame {
 		 */
 		switchPanel(btnViewConfig, arrayPaineis, painelConfig);
 		
-		switchTheme(btnThemeJustBlue, "Just blue", navbar, contentPane, arrayPaineis, arrayLabels);
-		switchTheme(btnThemeJustBlack, "Just black", navbar, contentPane, arrayPaineis, arrayLabels);
+		switchTheme(btnThemeJustBlue, "Just blue", navbar, painelPrincipal, arrayPaineis, arrayLabels);
+		switchTheme(btnThemeJustBlack, "Just black", navbar, painelPrincipal, arrayPaineis, arrayLabels);
 	}
 
-
 	
-
+	public static void main(String[] args) {
 		
-
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Metal".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (Exception e) {}
+		
+		
+		
+	}
 }

@@ -79,7 +79,7 @@ public class Cadastro{
 		
 		
 		JLabel lblLogo = new JLabel();
-		lblLogo.setIcon(new ImageIcon(Cadastro.class.getResource("/view/img/logos/crop-blue.png")));
+		lblLogo.setIcon(new ImageIcon(Cadastro.class.getResource("/view/img/logos/workingBee-CROP-blue-Jask_by_Miglena_Spasova.png")));
 		lblLogo.setBounds(100, 90, 200, 85);
 		lblLogo.setText("");
 		painel.add(lblLogo);

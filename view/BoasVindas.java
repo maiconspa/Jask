@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UIManager.*;
@@ -16,58 +14,12 @@ import javax.swing.ImageIcon;
 
 /**
  * Tela de Boas vindas, onde o usuário escolhe entrar com uma conta existente ou cadastrar uma nova conta.
- * 
  * @author Maicon Souza
- * @version 2.0
- * @since 1.0
- *
  */
-public class Welcome {
+public class BoasVindas {
 
-	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		
-		/**
-		 * Look and feel
-		 */
-		try {
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Metal".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            break;
-		        }
-		    }
-		} catch (Exception e) {}
-		
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Welcome window = new Welcome();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public Welcome() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
+	private void composeBoasVindas() {
+		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 400, 600);
@@ -75,10 +27,10 @@ public class Welcome {
 		frame.getContentPane().setLayout(null);
 		
 		// LOGOTIPO JASK
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(Welcome.class.getResource("/view/img/logos/workingBee-CROP-blue-Jask_by_Miglena_Spasova.png")));
-		label.setBounds(53, 39, 300, 300);
-		frame.getContentPane().add(label);
+		JLabel iconJask = new JLabel("");
+		iconJask.setIcon(new ImageIcon(BoasVindas.class.getResource("/view/img/logos/workingBee-CROP-blue-Jask_by_Miglena_Spasova.png")));
+		iconJask.setBounds(53, 39, 300, 300);
+		frame.setContentPane(iconJask);
 		
 		// BOTÃO DE ENTRAR
 		JButton btnEntrar = new JButton("Entre");
@@ -100,6 +52,20 @@ public class Welcome {
 		//setBounds: positionX, positionY, width, height.
 		btnCadastro.setBounds(100, 395, 200, 35);
 		frame.getContentPane().add(btnCadastro);
-		
 	}
+	
+	public static void main(String[] args) {
+
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Metal".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (Exception e) {}
+		
+		new BoasVindas().composeBoasVindas();
+	}
+	
 }
