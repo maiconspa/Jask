@@ -53,7 +53,7 @@ public class Cadastro{
 		btnBack.setForeground(Color.WHITE);
 		btnBack.setBackground(Color.WHITE);
 		btnBack.setText("");
-		btnBack.setIcon(new ImageIcon(Cadastro.class.getResource("/view/img/icons/arrowBack.png")));
+		btnBack.setIcon(new ImageIcon(Cadastro.class.getResource("/src/view/img/icons/arrowBack.png")));
 		btnBack.setBounds(22, 26, 45, 45);
 		btnBack.setBorderPainted(false); //método para retirar as bordas do JButton e deixar somente a imagem.
 		painel.add(btnBack);		
@@ -68,7 +68,7 @@ public class Cadastro{
 		
 		
 		JButton btnAvancar = new JButton();
-		btnAvancar.setIcon(new ImageIcon(Cadastro.class.getResource("/view/img/icons/arrowFoward.png")));
+		btnAvancar.setIcon(new ImageIcon(Cadastro.class.getResource("/src/view/img/icons/arrowFoward.png")));
 		btnAvancar.setForeground(Color.WHITE);
 		btnAvancar.setText("");
 		btnAvancar.setBorderPainted(false);
@@ -78,7 +78,7 @@ public class Cadastro{
 		
 		
 		JLabel lblLogo = new JLabel();
-		lblLogo.setIcon(new ImageIcon(BoasVindas.class.getResource("/view/img/logos/workingBee-CROP-blue-Jask_by_Miglena_Spasova.png")));
+		lblLogo.setIcon(new ImageIcon(BoasVindas.class.getResource("/src/view/img/logos/workingBee-CROP-blue-Jask_by_Miglena_Spasova.png")));
 		lblLogo.setBounds(125, 80, 200, 200);
 		painel.add(lblLogo);
 		
@@ -133,7 +133,7 @@ public class Cadastro{
 		
 		JButton btnVerificaApelido = new JButton();
 		btnVerificaApelido.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnVerificaApelido.setIcon(new ImageIcon(Cadastro.class.getResource("/view/img/icons/search.png")));
+		btnVerificaApelido.setIcon(new ImageIcon(Cadastro.class.getResource("/src/view/img/icons/search.png")));
 		btnVerificaApelido.setForeground(Color.BLACK);
 		btnVerificaApelido.setBackground(Color.WHITE);
 		btnVerificaApelido.setBounds(305, 371, 30, 30);
@@ -153,7 +153,7 @@ public class Cadastro{
 		
 		
 		JButton btnSelectImg = new JButton();
-		btnSelectImg.setIcon(new ImageIcon(Cadastro.class.getResource("/view/img/icons/addImage.png")));
+		btnSelectImg.setIcon(new ImageIcon(Cadastro.class.getResource("/src/view/img/icons/addImage.png")));
 		btnSelectImg.setForeground(Color.WHITE);
 		btnSelectImg.setBackground(Color.WHITE);
 		btnSelectImg.setText("");
