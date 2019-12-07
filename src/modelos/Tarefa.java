@@ -1,4 +1,4 @@
-package modelos;
+package src.modelos;
 
 /**
  * Classe que representa uma tarefa dentro do projeto

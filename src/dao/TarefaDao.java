@@ -1,12 +1,12 @@
-package dao;
+package src.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import modelos.Tarefa;
-import modelos.Usuario;
+import src.modelos.Tarefa;
+import src.modelos.Usuario;
 
 /**
  * Classe DAO para uma Tarefa

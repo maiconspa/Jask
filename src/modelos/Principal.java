@@ -1,4 +1,4 @@
-package modelos;
+package src.modelos;
 
 import java.awt.Color;
 import java.awt.Image;
@@ -8,10 +8,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.GregorianCalendar;
 
-import dao.Conexao;
-import dao.MensagemDao;
-import dao.TarefaDao;
-import dao.UsuarioDao;
+import src.dao.Conexao;
+import src.dao.MensagemDao;
+import src.dao.TarefaDao;
+import src.dao.UsuarioDao;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;

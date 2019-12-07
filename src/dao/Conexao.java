@@ -1,4 +1,4 @@
-package dao;
+package src.dao;
 /**
  * Data Acess Object (DAO)
  */

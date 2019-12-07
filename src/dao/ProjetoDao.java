@@ -1,11 +1,11 @@
-package dao;
+package src.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import modelos.Projeto;
+import src.modelos.Projeto;
 
 /**
  * Classe DAO para o Projeto
