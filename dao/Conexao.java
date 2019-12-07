@@ -33,7 +33,7 @@ public class Conexao {
 		} catch (ClassNotFoundException ex) {
 
 			//System.out.println("Driver NAO encontrado...");
-			JOptionPane.showMessageDialog(null, "Driver NAO encontrado...", "Problemas !", JOptionPane.WARNING_MESSAGE); // /!\ --> Verificar como fazer isso Lancar um aexceção para a interface grafica tratar(propagação de exceção"!
+			JOptionPane.showMessageDialog(null, "Driver NAO encontrado...", "Problemas !", JOptionPane.WARNING_MESSAGE); // /!\ --> Verificar como fazer isso Lancar um aexceï¿½ï¿½o para a interface grafica tratar(propagaï¿½ï¿½o de exceï¿½ï¿½o"!
 			
 			
 			/**imprime a pilha de erros "linhas vermelhas"**/
@@ -44,19 +44,19 @@ public class Conexao {
 	}
 	
 	/**
-	 * Criando um método para realizar a conexao com o banco de dados.
+	 * Criando um mï¿½todo para realizar a conexao com o banco de dados.
 	 */
 	
 	public static Connection conectar() {
 		
 		try {
 	
-			System.out.println("Estabelecendo conexão...");
+			System.out.println("Estabelecendo conexï¿½o...");
 			Connection c = null;
 			
-			c = DriverManager.getConnection("jdbc:mysql://localhost/jask?useSSL=false","root","");
+			c = DriverManager.getConnection("jdbc:mysql://localhost/jask?useSSL=false","Alunos","alunos");
 			
-			System.out.println("Conexão estabelecida com sucesso !");
+			System.out.println("Conexï¿½o estabelecida com sucesso !");
 			
 			return c;
 			

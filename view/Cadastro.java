@@ -36,8 +36,7 @@ public class Cadastro{
 		
 		
 		JPanel painel = new JPanel();
-		painel.setBackground(new Color(255, 255, 255));
-		painel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		painel.setBackground(new Color(20, 162, 251));
 		painel.setLayout(null);
 		frame.setContentPane(painel);
 		
@@ -79,9 +78,8 @@ public class Cadastro{
 		
 		
 		JLabel lblLogo = new JLabel();
-		lblLogo.setIcon(new ImageIcon(Cadastro.class.getResource("/view/img/logos/workingBee-CROP-blue-Jask_by_Miglena_Spasova.png")));
-		lblLogo.setBounds(100, 90, 200, 85);
-		lblLogo.setText("");
+		lblLogo.setIcon(new ImageIcon(BoasVindas.class.getResource("/view/img/logos/workingBee-CROP-blue-Jask_by_Miglena_Spasova.png")));
+		lblLogo.setBounds(125, 80, 200, 200);
 		painel.add(lblLogo);
 		
 		
@@ -135,10 +133,10 @@ public class Cadastro{
 		
 		JButton btnVerificaApelido = new JButton();
 		btnVerificaApelido.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnVerificaApelido.setText("Verificar");
+		btnVerificaApelido.setIcon(new ImageIcon(Cadastro.class.getResource("/view/img/icons/search.png")));
 		btnVerificaApelido.setForeground(Color.BLACK);
 		btnVerificaApelido.setBackground(Color.WHITE);
-		btnVerificaApelido.setBounds(305, 371, 77, 20);
+		btnVerificaApelido.setBounds(305, 371, 30, 30);
 		painel.add(btnVerificaApelido);
 		
 		
@@ -170,6 +168,7 @@ public class Cadastro{
 		painel.add(txtFile);
 		txtFile.setColumns(10);
 		
+		frame.setVisible(true);
 		//<------------------------  AÇÕES DE BOTÕES  ---------------------------->\\
 		//Selecionar imagem:
 		selectImg(btnSelectImg, txtFile);

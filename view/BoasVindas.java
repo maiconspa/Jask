@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import java.awt.Color;
 
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 
 /**
@@ -22,15 +23,20 @@ public class BoasVindas {
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 400, 600);
+		frame.setSize(400, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		
+		JPanel painel = new JPanel();
+		painel.setSize(400, 600);
+		painel.setLayout(null);
+		painel.setBackground(new Color(20, 162, 251));
+		frame.setContentPane(painel);
 		
 		// LOGOTIPO JASK
 		JLabel iconJask = new JLabel("");
 		iconJask.setIcon(new ImageIcon(BoasVindas.class.getResource("/view/img/logos/workingBee-CROP-blue-Jask_by_Miglena_Spasova.png")));
-		iconJask.setBounds(53, 39, 300, 300);
-		frame.setContentPane(iconJask);
+		iconJask.setBounds(125, 80, 300, 300);
+		painel.add(iconJask);
 		
 		// BOTÃO DE ENTRAR
 		JButton btnEntrar = new JButton("Entre");
@@ -40,7 +46,7 @@ public class BoasVindas {
 		btnEntrar.setBackground(new Color(46,204,113));
 		//setBounds: positionX, positionY, width, height.
 		btnEntrar.setBounds(100, 350, 200, 35);
-		frame.getContentPane().add(btnEntrar);
+		painel.add(btnEntrar);
 		
 		// BOTÃO DE CADASTRO
 		JButton btnCadastro = new JButton("Cadastre-se");
@@ -51,7 +57,9 @@ public class BoasVindas {
 		btnCadastro.setBackground(new Color(231,76,60));
 		//setBounds: positionX, positionY, width, height.
 		btnCadastro.setBounds(100, 395, 200, 35);
-		frame.getContentPane().add(btnCadastro);
+		painel.add(btnCadastro);
+		
+		frame.setVisible(true);
 	}
 	
 	public static void main(String[] args) {
@@ -63,7 +71,9 @@ public class BoasVindas {
 		            break;
 		        }
 		    }
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		new BoasVindas().composeBoasVindas();
 	}

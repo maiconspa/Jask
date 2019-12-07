@@ -126,8 +126,9 @@ public class VisaoGeral {
 	//<------------------------------------------------------------------->\\
 	/**
 	 * Janela de Visão Geral do aplicativo
+	 * @return 
 	 */
-	public VisaoGeral() {
+	public void composeVisaoGeral() {
 		/**
 		 * variavel para controle facilitado da largura de JFrame e seus componentes
 		 */
@@ -317,6 +318,13 @@ public class VisaoGeral {
 		
 		switchTheme(btnThemeJustBlue, "Just blue", navbar, painelPrincipal, arrayPaineis, arrayLabels);
 		switchTheme(btnThemeJustBlack, "Just black", navbar, painelPrincipal, arrayPaineis, arrayLabels);
+		
+		
+		
+		
+		
+		//! setVisible
+		janela.setVisible(true);
 	}
 
 	
@@ -332,6 +340,6 @@ public class VisaoGeral {
 		} catch (Exception e) {}
 		
 		
-		
+		new VisaoGeral().composeVisaoGeral();
 	}
 }

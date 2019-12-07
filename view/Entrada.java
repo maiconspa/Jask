@@ -73,8 +73,8 @@ public class Entrada{
 		
 		
 		//icone abelha do jask
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(Entrada.class.getResource("/view/img/logos/workingBee-orange-Jask_by_Miglena_Spasova.png")));
+		JLabel label = new JLabel();
+		label.setIcon(new ImageIcon(Cadastro.class.getResource("/view/img/logos/workingBee-CROP-blue-Jask_by_Miglena_Spasova.png")));;
 		label.setBounds(100, 90, 200, 85);
 		painelPrincipal.add(label);
 		
@@ -96,7 +96,10 @@ public class Entrada{
 		
 		JPasswordField passwordField = new JPasswordField();
 		passwordField.setBounds(100, 263, 200, 25);
-		painelPrincipal.add(passwordField);	
+		painelPrincipal.add(passwordField);
+		
+		
+		janela.setVisible(true);
 	}
 	
 	

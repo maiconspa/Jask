@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 
 /**
  * Classe DAO para o usuario
@@ -106,7 +107,7 @@ public class UsuarioDao {
 	 * Método para captura de imagem do banco de dados de acordo com o apelido.
 	 * @param usuario
 	 */
-	public void recuperarImagem(String apelido) {
+	public File recuperarImagem(String apelido) {
 		//
         // Criando o SQL de consulta:
 		String selectImg = "select foto from Usuario where apelido = ?";
@@ -121,7 +122,7 @@ public class UsuarioDao {
 			
 			ResultSet resultado = pst.executeQuery();
 			// Arquivo onde a imagem será armazenada no disco:
-			File file = new File("teste2.jpg");
+			File file = new File(apelido +".jpg");
 			// Objeto para tratar saída de dados para um arquivo:
 			FileOutputStream output = new FileOutputStream(file);
 			
@@ -142,10 +143,12 @@ public class UsuarioDao {
 			// Encerra a saída:
 			output.close();
 			resultado.close();
+			return file;
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		return null;
 	}
 	
 	
@@ -180,7 +183,7 @@ public class UsuarioDao {
 				String telefone = resultado.getString("telefone");
 				String apelidoUsuario = resultado.getString("apelido");
 				String senha = resultado.getString("senha");
-				File foto = resultado.getFile("foto"); // /!\ --------------------------------------------> Verificar como fazer isso. seria um int ?
+				File foto = recuperarImagem(apelido); // /!\ --------------------------------------------> Verificar como fazer isso. seria um int ?
 				
 				usuario.setApelido(apelidoUsuario);
 				usuario.setNome(nome);
@@ -202,5 +205,40 @@ public class UsuarioDao {
 		return null;
 		
 	}
+	
+	//<----------------------------------------------------------------------->//
+	
+	/**
+	 * Método para atualizar a classe no banco
+	 * @param usuario
+	 * @throws SQLException 
+	 */
+	public void atualizarUsuario(String apelido) throws SQLException {
+		
+		/**
+		 * Criando a String de atualização
+		 */
+		String atualizar = "UPDATE Usuario WHERE apelido = ?";
+		
+		try (PreparedStatement pst = conexao.prepareStatement(atualizar)) {
+			
+			pst.setString(1, apelido);
+			
+			//quando precisa de retorno do banco "ResultSet"//
+			ResultSet resultado = pst.executeQuery();
+			
+		}
+	}
+	
+	public void imagemRandomica() {
+		//instância um objeto da classe Random usando o construtor padrão
+        Random gerador = new Random();
+        
+        gerador.nextInt(4);
+        String numero = ""+gerador;
+
+		armazenarImagens(new File("imgDefault/default" +numero +".png"), "Bike");
+	}
 		
 }
+	

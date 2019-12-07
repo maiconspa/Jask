@@ -44,7 +44,8 @@ public class Chat{
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(40, 60, 297, 468);
 		panel.add(scrollPane);
-			
+		
+		janelaChat.setVisible(true);
 	}
 	
 	
