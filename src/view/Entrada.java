@@ -50,7 +50,7 @@ public class Entrada{
 		JButton btnBack = new JButton("");
 		btnBack.setForeground(Color.WHITE);
 		btnBack.setBackground(Color.WHITE);
-		btnBack.setIcon(new ImageIcon(Entrada.class.getResource("/view/img/icons/arrowBack.png")));
+		btnBack.setIcon(new ImageIcon(Entrada.class.getResource("/src/view/img/icons/arrowBack.png")));
 		btnBack.setBounds(22, 26, 45, 45);
 		btnBack.setBorderPainted(false); //método para retirar as bordas do JButton e deixar somente a imagem.
 		painelPrincipal.add(btnBack);		
@@ -64,7 +64,7 @@ public class Entrada{
 		painelPrincipal.add(lblNext);
 		//botao de avançar
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(Entrada.class.getResource("/view/img/icons/arrowFoward.png")));
+		button.setIcon(new ImageIcon(Entrada.class.getResource("/src/view/img/icons/arrowFoward.png")));
 		button.setForeground(Color.WHITE);
 		button.setBorderPainted(false);
 		button.setBackground(Color.WHITE);
@@ -74,7 +74,7 @@ public class Entrada{
 		
 		//icone abelha do jask
 		JLabel label = new JLabel();
-		label.setIcon(new ImageIcon(Cadastro.class.getResource("/view/img/logos/workingBee-CROP-blue-Jask_by_Miglena_Spasova.png")));;
+		label.setIcon(new ImageIcon(Cadastro.class.getResource("/src/view/img/logos/workingBee-CROP-blue-Jask_by_Miglena_Spasova.png")));;
 		label.setBounds(100, 90, 200, 85);
 		painelPrincipal.add(label);
 		
