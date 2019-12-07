@@ -6,7 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import src.dao.Conexao;
+import src.dao.UsuarioDao;
+import src.modelos.Usuario;
+
 import javax.swing.JTextField;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -17,6 +23,7 @@ import java.awt.Font;
 
 
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 /**
@@ -104,6 +111,15 @@ public class VisaoGeral {
 		});
 	}
 	
+	public static void chamarExtProfile(JButton botao) {
+		botao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new Profile().composeProfile();
+			}
+		});
+	}
+	
+	
 	/**
 	 * Função para realizar a troca de JPanels dentro da TelaPrincipal
 	 * @param botao
@@ -128,6 +144,9 @@ public class VisaoGeral {
 	 * Janela de Visão Geral do aplicativo
 	 * @return 
 	 */
+	
+	
+	
 	public void composeVisaoGeral() {
 		/**
 		 * variavel para controle facilitado da largura de JFrame e seus componentes
@@ -285,6 +304,14 @@ public class VisaoGeral {
 		btnThemeJustBlack.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
 		painelConfig.add(btnThemeJustBlack);
 		
+		JButton btnExtProfile = new JButton("Perfil");
+		btnExtProfile.setToolTipText("Alterar denifições de perfil");
+		btnExtProfile.setForeground(Color.WHITE);
+		btnExtProfile.setBackground(null);
+		btnExtProfile.setBounds(20, 110, 70, 20);
+		btnExtProfile.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+		painelConfig.add(btnExtProfile);
+		
 		
 		//Array com todos os JPanels internos para verificação de visibilidade
 		/**
@@ -303,6 +330,12 @@ public class VisaoGeral {
 		 * Exibir chat ao clicar em btnViewChat
 		 */
 		chamarChat(btnViewChat);
+		
+		/**
+		 * Exibir chat ao clicar em btnViewChat
+		 */
+		chamarExtProfile(btnExtProfile);
+		
 		/**
 		 * Adicionar ação ao botão btnViewProjetos
 		 */
@@ -318,10 +351,6 @@ public class VisaoGeral {
 		
 		switchTheme(btnThemeJustBlue, "Just blue", navbar, painelPrincipal, arrayPaineis, arrayLabels);
 		switchTheme(btnThemeJustBlack, "Just black", navbar, painelPrincipal, arrayPaineis, arrayLabels);
-		
-		
-		
-		
 		
 		//! setVisible
 		janela.setVisible(true);
