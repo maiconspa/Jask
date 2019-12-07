@@ -26,6 +26,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 
+import src.modelos.*;
+
 /**
  * Tela de visão geral do projeto, interações com tarefas, mensagens e etc.
  * @author Maicon Souza
@@ -77,6 +79,7 @@ public class VisaoGeral {
 
 	
 	//<-------------------------------- COMPORTAMENTO(métodos) ------------------------------------------->\\
+	
 	private void switchTheme(JButton botao, String tema, JPanel nav, JPanel geral, JPanel paineis [], JLabel labels []) {
 		botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -140,6 +143,7 @@ public class VisaoGeral {
 
 	
 	//<------------------------------------------------------------------->\\
+	
 	/**
 	 * Janela de Visão Geral do aplicativo
 	 * @return 
@@ -170,6 +174,7 @@ public class VisaoGeral {
 		janela.setContentPane(painelPrincipal);
 		
 		//<------------- BARRA DE NAVEGAÇÃO (JPanel) --------------->\\
+		
 		JPanel navbar = new JPanel();
 		navbar.setBounds(0, 0, maxWidth, 40);
 		navbar.setBackground(new Color (bgNav[0], bgNav[1], bgNav[2]));
@@ -371,4 +376,25 @@ public class VisaoGeral {
 		
 		new VisaoGeral().composeVisaoGeral();
 	}
+	
+	
+	
+	//<-------------------------ARRAYLIST DE PROJETOS--------------------------->//
+	
+	public void chamarProjetos(JPanel painel) {
+		
+		UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
+		Usuario resultado = userDao.consultarUsuario("Bike");
+		
+		//
+		
+	}
+	
+	
 }
+
+
+
+
+
+

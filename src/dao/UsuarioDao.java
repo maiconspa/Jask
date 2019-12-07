@@ -183,14 +183,14 @@ public class UsuarioDao {
 				String telefone = resultado.getString("telefone");
 				String apelidoUsuario = resultado.getString("apelido");
 				String senha = resultado.getString("senha");
-				File foto = recuperarImagem(apelido); // /!\ --------------------------------------------> Verificar como fazer isso. seria um int ?
+				File foto = recuperarImagem(apelido);
 				
 				usuario.setApelido(apelidoUsuario);
 				usuario.setNome(nome);
 				usuario.setEmail(email);
 				usuario.setTelefone(telefone);
 				usuario.setSenha(senha);
-				usuario.setFoto(foto); 				 // /!\ --------------------------------------------> Verificar como fazer isso.
+				usuario.setFoto(foto); 
 				
 				
 				return usuario;
@@ -231,13 +231,17 @@ public class UsuarioDao {
 	}
 	
 	public void imagemRandomica() {
+		
+		UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
+		Usuario resultado = userDao.consultarUsuario("Bike");
+		
 		//instância um objeto da classe Random usando o construtor padrão
         Random gerador = new Random();
         
-        gerador.nextInt(4);
+        gerador.nextInt(3);
         String numero = ""+gerador;
 
-		armazenarImagens(new File("imgDefault/default" +numero +".png"), "Bike");
+		armazenarImagens(new File("imgDefault/default" +numero +".png"), resultado.getApelido());
 	}
 		
 }

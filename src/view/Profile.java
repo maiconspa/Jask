@@ -37,6 +37,8 @@ public class Profile{
 	
 
 	public void chamarImagem(JPanel painel, JTextField txtFile) {
+		UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
+		Usuario resultado = userDao.consultarUsuario("Bike");
 		
 		
 		//FOTO DO USUARIO:
@@ -138,7 +140,6 @@ public class Profile{
 		} catch (Exception e) {}
 		
 		new Profile().composeProfile();
-		
 	}
 	
 	

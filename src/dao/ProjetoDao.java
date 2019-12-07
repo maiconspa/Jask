@@ -1,5 +1,8 @@
 package src.dao;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,15 +38,14 @@ public class ProjetoDao {
 	
 	public void cadastrarProjeto(Projeto projeto) {
 	
-		String inserir = "INSERT INTO Projeto(id_projeto, nomeProjeto, apelidoProprietario)"
-				+ "VALUES (?, ?, ?)";
+		String inserir = "INSERT INTO Projeto(nomeProjeto, apelidoProprietario)"
+				+ "VALUES (?, ?)";
 		
 		/**Objeto de execucao de comando SQL para **/
 		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {
 			
-			pst.setInt(1,		projeto.getIdProjeto());
-			pst.setString(2,	projeto.getNomeProjeto());
-			pst.setString(3,	projeto.getApelidoProprietario());
+			pst.setString(1,	projeto.getNomeProjeto());
+			pst.setString(2,	projeto.getApelidoProprietario());
 			
 			//ATE AQUI SO FOI CRIADA a STRING da linha cadastrarUsuario
 			
@@ -118,4 +120,53 @@ public class ProjetoDao {
 		return null;
 	
 	}
+
+	
+	//<-------------------------------------------------------------------------->//
+	
+	public void atualizarProjeto(String projetoNome, String apelido) {
+		
+		//Preparando a String para atualização:
+		String atualizar = "UPDATE Projeto set nome =" + "? where fk_apelido_proprietario = ?";
+		
+		try (PreparedStatement pst = conexao.prepareStatement(atualizar)) {
+			
+			pst.setString(1, projetoNome);
+			
+			pst.setString(2, apelido);
+			
+			//Enviando um comando para o MySQL
+			pst.execute();
+			
+		} catch (Exception e) {
+			//Imprimido a pilha de erros:
+			e.printStackTrace();
+		}
+		
+	}
+	
+	//<-------------------------------------------------------------------------->//
+	
+public void deletarProjeto(String projetoNome, String apelido) {
+		
+		//Preparando a String para atualização:
+		String deletar = "DELETE FROM Projeto where nome =" + "? where fk_apelido_proprietario = ?";
+		
+		try (PreparedStatement pst = conexao.prepareStatement(deletar)) {
+			
+			pst.setString(1, projetoNome);
+			
+			pst.setString(2, apelido);
+			
+			//Enviando um comando para o MySQL
+			pst.execute();
+			
+		} catch (Exception e) {
+			//Imprimido a pilha de erros:
+			e.printStackTrace();
+		}
+		
+	}
+
 }
+

@@ -37,63 +37,6 @@ public class Principal {
 		
 		//String foto = user
 		
-		
-		// /!\ COLOCAR ISSO EM UM MÉTODO
-		
-		
-		//EXIBIÇÃO:
-		//FRAME DE TESTE:
-		JFrame frame = new JFrame();
-		//frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(100, 100, 400, 400);
-		
-		//JPANEL:
-		JPanel painel = new JPanel();
-		painel.setBackground(Color.WHITE);
-		painel.setBounds(0, 0, 250, 250);
-		painel.setLayout(null);
-		frame.setContentPane(painel);
-		
-		//FOTO DO USUARIO:
-		JButton lbFotoUsuario = new JButton();
-		lbFotoUsuario.setBackground(Color.WHITE);
-		//coleta da foto:
-		try {
-			if (resultado.getFoto() != null) {
-				System.out.println("TEM IMAGEM");
-				lbFotoUsuario.setIcon(
-					new ImageIcon(
-						ImageIO.read(
-							resultado.getFoto()
-							)
-						)
-					);
-			} else {
-				//Caso o usuário não tenha imagem, é definido uma padrão:
-				
-				userDao.imagemRandomica();
-				System.out.println("NAO TEM IMAGEM");
-				lbFotoUsuario.setIcon(
-					new ImageIcon(
-						ImageIO.read(
-							resultado.getFoto()
-							)
-						)
-					);
-			}
-		} catch (SecurityException ex) {
-			ex.printStackTrace();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
-		//restante da label:
-		System.out.println(lbFotoUsuario.getIcon());
-		lbFotoUsuario.setBounds(0, 0, 250, 250);
-		painel.add(lbFotoUsuario);
-		
-		frame.setVisible(true);
-		
 		//LINHA DE COMANDO
 		System.out.println("Apelido: " + resultado.getApelido());
 
@@ -103,7 +46,7 @@ public class Principal {
 		 * @author Davi Fonseca
 		 * Inserindo uma imagem:
 		 */
-/*
+///*
 		try {
 			//Usuario user = new Usuario("batata", "batata@ruffles.com", "4002-8922", "batBatata", "1231");
 			UsuarioDao teste = new UsuarioDao(Conexao.conectar());
@@ -113,7 +56,7 @@ public class Principal {
 		} catch (Exception e) {
 			e.printStackTrace();	
 		}
-*/
+//*/
 		//<----------------------------------------------------------------------------------------------------->//
 		
 		/**
