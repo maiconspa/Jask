@@ -30,7 +30,7 @@ public class Principal {
 		 * @author Davi Fonseca
 		 * Consultando Usuario
 		 */
-
+		/*/
 		UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
 		
 		Usuario resultado = userDao.consultarUsuario("Bike");
@@ -39,14 +39,14 @@ public class Principal {
 		
 		//LINHA DE COMANDO
 		System.out.println("Apelido: " + resultado.getApelido());
-
+		*/
 		//<---------------------------------------------------------------------------------------------------------------------------->//
 		
 		/**
 		 * @author Davi Fonseca
 		 * Inserindo uma imagem:
 		 */
-///*
+/*
 		try {
 			//Usuario user = new Usuario("batata", "batata@ruffles.com", "4002-8922", "batBatata", "1231");
 			UsuarioDao teste = new UsuarioDao(Conexao.conectar());
@@ -56,7 +56,7 @@ public class Principal {
 		} catch (Exception e) {
 			e.printStackTrace();	
 		}
-//*/
+		*/
 		//<----------------------------------------------------------------------------------------------------->//
 		
 		/**
@@ -94,6 +94,8 @@ public class Principal {
 		
 		mensagem.dhToString(mensagem.getDhVisualizacao());
 		*/
+		
+		System.out.println("Teste");
 		
 		//<---------------------------------------------------------------------------------------------->
 		

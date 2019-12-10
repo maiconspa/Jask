@@ -34,7 +34,7 @@ public class BoasVindas {
 		
 		// LOGOTIPO JASK
 		JLabel iconJask = new JLabel("");
-		iconJask.setIcon(new ImageIcon(BoasVindas.class.getResource("/view/logos/workingBee-CROP-blue-Jask_by_Miglena_Spasova.png")));
+		iconJask.setIcon(new ImageIcon(BoasVindas.class.getResource("/view/logos/crop-blue.png")));
 		iconJask.setBounds(125, 80, 300, 300);
 		painel.add(iconJask);
 		
