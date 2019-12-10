@@ -33,7 +33,8 @@ public class Principal {
 		 * @author Davi Fonseca
 		 * Consultando Usuario
 		 */
-
+		
+		
 		UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
 		
 		Usuario resultadoUser = userDao.consultarUsuario("Bike");
@@ -47,7 +48,7 @@ public class Principal {
 		 * @author Davi Fonseca
 		 * Inserindo uma imagem:
 		 */
-		/*
+		
 		try {
 			//Usuario user = new Usuario("batata", "batata@ruffles.com", "4002-8922", "batBatata", "1231");
 			UsuarioDao teste = new UsuarioDao(Conexao.conectar());
@@ -57,7 +58,7 @@ public class Principal {
 		} catch (Exception e) {
 			e.printStackTrace();	
 		}
-		*/
+		
 		
 		//<----------------------------------------------------------------------------------------------------->//
 		
@@ -74,7 +75,7 @@ public class Principal {
 		int consultaIdProjeto = resultado.getIdProjeto();
 		//(int idTarefa, Usuario proprietario, EstadoTarefa estado, String titulo, String descricao, Prioridade prioridade)
 		
-		
+		//Para cadastrar uma tarefa precisamos de um objeto do tipo Usuario, por isso usei o resultdo user já utilizado la em cima.
 		Tarefa tarefaTeste = new Tarefa(0, resultadoUser, EstadoTarefa.Pendente, "Teste2", "TESTE-TESTE", Prioridade.Alta);
 		tarefaDao.cadastrarTarefa(tarefaTeste, consultaIdProjeto);
 		*/
