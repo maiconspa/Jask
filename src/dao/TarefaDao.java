@@ -33,7 +33,7 @@ public class TarefaDao {
 	 */
 	public void cadastrarTarefa(Tarefa tarefa, int idProjeto) {
 		String inserir = "INSERT INTO Tarefa(null, fk_id_projeto, fk_apelido_proprietario, estado, titulo, descricao)"
-				+ "VALUES (?, ?, ?, ?, ?)";
+				+ "VALUES (null, ?, ?, ?, ?, ?)";
 		
 		/**Objeto de execucao de comando SQL para **/
 		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {

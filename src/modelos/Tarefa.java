@@ -21,6 +21,11 @@ public class Tarefa {
 	private int idTarefa;
 	
 	/**
+	 * Atributo do tipo int para armazenar o id					 do Projeto que compreende a tarefa
+	 */
+	private int idProjeto;
+	
+	/**
 	 * Atributo do tipo Usuario para armazenar o proprietario	 da Tarefa
 	 */
 	private Usuario proprietario;
@@ -88,6 +93,14 @@ public class Tarefa {
 	}
 	
 	/**
+	 * Retorna o ID			do Projeto que compreende a tarefa
+	 * @return	this.idTarefa
+	 */
+	public int getIidProjeto() {
+		return this.idProjeto;
+	}
+	
+	/**
 	 * Retorna o apelido do proprietario		da Tarefa
 	 * @return	this.proprietario
 	 */
@@ -140,6 +153,14 @@ public class Tarefa {
 	 */
 	public void setIdTarefa(int idTarefa) {
 		this.idTarefa = idTarefa;
+	}
+	
+	/**
+	 * Altera o ID da Tarefa
+	 * @param idTarefa
+	 */
+	public void setIidProjeto(int idProjeto) {
+		this.idProjeto = idProjeto;
 	}
 	
 	/**

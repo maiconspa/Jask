@@ -10,6 +10,7 @@ import java.util.GregorianCalendar;
 
 import dao.Conexao;
 import dao.MensagemDao;
+import dao.ProjetoDao;
 import dao.TarefaDao;
 import dao.UsuarioDao;
 
@@ -30,47 +31,53 @@ public class Principal {
 		 * @author Davi Fonseca
 		 * Consultando Usuario
 		 */
-		/*/
+
 		UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
 		
-		Usuario resultado = userDao.consultarUsuario("Bike");
-		
-		//String foto = user
+		Usuario resultadoUser = userDao.consultarUsuario("Bike");
 		
 		//LINHA DE COMANDO
-		System.out.println("Apelido: " + resultado.getApelido());
-		*/
+		//System.out.println("Apelido: " + resultado.getApelido());
+		
 		//<---------------------------------------------------------------------------------------------------------------------------->//
 		
 		/**
 		 * @author Davi Fonseca
 		 * Inserindo uma imagem:
 		 */
-/*
+		/*
 		try {
 			//Usuario user = new Usuario("batata", "batata@ruffles.com", "4002-8922", "batBatata", "1231");
 			UsuarioDao teste = new UsuarioDao(Conexao.conectar());
 			//teste.cadastrarUsuario(user);
-			teste.armazenarImagens(new File("github.png"), "Bike");
+			teste.armazenarImagens(new File("/view/logos/default2.png"), "Bike"); // /!\ - Problemas ! 
 			
 		} catch (Exception e) {
 			e.printStackTrace();	
 		}
 		*/
+		
 		//<----------------------------------------------------------------------------------------------------->//
 		
 		/**
 		 * @author Davi Fonseca
 		 * Criando uma Tarefa:
 		 */
-		/*
-		Tarefa tarefa = new Tarefa (0, 1,"Bike", "Pendente", "Tarefa-Teste", "Prepara que agora tem tarefa");
 		
-		System.out.println("DAVI");
+		TarefaDao tarefaDao = new TarefaDao(Conexao.conectar());
+		ProjetoDao projetoDao = new ProjetoDao(Conexao.conectar());
 		
-			TarefaDao teste = new TarefaDao(Conexao.conectar());
-			teste.cadastrarTarefa(tarefa);
-		*/
+		Projeto resultado = projetoDao.consultarProjeto(1);
+		int consultaIdProjeto = resultado.getIdProjeto();
+		
+        //      (int idTarefa, int idProjeto, Usuario proprietario, String estado, String titulo, String descricao, String prioridade)
+		Tarefa 
+		tarefaTeste = tarefaDao.cadastrarTarefa();
+		
+		System.out.println(tarefaTeste.getDescricao());
+		
+		///tarefaTeste.cadastrarTarefa(tarefaTeste, projetoTeste.getIdProjeto());
+		
 		//<---------------------------------------------------------------------------------------------------------------------------->//
 		
 		/**
@@ -84,6 +91,7 @@ public class Principal {
 		*/
 		
 		//<---------------------------------------------------------------------------------------------->
+		
 		/*
 		//Teste da classe mensagem
 		MensagemDao mensagemDao = new MensagemDao(Conexao.conectar());
@@ -95,7 +103,9 @@ public class Principal {
 		mensagem.dhToString(mensagem.getDhVisualizacao());
 		*/
 		
-		System.out.println("Teste");
+		//<---------------------------------------------------------------------------------------------->
+		
+		//System.out.println("Teste");
 		
 		//<---------------------------------------------------------------------------------------------->
 		

@@ -24,17 +24,16 @@ public class Conexao {
 		
 		try {
 			
-			System.out.println("procurando driver..");
+			//System.out.println("Procurando driver..");
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
-			System.out.println("Drive encontrado !");
+			//System.out.println("Drive encontrado !");
 			
 		} catch (ClassNotFoundException ex) {
 
 			//System.out.println("Driver NAO encontrado...");
-			JOptionPane.showMessageDialog(null, "Driver NAO encontrado...", "Problemas !", JOptionPane.WARNING_MESSAGE); // /!\ --> Verificar como fazer isso Lancar um aexceï¿½ï¿½o para a interface grafica tratar(propagaï¿½ï¿½o de exceï¿½ï¿½o"!
-			
+			JOptionPane.showMessageDialog(null, "Driver NãO encontrado...", "Problemas !", JOptionPane.WARNING_MESSAGE);			
 			
 			/**imprime a pilha de erros "linhas vermelhas"**/
 			ex.printStackTrace();
@@ -44,25 +43,28 @@ public class Conexao {
 	}
 	
 	/**
-	 * Criando um mï¿½todo para realizar a conexao com o banco de dados.
+	 * Criando um metodo para realizar a conexao com o banco de dados.
 	 */
 	
 	public static Connection conectar() {
 		
 		try {
 	
-			System.out.println("Estabelecendo conexï¿½o...");
+			//System.out.println("Estabelecendo conexão...");
 			Connection c = null;
 			
-			c = DriverManager.getConnection("jdbc:mysql://localhost/jask?useSSL=false","Alunos","alunos");
+			c = DriverManager.getConnection("jdbc:mysql://localhost/jask?useSSL=false","root","");
 			
-			System.out.println("Conexï¿½o estabelecida com sucesso !");
+			//System.out.println("Conexão estabelecida com sucesso !");
 			
 			return c;
 			
 		} catch (SQLException ex) {
 			
 			ex.printStackTrace();
+			
+			JOptionPane.showMessageDialog(null, "Problemas na conexao com o Banco de dados.", "Erro !", JOptionPane.WARNING_MESSAGE);
+			
 			return null;
 			
 		}
