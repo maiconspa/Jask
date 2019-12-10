@@ -1,6 +1,8 @@
 package modelos;
 
 import modelos.Usuario;
+import utils.EstadoTarefa;
+import utils.Prioridade;
 
 /**
  * Classe que representa uma tarefa dentro do projeto
@@ -20,10 +22,6 @@ public class Tarefa {
 	 */
 	private int idTarefa;
 	
-	/**
-	 * Atributo do tipo int para armazenar o id					 do Projeto que compreende a tarefa
-	 */
-	private int idProjeto;
 	
 	/**
 	 * Atributo do tipo Usuario para armazenar o proprietario	 da Tarefa
@@ -33,7 +31,7 @@ public class Tarefa {
 	/**
 	 * Atributo do tipo String para armazenar o estado			  da Tarefa
 	 */
-	private String estado;
+	private EstadoTarefa estado;
 	
 	/**
 	 * Atributo do tipo String para armazenar o titulo			  da Tarefa
@@ -48,7 +46,7 @@ public class Tarefa {
 	/**
 	 *  Atributo do tipo String para armazenar a prioridade		  da Tarefa
 	 */
-	private String prioridade;
+	private Prioridade prioridade;
 	
 	//<---------------------------------------------------------------------------------------------------------------------------->//
 
@@ -68,7 +66,7 @@ public class Tarefa {
 	 * @param titulo				Armazena o titulo da 	Tarefa
 	 * @param descricao				Armazena a descricao da Tarefa
 	 */
-	public Tarefa(int idTarefa, int idProjeto, Usuario proprietario, String estado, String titulo, String descricao, String prioridade) {	
+	public Tarefa(int idTarefa, Usuario proprietario, EstadoTarefa estado, String titulo, String descricao, Prioridade prioridade) {	
 		this.idTarefa = idTarefa;
 		this.proprietario = proprietario;
 		this.estado = estado;
@@ -93,14 +91,6 @@ public class Tarefa {
 	}
 	
 	/**
-	 * Retorna o ID			do Projeto que compreende a tarefa
-	 * @return	this.idTarefa
-	 */
-	public int getIidProjeto() {
-		return this.idProjeto;
-	}
-	
-	/**
 	 * Retorna o apelido do proprietario		da Tarefa
 	 * @return	this.proprietario
 	 */
@@ -112,7 +102,7 @@ public class Tarefa {
 	 * Retorna o estado		da Tarefa
 	 * @return	this.estado
 	 */
-	public String getEstado() {
+	public EstadoTarefa getEstado() {
 		return this.estado;
 	}
 	
@@ -136,7 +126,7 @@ public class Tarefa {
 	 * Retorna o prioridade 	da Tarefa
 	 * @return	this.prioridade
 	 */
-	public String getPrioridade() {
+	public Prioridade getPrioridade() {
 		return this.prioridade;
 	}
 
@@ -156,14 +146,6 @@ public class Tarefa {
 	}
 	
 	/**
-	 * Altera o ID da Tarefa
-	 * @param idTarefa
-	 */
-	public void setIidProjeto(int idProjeto) {
-		this.idProjeto = idProjeto;
-	}
-	
-	/**
 	 * Altera o Apelido do proprietario da Tarefa
 	 * @param Proprietario
 	 */
@@ -175,7 +157,7 @@ public class Tarefa {
 	 * Altera o estado da Tarefa
 	 * @param estado
 	 */
-	public void setEstado(String estado) {
+	public void setEstado(EstadoTarefa estado) {
 		this.estado = estado;
 	}
 	
@@ -199,7 +181,7 @@ public class Tarefa {
 	 * Altera a prioridade da Tarefa
 	 * @param prioridade
 	 */
-	public void setPrioridade(String prioridade) {
+	public void setPrioridade(Prioridade prioridade) {
 		this.prioridade = prioridade;
 	}
 	

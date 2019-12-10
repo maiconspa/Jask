@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import modelos.Tarefa;
 import modelos.Usuario;
+import utils.EstadoTarefa;
 
 /**
  * Classe DAO para uma Tarefa
@@ -32,17 +33,18 @@ public class TarefaDao {
 	 * @param tarefa
 	 */
 	public void cadastrarTarefa(Tarefa tarefa, int idProjeto) {
-		String inserir = "INSERT INTO Tarefa(null, fk_id_projeto, fk_apelido_proprietario, estado, titulo, descricao)"
-				+ "VALUES (null, ?, ?, ?, ?, ?)";
+		String inserir = "INSERT INTO Tarefa(id_tarefa, fk_id_projeto, fk_apelido_proprietario, estado, titulo, descricao, prioridade)"
+				+ "VALUES (null, ?, ?, ?, ?, ?, ?)";
 		
 		/**Objeto de execucao de comando SQL para **/
 		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {
 			
 			pst.setInt(1,	 idProjeto);
 			pst.setString(2, tarefa.getProprietario().getApelido());
-			pst.setString(3, tarefa.getEstado());
+			pst.setInt(3, tarefa.getEstado().estadoTarefa);
 			pst.setString(4, tarefa.getTitulo());
 			pst.setString(5, tarefa.getDescricao());
+			pst.setInt(6, tarefa.getPrioridade().nivelPrioridade);
 			
 			//ATE AQUI SO FOI CRIADA a STRING da linha cadastrarUsuario
 			
@@ -91,15 +93,25 @@ public class TarefaDao {
 				int idTarefa = resultado.getInt("id_tarefa");
 				int idProjeto = resultado.getInt("fk_id_projeto"); // /!\ ---> Como vamos exibir as tarefas no lugar correto se não existir este atributo ?
 				String apelidoProprietario = resultado.getString("fk_apelido_proprietario");
-				String estado = resultado.getString("estado");
+				int estado = resultado.getInt("estado");
 				String titulo = resultado.getString("titulo");
 				String descricao = resultado.getString("descricao");
 				
 				UsuarioDao user = new UsuarioDao(conexao);
 				
+				if (estado == 1) {
+					tarefa.setEstado(EstadoTarefa.Pendente);
+				}
+				if (estado == 2) {
+					tarefa.setEstado(EstadoTarefa.Realizando);
+				}
+				if (estado == 3) {
+					tarefa.setEstado(EstadoTarefa.Finalizado);
+				}
+				
+				
 				tarefa.setIdTarefa(idTarefa);
 				tarefa.setProprietario(user.consultarUsuario(apelidoProprietario));
-				tarefa.setEstado(estado);
 				tarefa.setTitulo(titulo);
 				tarefa.setDescricao(descricao);
 				

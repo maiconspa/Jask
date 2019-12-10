@@ -13,6 +13,8 @@ import dao.MensagemDao;
 import dao.ProjetoDao;
 import dao.TarefaDao;
 import dao.UsuarioDao;
+import utils.EstadoTarefa;
+import utils.Prioridade;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -69,14 +71,12 @@ public class Principal {
 		
 		Projeto resultado = projetoDao.consultarProjeto(1);
 		int consultaIdProjeto = resultado.getIdProjeto();
+		//(int idTarefa, Usuario proprietario, EstadoTarefa estado, String titulo, String descricao, Prioridade prioridade)
 		
-        //      (int idTarefa, int idProjeto, Usuario proprietario, String estado, String titulo, String descricao, String prioridade)
-		Tarefa 
-		tarefaTeste = tarefaDao.cadastrarTarefa();
 		
-		System.out.println(tarefaTeste.getDescricao());
-		
-		///tarefaTeste.cadastrarTarefa(tarefaTeste, projetoTeste.getIdProjeto());
+		Tarefa tarefaTeste = new Tarefa(0, resultadoUser, EstadoTarefa.Pendente, "Teste2", "TESTE-TESTE", Prioridade.Alta);
+		tarefaDao.cadastrarTarefa(tarefaTeste, consultaIdProjeto);
+	
 		
 		//<---------------------------------------------------------------------------------------------------------------------------->//
 		
