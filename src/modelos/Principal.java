@@ -66,6 +66,7 @@ public class Principal {
 		 * Criando uma Tarefa:
 		 */
 		
+		/*
 		TarefaDao tarefaDao = new TarefaDao(Conexao.conectar());
 		ProjetoDao projetoDao = new ProjetoDao(Conexao.conectar());
 		
@@ -76,7 +77,7 @@ public class Principal {
 		
 		Tarefa tarefaTeste = new Tarefa(0, resultadoUser, EstadoTarefa.Pendente, "Teste2", "TESTE-TESTE", Prioridade.Alta);
 		tarefaDao.cadastrarTarefa(tarefaTeste, consultaIdProjeto);
-	
+		*/
 		
 		//<---------------------------------------------------------------------------------------------------------------------------->//
 		
