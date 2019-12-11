@@ -2,7 +2,6 @@ package view;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -13,7 +12,6 @@ import javax.swing.JFileChooser;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -29,6 +27,36 @@ import java.awt.event.ActionEvent;
  */
 
 public class Cadastro{
+	/*
+	private void proximajanela(JButton botao, JFrame frameAtual, String outroFrame, JTextField txtNome, JTextField txtEmail, JTextField txtEmail, JTextField txtEmail,) {
+		botao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				frameAtual.dispose();
+				
+				if (outroFrame.equals("Voltar")) {
+					new BoasVindas().composeBoasVindas();
+				} else if (outroFrame.equals("Proximo")) {
+					
+					if(verificacaoApelido(txtApelido)) {
+						System.out.println("tem esse usuario ou email");
+						if(verificacaoSenha(txtApelido, txtSenha)) {
+							new VisaoGeral().composeVisaoGeral();
+						} 
+						
+					}
+					
+					//se a verificacao for bem sucedida:    new Entrada().composeEntrada();
+
+				}
+				
+			}
+		});
+	}
+	
+	*/
+	
+	
 	
 	public void composeScreen() {
 		JFrame frame = new JFrame();

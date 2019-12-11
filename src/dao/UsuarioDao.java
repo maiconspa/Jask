@@ -14,6 +14,8 @@ import java.util.Random;
 
 import javax.swing.JOptionPane;
 
+import view.Entrada;
+
 /**
  * Classe DAO para o usuario
  * 
@@ -110,15 +112,16 @@ public class UsuarioDao {
 					
 					return usuario;
 					
+				} else {
+					////Imprimindo mensagem de erro para apelidos inválidos
+					JOptionPane.showMessageDialog(null,"Problemas!","Dados incorretos", JOptionPane.WARNING_MESSAGE);
 				}
 				
+				
 			} catch (SQLException ex) {
-				JOptionPane.showMessageDialog(null,"Problemas!","Dados incorretos", JOptionPane.WARNING_MESSAGE);
 				
 				//Imprimindo a pilha de erros
 				ex.printStackTrace();
-
-				////
 					
 			}
 			

@@ -37,7 +37,7 @@ public class Principal {
 		
 		UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
 		
-		Usuario resultadoUser = userDao.consultarUsuario("Bike");
+		Usuario resultadoUser = userDao.consultarUsuario("Bik");
 		
 		//LINHA DE COMANDO
 		System.out.println("Apelido: " + resultadoUser.getApelido());
