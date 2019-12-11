@@ -19,6 +19,12 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JPasswordField;
 
+import java.sql.Connection;
+
+import view.BoasVindas;
+import dao.UsuarioDao;
+import dao.Conexao;
+
 /**
  * Tela de Entrada de um usuário já cadastrado
  * 
@@ -36,15 +42,17 @@ public class Entrada{
 				frameAtual.dispose();
 				
 				if (outroFrame.equals("Voltar")) {
-					//new BoasVindas().composeBoasVindas();
+					new BoasVindas().composeBoasVindas();
 				} else if (outroFrame.equals("Proximo")){
-					/*
+
+					UsuarioDao uDao = new UsuarioDao(Conexao.conectar());
+/*				
 					if() {
 						//verificacao de dados de entrada do usuario
 					}
 					
-					new Entrada().composeEntrada();
-					*/
+					//se a verificacao for bem sucedida:    new Entrada().composeEntrada();
+*/
 				}
 				
 			}
@@ -90,13 +98,13 @@ public class Entrada{
 		lblNext.setBounds(320, 12, 45, 16);
 		painelPrincipal.add(lblNext);
 		//botao de avançar
-		JButton button = new JButton("");
-		button.setIcon(new ImageIcon("icons/arrowFoward.png"));
-		button.setForeground(Color.WHITE);
-		button.setBorderPainted(false);
-		button.setBackground(Color.WHITE);
-		button.setBounds(320, 26, 45, 45);
-		painelPrincipal.add(button);
+		JButton btnNext = new JButton("");
+		btnNext.setIcon(new ImageIcon("icons/arrowFoward.png"));
+		btnNext.setForeground(Color.WHITE);
+		btnNext.setBorderPainted(false);
+		btnNext.setBackground(Color.WHITE);
+		btnNext.setBounds(320, 26, 45, 45);
+		painelPrincipal.add(btnNext);
 		
 		
 		//icone abelha do jask
@@ -131,7 +139,9 @@ public class Entrada{
 		janela.setVisible(true);
 		
 		
-		//
+		// ACOES DE BOTOES:
+		proximajanela(btnBack, janela, "Voltar");
+		proximajanela(btnNext, janela, "Proxima");
 	}
 	
 	
