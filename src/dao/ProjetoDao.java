@@ -153,8 +153,11 @@ public class ProjetoDao {
 		return colecao;
 		
 		} catch(SQLException ex) {
-			
+			//Imprimindo a pilha de erros
+			ex.printStackTrace();
 		}
+		
+		return null;
 	}
 	
 	
@@ -167,8 +170,7 @@ public class ProjetoDao {
 		
 		try (PreparedStatement pst = conexao.prepareStatement(atualizar)) {
 			
-			pst.setString(1, projetoNome);
-			
+			pst.setInt(1, idProjeto);
 			pst.setString(2, apelido);
 			
 			//Enviando um comando para o MySQL
