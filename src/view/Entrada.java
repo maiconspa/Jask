@@ -13,16 +13,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JPasswordField;
 
-import java.sql.Connection;
-
 import view.BoasVindas;
 import dao.UsuarioDao;
+import modelos.Usuario;
 import dao.Conexao;
 
 /**
@@ -35,7 +35,7 @@ import dao.Conexao;
  */
 public class Entrada{
 
-	private void proximajanela(JButton botao, JFrame frameAtual, String outroFrame) {
+	private void proximajanela(JButton botao, JFrame frameAtual, String outroFrame, JTextField txtApelido, JTextField txtSenha) {
 		botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -43,21 +43,49 @@ public class Entrada{
 				
 				if (outroFrame.equals("Voltar")) {
 					new BoasVindas().composeBoasVindas();
-				} else if (outroFrame.equals("Proximo")){
-
-					UsuarioDao uDao = new UsuarioDao(Conexao.conectar());
-/*				
-					if() {
-						//verificacao de dados de entrada do usuario
+				} else if (outroFrame.equals("Proximo")) {
+					
+					if(verificacaoApelido(txtApelido)) {
+						System.out.println("tem esse usuario ou email");
+						if(verificacaoSenha(txtApelido, txtSenha)) {
+							System.out.print("FOOOOOOOOOOOOOOOOOOOOI");
+						} 
+						
 					}
 					
 					//se a verificacao for bem sucedida:    new Entrada().composeEntrada();
-*/
+
 				}
 				
 			}
 		});
 	}
+	
+	private boolean verificacaoApelido (JTextField txt) {
+		boolean controle = false;
+		
+		UsuarioDao uDao = new UsuarioDao(Conexao.conectar());
+		Usuario user = uDao.consultarUsuario(txt.getText());
+		
+		if (user.getApelido().equals(txt.getText())) {
+			controle = true;
+		} 
+		
+		return controle;
+	}
+	
+	private boolean verificacaoSenha (JTextField txtApelido, JTextField txtSenha) {
+		boolean controle = false;
+		
+		UsuarioDao uDao = new UsuarioDao(Conexao.conectar());
+		Usuario user = uDao.consultarUsuario(txtApelido.getText());
+		
+		if (user.getSenha().equals(txtSenha.getText())) {
+			controle = true;
+		}
+		
+		return controle;
+	}	
 	
 	
 	public void composeEntrada() {
@@ -115,15 +143,14 @@ public class Entrada{
 		
 		
 		//elementos de formulário
-		JLabel lblNickname = new JLabel("Apelido ou E-mail:");
+		JLabel lblNickname = new JLabel("Apelido:");
 		lblNickname.setBounds(100, 223, 100, 16);
 		painelPrincipal.add(lblNickname);
 		
-		JTextField txtNomeCompleto = new JTextField();
-		txtNomeCompleto.setBounds(100, 239, 200, 25);
-		txtNomeCompleto.setBorder(new LineBorder(Color.WHITE));
-		painelPrincipal.add(txtNomeCompleto);
-		txtNomeCompleto.setColumns(10);
+		JTextField txtApelido = new JTextField();
+		txtApelido.setBounds(100, 239, 200, 25);
+		txtApelido.setBorder(new LineBorder(Color.WHITE));
+		painelPrincipal.add(txtApelido);
 		
 		
 		JLabel lblSenhaEntrada = new JLabel("Senha:");
@@ -140,8 +167,8 @@ public class Entrada{
 		
 		
 		// ACOES DE BOTOES:
-		proximajanela(btnBack, janela, "Voltar");
-		proximajanela(btnNext, janela, "Proxima");
+		proximajanela(btnBack, janela, "Voltar", null, null);
+		proximajanela(btnNext, janela, "Proximo", txtApelido, campoSenha);
 	}
 	
 	

@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 /**
  * Classe DAO para o usuario
  * 
@@ -113,8 +115,14 @@ public class UsuarioDao {
 				}
 				
 			} catch (SQLException ex) {
+				JOptionPane.showMessageDialog(null, 
+						"Problemas!","Dados incorretos", JOptionPane.WARNING_MESSAGE);
+				
 				//Imprimindo a pilha de erros
 				ex.printStackTrace();
+
+				
+					
 			}
 			
 			return null;

@@ -49,7 +49,7 @@ public class Principal {
 		 * @author Davi Fonseca
 		 * Inserindo uma imagem:
 		 */
-		/*
+
 		try {
 			//Usuario user = new Usuario("batata", "batata@ruffles.com", "4002-8922", "batBatata", "1231");
 			UsuarioDao teste = new UsuarioDao(Conexao.conectar());
@@ -60,7 +60,7 @@ public class Principal {
 		} catch (Exception e) {
 			e.printStackTrace();	
 		}
-		*/
+
 		
 		//<----------------------------------------------------------------------------------------------------->//
 		
