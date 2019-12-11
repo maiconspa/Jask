@@ -38,7 +38,7 @@ public class BoasVindas {
 	}
 	
 	
-	private void composeBoasVindas() {
+	public void composeBoasVindas() {
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(Color.WHITE);
