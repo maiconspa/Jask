@@ -141,16 +141,16 @@ public class ProjetoDao {
 			Projeto projeto = null;
 			
 			UsuarioDao userDao =  new UsuarioDao(Conexao.conectar());
-			Arraylist<Usuario> tsts = new Arraylist();
+			ArrayList<Usuario> colecao = new ArrayList<Usuario>();
 			
 			
 		while (resultado.next()){
 			resultado.getString("fk_apelido_usuario");
 			Usuario participante = userDao.consultarUsuario(resultado.getString("fk_apelido_proprietario"));
-			tsts.add(participante);
+			colecao.add(participante);
 		}
 		
-		return tsts;
+		return colecao;
 		
 		} catch(SQLException ex) {
 			
