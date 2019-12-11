@@ -152,28 +152,5 @@ public class Projeto {
 					+ ", Usuários: " + this.usuarios // /!\ --------------------------------------------> Verificar como fazer isso.
 				   +"}";							 // /!\ Por ser um Arraylist não deveria ter um metódo para trazer está infomação ?
 		}
-		
-		
-		public ArrayList<Projeto> arrayProjeto(String nome) throws Exception {
-			
-			String select = "SELECT nome FROM Projeto";
-			
-			ArrayList<Projeto> pros = new ArrayList<>();
-			
-			PreparedStatement pst = Conexao.conectar().prepareStatement(select);
-			ResultSet resultado = pst.executeQuery();
-			
-			while(resultado.next()) {
-				
-				Projeto pr = new Projeto();
-				pr.setNomeProjeto(resultado.getString("nome"));
-				
-				pros.add(pr);
-			}
-			
-			return pros;
-		}
-		
-		
 	
 }

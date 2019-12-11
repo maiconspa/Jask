@@ -161,12 +161,41 @@ public class ProjetoDao {
 		return null;
 	}
 	
+	//<-------------------------------------------------------------------------->//
+	
+	/**
+	* Método para listar os projetos
+	* @param titulo
+	* @author Davi
+	* @throws SQLException
+	*/
+	public ArrayList<Projeto> listarProjeto(String nome) throws Exception {
+		
+		String select = "SELECT nome, id_projeto FROM Projeto";
+		
+		ArrayList<Projeto> colecaProjeto = new ArrayList<>();
+		
+		PreparedStatement pst = Conexao.conectar().prepareStatement(select);
+		ResultSet resultado = pst.executeQuery();
+		
+		while(resultado.next()) {
+			
+			Projeto projeto = new Projeto();
+			projeto.setNomeProjeto(resultado.getString("nome"));
+			projeto.setIdProjeto(resultado.getInt("id_projeto"));
+			
+			colecaProjeto.add(projeto);
+		}
+		
+		return colecaProjeto;
+	}
+	
 	
 	//<-------------------------------------------------------------------------->//
 	
 	/**
 	* Método para alterar o projeto
-	* @param titulo
+	* @param nome and idProjeto
 	* @author Cayoni
 	* @throws SQLException
 	*/
