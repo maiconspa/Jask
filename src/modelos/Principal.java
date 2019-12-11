@@ -34,13 +34,14 @@ public class Principal {
 		 * Consultando Usuario
 		 */
 		
-		
+		/*
 		UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
 		
 		Usuario resultadoUser = userDao.consultarUsuario("Bike");
 		
 		//LINHA DE COMANDO
-		//System.out.println("Apelido: " + resultado.getApelido());
+		System.out.println("Apelido: " + resultadoUser.getApelido());
+		*/
 		
 		//<---------------------------------------------------------------------------------------------------------------------------->//
 		
@@ -53,7 +54,8 @@ public class Principal {
 			//Usuario user = new Usuario("batata", "batata@ruffles.com", "4002-8922", "batBatata", "1231");
 			UsuarioDao teste = new UsuarioDao(Conexao.conectar());
 			//teste.cadastrarUsuario(user);
-			teste.armazenarImagens(new File("/view/logos/default2.png"), "Bike"); // /!\ - Problemas ! 
+			teste.armazenarImagens(new File("logo/default250.png"), "Bike"); // /!\ - Problemas ! 
+			System.out.println("Feito");
 			
 		} catch (Exception e) {
 			e.printStackTrace();	
