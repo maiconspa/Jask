@@ -42,7 +42,6 @@ public class Principal {
 		//LINHA DE COMANDO
 		System.out.println("Apelido: " + resultadoUser.getApelido());
 		
-		
 		//<---------------------------------------------------------------------------------------------------------------------------->//
 		
 		/**
@@ -51,9 +50,7 @@ public class Principal {
 		 */
 
 		try {
-			//Usuario user = new Usuario("batata", "batata@ruffles.com", "4002-8922", "batBatata", "1231");
 			UsuarioDao teste = new UsuarioDao(Conexao.conectar());
-			//teste.cadastrarUsuario(user);
 			teste.armazenarImagens(new File("logo/default250.png"), "Bike"); // /!\ - Problemas ! 
 			System.out.println("Feito");
 			
