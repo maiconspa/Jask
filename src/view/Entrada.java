@@ -3,9 +3,14 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -24,17 +29,42 @@ import javax.swing.JPasswordField;
  */
 public class Entrada{
 
+	private void proximajanela(JButton botao, JFrame frameAtual, String outroFrame) {
+		botao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				frameAtual.dispose();
+				
+				if (outroFrame.equals("Voltar")) {
+					//new BoasVindas().composeBoasVindas();
+				} else if (outroFrame.equals("Proximo")){
+					/*
+					if() {
+						//verificacao de dados de entrada do usuario
+					}
+					
+					new Entrada().composeEntrada();
+					*/
+				}
+				
+			}
+		});
+	}
+	
+	
 	public void composeEntrada() {
 		
 		JFrame janela = new JFrame();
 		janela.setResizable(false);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setLocationRelativeTo(null);
 		janela.setBounds(100, 100, 400, 600);
 		
 		JPanel painelPrincipal = new JPanel();
 		painelPrincipal.setBackground(new Color(255, 255, 255));
 		painelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
 		painelPrincipal.setLayout(null);
+		painelPrincipal.setBackground(new Color(20, 162, 251));
 		janela.setContentPane(painelPrincipal);
 		
 		//label do botao de voltar
@@ -48,11 +78,10 @@ public class Entrada{
 		JButton btnBack = new JButton("");
 		btnBack.setForeground(Color.WHITE);
 		btnBack.setBackground(Color.WHITE);
-		btnBack.setIcon(new ImageIcon(Entrada.class.getResource("/view/icons/arrowBack.png")));
+		btnBack.setIcon(new ImageIcon("icons/arrowBack.png"));
 		btnBack.setBounds(22, 26, 45, 45);
 		btnBack.setBorderPainted(false); //método para retirar as bordas do JButton e deixar somente a imagem.
 		painelPrincipal.add(btnBack);		
-		
 		
 		//label do botao de avançar
 		JLabel lblNext = new JLabel("Avançar");
@@ -62,7 +91,7 @@ public class Entrada{
 		painelPrincipal.add(lblNext);
 		//botao de avançar
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(Entrada.class.getResource("/view/icons/arrowFoward.png")));
+		button.setIcon(new ImageIcon("icons/arrowFoward.png"));
 		button.setForeground(Color.WHITE);
 		button.setBorderPainted(false);
 		button.setBackground(Color.WHITE);
@@ -72,32 +101,37 @@ public class Entrada{
 		
 		//icone abelha do jask
 		JLabel label = new JLabel();
-		label.setIcon(new ImageIcon(Cadastro.class.getResource("logo/workingBee-CROP-blue-Jask_by_Miglena_Spasova.png")));;
-		label.setBounds(100, 90, 200, 85);
+		label.setIcon(new ImageIcon("logo/crop-blue.png"));
+		label.setBounds(120, 40, 250, 300);
 		painelPrincipal.add(label);
 		
 		
 		//elementos de formulário
 		JLabel lblNickname = new JLabel("Apelido ou E-mail:");
-		lblNickname.setBounds(100, 193, 100, 16);
+		lblNickname.setBounds(100, 223, 100, 16);
 		painelPrincipal.add(lblNickname);
 		
 		JTextField txtNomeCompleto = new JTextField();
-		txtNomeCompleto.setBounds(100, 209, 200, 25);
+		txtNomeCompleto.setBounds(100, 239, 200, 25);
+		txtNomeCompleto.setBorder(new LineBorder(Color.WHITE));
 		painelPrincipal.add(txtNomeCompleto);
 		txtNomeCompleto.setColumns(10);
 		
 		
 		JLabel lblSenhaEntrada = new JLabel("Senha:");
-		lblSenhaEntrada.setBounds(100, 246, 55, 16);
+		lblSenhaEntrada.setBounds(100, 276, 55, 16);
 		painelPrincipal.add(lblSenhaEntrada);
 		
-		JPasswordField passwordField = new JPasswordField();
-		passwordField.setBounds(100, 263, 200, 25);
-		painelPrincipal.add(passwordField);
+		JPasswordField campoSenha = new JPasswordField();
+		campoSenha.setBounds(100, 293, 200, 25);
+		campoSenha.setBorder(new LineBorder(Color.WHITE));
+		painelPrincipal.add(campoSenha);
 		
 		
 		janela.setVisible(true);
+		
+		
+		//
 	}
 	
 	

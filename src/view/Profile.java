@@ -89,6 +89,7 @@ public class Profile{
 		JFrame janelaChat = new JFrame();
 		janelaChat.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		janelaChat.setSize(400, 600);
+		janelaChat.setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);

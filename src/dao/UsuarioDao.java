@@ -1,6 +1,7 @@
 package dao;
 
 import modelos.Usuario;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -40,7 +41,7 @@ public class UsuarioDao {
 		String inserir = "INSERT INTO Usuario(nome,email,telefone,apelido,senha)"
 				+ "VALUES (?, ?, ?, ?, ?)";
 		
-		/**Objeto de execucao de comando SQL para **/
+		/*Objeto de execucao de comando SQL para */
 		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {
 			
 			pst.setString(1,usuario.getNome());
@@ -206,27 +207,7 @@ public class UsuarioDao {
 		return null;
 	}
 	
-	/**
-	 * Método para atualizar a classe no banco
-	 * @param usuario
-	 * @throws SQLException 
-	 */
-	public void atualizarUsuario(String apelido) throws SQLException {
-		
-		/**
-		 * Criando a String de atualização
-		 */
-		String atualizar = "UPDATE Usuario WHERE apelido = ?";
-		
-		try (PreparedStatement pst = conexao.prepareStatement(atualizar)) {
-			
-			pst.setString(1, apelido);
-			
-			//quando precisa de retorno do banco "ResultSet"//
-			ResultSet resultado = pst.executeQuery();
-			
-		}
-	}
+	//<--------------------------------------------------------------------------------------------------------------->
 	
 	public void imagemRandomica() {
 		
@@ -241,6 +222,54 @@ public class UsuarioDao {
 
 		armazenarImagens(new File("imgDefault/default" +numero +".png"), resultado.getApelido());
 	}
-		
-}
+
+	//<--------------------------------------------------------------------------------------------------------------->
 	
+	/**
+	 * Método para atualizar o usuario
+	 * @param usuario
+	 * @author Cayoni
+	 * @throws SQLException 
+	 */
+	public void atualizarUsuario(String nome, String email, String telefone, String senha, String apelido) throws SQLException {
+		
+		/**
+		 * Criando a String de atualização
+		 */
+		String atualizar = "UPDATE Usuario SET nome = ?, email = ?, telefone = ?, senha = ? WHERE apelido = ?";
+		
+		try (PreparedStatement pst = conexao.prepareStatement(atualizar)) {
+			
+			pst.setString(1, nome);
+			pst.setString(2, email);
+			pst.setString(3, telefone);
+			pst.setString(4, senha);
+			pst.setString(5, apelido);
+			
+			//quando precisa de retorno do banco "ResultSet"//
+			ResultSet resultado = pst.executeQuery();
+			
+		}
+	}
+	
+	//<-------------------------------------------------------------------------------------------------------------->
+	
+	public void deletarUsuario(String apelido) {
+		
+		//Preparando a String para atualização:
+		String deletar = "DELETE FROM Usuario where apelido = ?";
+		
+		try (PreparedStatement pst = conexao.prepareStatement(deletar)) {
+			
+			pst.setString(1, apelido);
+			
+			//Enviando um comando para o MySQL
+			pst.execute();
+			
+		} catch (Exception e) {
+			//Imprimido a pilha de erros:
+			e.printStackTrace();
+		}
+		
+	}
+}

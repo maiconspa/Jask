@@ -5,6 +5,8 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.*;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import java.awt.Color;
@@ -19,11 +21,29 @@ import javax.swing.ImageIcon;
  */
 public class BoasVindas {
 
+	private void proximajanela(JButton botao, JFrame frameAtual, String proximoFrame) {
+		botao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				frameAtual.hide();
+				
+				if (proximoFrame.equals("Cadastro")) {
+					new Cadastro().composeScreen();
+				} else if (proximoFrame.equals("Entrada")){
+					new Entrada().composeEntrada();
+				}
+				
+			}
+		});
+	}
+	
+	
 	private void composeBoasVindas() {
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setSize(400, 600);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel painel = new JPanel();
@@ -64,9 +84,9 @@ public class BoasVindas {
 		btnCadastro.setBounds(100, 395, 200, 35);
 		painel.add(btnCadastro);
 		
-		//<---------------------Acao botao entrada--------------------->//
-		
-		
+		//<---------------------Acao de botões--------------------->//
+		proximajanela(btnEntrar, frame, "Entrada");
+		proximajanela(btnCadastro, frame, "Cadastro");
 		//<------------------------------------------------------------>//
 		
 		frame.setVisible(true);

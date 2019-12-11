@@ -1,12 +1,12 @@
 package dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import modelos.Tarefa;
-import modelos.Usuario;
+import modelos.*;
 import utils.EstadoTarefa;
 
 /**
@@ -36,7 +36,7 @@ public class TarefaDao {
 		String inserir = "INSERT INTO Tarefa(id_tarefa, fk_id_projeto, fk_apelido_proprietario, estado, titulo, descricao, prioridade)"
 				+ "VALUES (null, ?, ?, ?, ?, ?, ?)";
 		
-		/**Objeto de execucao de comando SQL para **/
+		/*Objeto de execucao de comando SQL para */
 		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {
 			
 			pst.setInt(1,	 idProjeto);
@@ -130,5 +130,64 @@ public class TarefaDao {
 		
 		return null;
 		
+	}
+	
+	//<---------------------------------------------------------------------------------------------------------------------------->//
+
+	/**
+	* Método para alterar a tarefa
+	* @param titulo
+	* @author Cayoni
+	* @throws SQLException
+	*/
+	public void atualizarTarefa(String estado, String titulo, String descricao, int prioridade, String apelido) throws SQLException {
+				
+		/**
+		* Criando a String de atualização
+		*/
+		String atualizar = "UPDATE Tarefa SET estado = ?, titulo = ?, descricao = ?, prioridade = ? WHERE apelido = ?";
+				
+		try (PreparedStatement pst = conexao.prepareStatement(atualizar)) {
+					
+			pst.setString(1, estado);
+			pst.setString(2, titulo);
+			pst.setString(3, descricao);
+			pst.setInt(4, prioridade);
+			pst.setString(5, apelido);
+					
+					
+					
+			//quando precisa de retorno do banco "ResultSet"//
+			ResultSet resultado = pst.executeQuery();
+					
+		}
+				
+	}
+		
+	//<---------------------------------------------------------------------------------------------------------------------------->//
+		
+	/**
+	 * Método de deletar tarefa
+	 * @param id
+	 * @author Cayoni
+	 * @throws MySQLException
+	 */
+	public void deletarTarefa(int id) {
+			
+		//Preparando a String para deletar:
+		String deletar = "DELETE FROM Tarefa where id_tarefa = ?";
+				
+		try (PreparedStatement pst = conexao.prepareStatement(deletar)) {
+						
+			// /!\ Verificar como pegar o getIdTarefa() e atribuir ao int id do método
+			pst.setInt(1, id);
+						
+			//Enviando um comando para o MySQL
+			pst.execute();
+					
+		} catch (Exception e) {
+				//Imprimido a pilha de erros:
+				e.printStackTrace();
+		}
 	}
 }

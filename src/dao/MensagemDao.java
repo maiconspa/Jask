@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -119,4 +120,31 @@ public class MensagemDao {
 		return null;
 	}
 	
+	//<------------------------------------------------------------------------------------------------------>
+	
+	/**
+	 * Método de deletar mensagem
+	 * @param idMensagem
+	 * @author Cayoni
+	 * @throws MySQLException
+	 */
+	
+	public void deletarMensagem(int idMensagem) {
+			
+		//Preparando a String para deletar:
+		String deletar = "DELETE FROM Mensagem where id_mensagem = ?";
+				
+		try (PreparedStatement pst = conexao.prepareStatement(deletar)) {
+						
+			// /!\ Verificar como pegar o getIdTarefa() e atribuir ao int id do método
+			pst.setInt(1, idMensagem);
+						
+			//Enviando um comando para o MySQL
+			pst.execute();
+					
+		} catch (Exception e) {
+				//Imprimido a pilha de erros:
+				e.printStackTrace();
+		}
+	}
 }

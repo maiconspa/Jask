@@ -166,6 +166,7 @@ public class VisaoGeral {
 		janela.setResizable(false);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.setBounds(100, 100, maxWidth, maxHeight);
+		janela.setLocationRelativeTo(null);
 		
 		JPanel painelPrincipal = new JPanel();
 		painelPrincipal.setBackground(new Color(bg[0], bg[1], bg[2]));

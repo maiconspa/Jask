@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.File;
+
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -43,7 +44,7 @@ public class ProjetoDao {
 		String inserir = "INSERT INTO Projeto(nomeProjeto, apelidoProprietario)"
 				+ "VALUES (?, ?)";
 		
-		/**Objeto de execucao de comando SQL para **/
+		/*Objeto de execucao de comando SQL para */
 		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {
 			
 			pst.setString(1,	projeto.getNomeProjeto());
@@ -163,38 +164,46 @@ public class ProjetoDao {
 	
 	//<-------------------------------------------------------------------------->//
 	
-	public void atualizarProjeto(int idProjeto, String apelido) {
-		
-		//Preparando a String para atualização:
-		String atualizar = "UPDATE Projeto set nome =" + "? where fk_apelido_proprietario = ?";
-		
+	/**
+	* Método para alterar o projeto
+	* @param titulo
+	* @author Cayoni
+	* @throws SQLException
+	*/
+	public void atualizarProjeto(String nome, int idProjeto) throws SQLException {
+				
+		/**
+		* Criando a String de atualização
+		*/
+		String atualizar = "UPDATE Projeto SET nome = ? WHERE id_projeto = ?";
+				
 		try (PreparedStatement pst = conexao.prepareStatement(atualizar)) {
-			
-			pst.setInt(1, idProjeto);
-			pst.setString(2, apelido);
-			
-			//Enviando um comando para o MySQL
-			pst.execute();
-			
-		} catch (Exception e) {
-			//Imprimido a pilha de erros:
-			e.printStackTrace();
+					
+			pst.setString(1, nome);
+			pst.setInt(2, idProjeto);					
+					
+			//quando precisa de retorno do banco "ResultSet"//
+			ResultSet resultado = pst.executeQuery();
+					
 		}
-		
+				
 	}
 	
 	//<-------------------------------------------------------------------------->//
 	
-public void deletarProjeto(String projetoNome, String apelido) {
+	/**
+	 * Método para deletar o projeto
+	 * @author Cayoni
+	 * @param idProjeto
+	 */
+	public void deletarProjeto(int idProjeto) {
 		
 		//Preparando a String para atualização:
-		String deletar = "DELETE FROM Projeto where nome =" + "? where fk_apelido_proprietario = ?";
+		String deletar = "DELETE FROM Projeto where id_projeto = ?";
 		
 		try (PreparedStatement pst = conexao.prepareStatement(deletar)) {
 			
-			pst.setString(1, projetoNome);
-			
-			pst.setString(2, apelido);
+			pst.setInt(1, idProjeto);
 			
 			//Enviando um comando para o MySQL
 			pst.execute();
@@ -207,4 +216,3 @@ public void deletarProjeto(String projetoNome, String apelido) {
 	}
 
 }
-

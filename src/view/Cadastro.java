@@ -3,6 +3,7 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.Color;
@@ -20,7 +21,6 @@ import javax.swing.UIManager.LookAndFeelInfo;
 
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 /**
@@ -34,6 +34,7 @@ public class Cadastro{
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
 		frame.setSize(400, 600);
 		
 		
@@ -55,7 +56,7 @@ public class Cadastro{
 		btnBack.setForeground(Color.WHITE);
 		btnBack.setBackground(Color.WHITE);
 		btnBack.setText("");
-		btnBack.setIcon(new ImageIcon(Cadastro.class.getResource("/view/icons/arrowBack.png")));
+		btnBack.setIcon(new ImageIcon("icons/arrowBack.png"));
 		btnBack.setBounds(22, 26, 45, 45);
 		btnBack.setBorderPainted(false); //método para retirar as bordas do JButton e deixar somente a imagem.
 		painel.add(btnBack);		
@@ -70,7 +71,7 @@ public class Cadastro{
 		
 		
 		JButton btnAvancar = new JButton();
-		btnAvancar.setIcon(new ImageIcon(Cadastro.class.getResource("/view/icons/arrowFoward.png")));
+		btnAvancar.setIcon(new ImageIcon("icons/arrowFoward.png"));
 		btnAvancar.setForeground(Color.WHITE);
 		btnAvancar.setText("");
 		btnAvancar.setBorderPainted(false);
@@ -80,8 +81,8 @@ public class Cadastro{
 		
 		
 		JLabel lblLogo = new JLabel();
-		lblLogo.setIcon(new ImageIcon(BoasVindas.class.getResource("/view/logos/workingBee-CROP-blue-Jask_by_Miglena_Spasova.png")));
-		lblLogo.setBounds(125, 80, 200, 200);
+		lblLogo.setIcon(new ImageIcon("logo/crop-blue.png"));
+		lblLogo.setBounds(125, 40, 250, 300);
 		painel.add(lblLogo);
 		
 		
@@ -93,6 +94,7 @@ public class Cadastro{
 		
 		JTextField txtNomeCompleto = new JTextField();
 		txtNomeCompleto.setBounds(100, 209, 200, 25);
+		txtNomeCompleto.setBorder(new LineBorder(Color.WHITE));
 		painel.add(txtNomeCompleto);
 		txtNomeCompleto.setColumns(10);
 		
@@ -103,10 +105,11 @@ public class Cadastro{
 		painel.add(lblEmail);
 		
 		
-		JTextField textField_1 = new JTextField();
-		textField_1.setBounds(100, 263, 200, 25);
-		painel.add(textField_1);
-		textField_1.setColumns(10);
+		JTextField txtEmail = new JTextField();
+		txtEmail.setBounds(100, 263, 200, 25);
+		txtEmail.setBorder(new LineBorder(Color.WHITE));
+		painel.add(txtEmail);
+		txtEmail.setColumns(10);
 		
 		
 		JLabel lblTelefone = new JLabel();
@@ -115,10 +118,11 @@ public class Cadastro{
 		painel.add(lblTelefone);
 		
 		
-		JTextField textField_2 = new JTextField();
-		textField_2.setBounds(100, 318, 200, 25);
-		painel.add(textField_2);
-		textField_2.setColumns(10);
+		JTextField txtTelefone = new JTextField();
+		txtTelefone.setBounds(100, 318, 200, 25);
+		txtTelefone.setBorder(new LineBorder(Color.WHITE));
+		painel.add(txtTelefone);
+		txtTelefone.setColumns(10);
 		
 		
 		JLabel lblApelido = new JLabel();
@@ -127,15 +131,16 @@ public class Cadastro{
 		painel.add(lblApelido);
 		
 		
-		JTextField textField_3 = new JTextField();
-		textField_3.setBounds(100, 371, 200, 25);
-		painel.add(textField_3);
-		textField_3.setColumns(10);
+		JTextField txtApelido = new JTextField();
+		txtApelido.setBounds(100, 371, 200, 25);
+		txtApelido.setBorder(new LineBorder(Color.WHITE));
+		painel.add(txtApelido);
+		txtApelido.setColumns(10);
 		
 		
 		JButton btnVerificaApelido = new JButton();
 		btnVerificaApelido.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnVerificaApelido.setIcon(new ImageIcon(Cadastro.class.getResource("/view/icons/search.png")));
+		btnVerificaApelido.setIcon(new ImageIcon("icons/search.png"));
 		btnVerificaApelido.setForeground(Color.BLACK);
 		btnVerificaApelido.setBackground(Color.WHITE);
 		btnVerificaApelido.setBounds(305, 371, 30, 30);
@@ -148,14 +153,15 @@ public class Cadastro{
 		painel.add(lblSenha);
 		
 		
-		JTextField textField_4 = new JTextField();
-		textField_4.setBounds(100, 425, 200, 25);
-		painel.add(textField_4);
-		textField_4.setColumns(10);
+		JTextField txtSenha = new JTextField();
+		txtSenha.setBounds(100, 425, 200, 25);
+		txtSenha.setBorder(new LineBorder(Color.WHITE));
+		txtSenha.setColumns(10);
+		painel.add(txtSenha);
 		
 		
 		JButton btnSelectImg = new JButton();
-		btnSelectImg.setIcon(new ImageIcon(Cadastro.class.getResource("/view/icons/addImage.png")));
+		btnSelectImg.setIcon(new ImageIcon("icons/addImage.png"));
 		btnSelectImg.setForeground(Color.WHITE);
 		btnSelectImg.setBackground(Color.WHITE);
 		btnSelectImg.setText("");
@@ -166,6 +172,7 @@ public class Cadastro{
 		
 		JTextField txtFile = new JTextField();
 		txtFile.setText("Nada selecionado ainda...");
+		txtFile.setBorder(new LineBorder(Color.WHITE));
 		txtFile.setBounds(150, 482, 150, 20);
 		painel.add(txtFile);
 		txtFile.setColumns(10);
@@ -210,6 +217,8 @@ public class Cadastro{
 					File file = jfc.getSelectedFile();
 					campoDetexto.setText(file.getPath());
 				}
+				
+				
 			}
 		});
 	}
