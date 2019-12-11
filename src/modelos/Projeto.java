@@ -148,7 +148,7 @@ public class Projeto {
 		public String toString() {
 			return "Projeto{Id Projeto: " + this.idProjeto
 					+ ", Nome: " + this.nomeProjeto
-					+ ", Proprietário: " + this.proprietario
+					+ ", Proprietário: " + this.proprietario.getApelido()
 					+ ", Usuários: " + this.usuarios // /!\ --------------------------------------------> Verificar como fazer isso.
 				   +"}";							 // /!\ Por ser um Arraylist não deveria ter um metódo para trazer está infomação ?
 		}

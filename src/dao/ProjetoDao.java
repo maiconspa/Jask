@@ -126,7 +126,7 @@ public class ProjetoDao {
 
 	public ArrayList<Usuario> colecaoUsuarios(int idProjeto) {
 		
-		String consulta = "SELECT * FROM Item_usuario_projeto WHERE id_projeto = ? ";
+		String consulta = "SELECT * FROM Item_usuario_projeto WHERE fk_id_projeto = ? ";
 		
 		try (PreparedStatement pst = conexao.prepareStatement(consulta)) {
 			
@@ -147,7 +147,7 @@ public class ProjetoDao {
 			
 		while (resultado.next()){
 			resultado.getString("fk_apelido_usuario");
-			Usuario participante = userDao.consultarUsuario(resultado.getString("fk_apelido_proprietario"));
+			Usuario participante = userDao.consultarUsuario(resultado.getString("fk_apelido_usuario"));
 			colecao.add(participante);
 		}
 		
