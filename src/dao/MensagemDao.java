@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.GregorianCalendar;
 import java.sql.Date;
 import modelos.Mensagem;
+import utils.EstadoTarefa;
+import utils.EstadoVisualizacao;
 
 /**
  * Data Acess Object para troca de mensagens
@@ -47,9 +49,7 @@ public class MensagemDao {
 			java.sql.Date dataVisualizacao = new Date(GregorianCalendar.getInstance().getTimeInMillis());
 			pst.setDate(5, dataVisualizacao);
 			
-			pst.setString(6, mensagem.getEstadoVisualizacao());
-			
-			// /!\ ATE AQUI SO FOI CRIADA a STRING da linha cadastrarUsuario
+			pst.setInt(6, mensagem.getEstadoVisualizacao().estadoVisualizacao);
 			
 			//Comando para executar a String no banco de dados
 			pst.execute();
@@ -90,8 +90,17 @@ public class MensagemDao {
 				String texto = resultado.getString("texto");
 				java.sql.Date dhEnvio = resultado.getDate("data_hora_envio");
 				java.sql.Date dhVisualizacao = resultado.getDate("data_hora_visualizacao");
-				String estadoVisualizacao = resultado.getString("estado_visualizacao");
+				int estadoVisualizacao = resultado.getInt("estado_visualizacao");
 				
+				if (estadoVisualizacao == 1) {
+					mensagem.setEstadoVisualizacao(EstadoVisualizacao.Enviado);
+				}
+				if (estadoVisualizacao == 2) {
+					mensagem.setEstadoVisualizacao(EstadoVisualizacao.Recebido);
+				}
+				if (estadoVisualizacao == 3) {
+					mensagem.setEstadoVisualizacao(EstadoVisualizacao.Visualizado);
+				}
 				
 				mensagem.setId(idMensagem);
 				mensagem.setApelidoDestinatario(apelidoDestino);
@@ -99,7 +108,6 @@ public class MensagemDao {
 				mensagem.setTexto(texto);
 				mensagem.setDhEnvio(mensagem.toGregorian(dhEnvio));
 				mensagem.setDhVisualizacao(mensagem.toGregorian(dhVisualizacao));
-				mensagem.setEstadoVisualizacao(estadoVisualizacao);
 				
 				return mensagem;
 			}

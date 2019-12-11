@@ -66,6 +66,61 @@ public class UsuarioDao {
 		
 	}
 	
+	//<----------------------------------------------------------------------->//
+		/**
+		 * Metodos de consultas
+		 * @param apelido
+		 */
+		public Usuario consultarUsuario(String apelido) {
+			
+			/**
+			 * Criando a String de consulta
+			 */
+			String consulta = "SELECT * FROM Usuario WHERE apelido = ?";
+			
+			try (PreparedStatement pst = conexao.prepareStatement(consulta)) {
+				
+				pst.setString(1, apelido);
+				
+				//quando precisa de retorno do banco "ResultSet"//
+				ResultSet resultado = pst.executeQuery();
+				
+				/**
+				 * // /!\ ---------------------- Perguntar ao professor o motivo desta instancia  ------------------------------------
+				 */
+				Usuario usuario = null;
+				
+				if (resultado.next()) {
+					usuario = new Usuario();
+					String nome = resultado.getString("nome");
+					String email = resultado.getString("email");
+					String telefone = resultado.getString("telefone");
+					String apelidoUsuario = resultado.getString("apelido");
+					String senha = resultado.getString("senha");
+					File foto = recuperarImagem(apelido);
+					
+					usuario.setApelido(apelidoUsuario);
+					usuario.setNome(nome);
+					usuario.setEmail(email);
+					usuario.setTelefone(telefone);
+					usuario.setSenha(senha);
+					usuario.setFoto(foto); 
+					
+					
+					return usuario;
+					
+				}
+				
+			} catch (SQLException ex) {
+				//Imprimindo a pilha de erros
+				ex.printStackTrace();
+			}
+			
+			return null;
+			
+		}
+		
+		//<----------------------------------------------------------------------->//
 	
 	//<---------------------------------------------------------------------------------------------------------------------------->//
 	
@@ -104,7 +159,7 @@ public class UsuarioDao {
 	//<----------------------------------------------------------------------->//
 	
 	/**
-	 * Método para captura de imagem do banco de dados de acordo com o apelido.
+	 * Método para recuperar imagem do banco de dados de acordo com o apelido.
 	 * @param usuario
 	 */
 	public File recuperarImagem(String apelido) {
@@ -150,63 +205,6 @@ public class UsuarioDao {
 		}
 		return null;
 	}
-	
-	
-	//<----------------------------------------------------------------------->//
-	/**
-	 * Metodos de consultas
-	 * @param apelido
-	 */
-	public Usuario consultarUsuario(String apelido) {
-		
-		/**
-		 * Criando a String de consulta
-		 */
-		String consulta = "SELECT * FROM Usuario WHERE apelido = ?";
-		
-		try (PreparedStatement pst = conexao.prepareStatement(consulta)) {
-			
-			pst.setString(1, apelido);
-			
-			//quando precisa de retorno do banco "ResultSet"//
-			ResultSet resultado = pst.executeQuery();
-			
-			/**
-			 * // /!\ ---------------------- Perguntar ao professor o motivo desta instancia  ------------------------------------
-			 */
-			Usuario usuario = null;
-			
-			if (resultado.next()) {
-				usuario = new Usuario();
-				String nome = resultado.getString("nome");
-				String email = resultado.getString("email");
-				String telefone = resultado.getString("telefone");
-				String apelidoUsuario = resultado.getString("apelido");
-				String senha = resultado.getString("senha");
-				File foto = recuperarImagem(apelido);
-				
-				usuario.setApelido(apelidoUsuario);
-				usuario.setNome(nome);
-				usuario.setEmail(email);
-				usuario.setTelefone(telefone);
-				usuario.setSenha(senha);
-				usuario.setFoto(foto); 
-				
-				
-				return usuario;
-				
-			}
-			
-		} catch (SQLException ex) {
-			//Imprimindo a pilha de erros
-			ex.printStackTrace();
-		}
-		
-		return null;
-		
-	}
-	
-	//<----------------------------------------------------------------------->//
 	
 	/**
 	 * Método para atualizar a classe no banco

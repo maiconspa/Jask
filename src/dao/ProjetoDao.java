@@ -7,8 +7,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import modelos.Projeto;
+import modelos.Usuario;
 
 /**
  * Classe DAO para o Projeto
@@ -45,9 +47,7 @@ public class ProjetoDao {
 		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {
 			
 			pst.setString(1,	projeto.getNomeProjeto());
-			pst.setString(2,	projeto.getApelidoProprietario());
-			
-			//ATE AQUI SO FOI CRIADA a STRING da linha cadastrarUsuario
+			pst.setString(2,	projeto.getProprietario().getApelido());
 			
 			/**
 			 * Comando para executar a String no banco de dados
@@ -95,15 +95,17 @@ public class ProjetoDao {
 			 */
 			Projeto projeto = null;
 			
+			UsuarioDao userDao =  new UsuarioDao(Conexao.conectar());
+			
 			if (resultado.next()) {
 				projeto = new Projeto();
 				int id = resultado.getInt("id_projeto");
 				String nome = resultado.getString("nome");
-				String proprietario = resultado.getString("fk_apelido_proprietario");
-			
+				Usuario proprietario = userDao.consultarUsuario(resultado.getString("fk_apelido_proprietario"));
+				
 				projeto.setIdProjeto(id);
 				projeto.setNomeProjeto(nome);
-				projeto.setApelidoProprietario(proprietario);
+				projeto.setProprietario(proprietario);
 			
 				return projeto;
 		}
@@ -121,10 +123,44 @@ public class ProjetoDao {
 	
 	}
 
+	public ArrayList<Usuario> colecaoUsuarios(int idProjeto) {
+		
+		String consulta = "SELECT * FROM Item_usuario_projeto WHERE id_projeto = ? ";
+		
+		try (PreparedStatement pst = conexao.prepareStatement(consulta)) {
+			
+			pst.setInt(1, idProjeto);
+			
+			//quando precisa de retorno do banco "ResultSet"//
+			ResultSet resultado = pst.executeQuery();
+			
+			/**
+			 * 	Instanciando um objeto com valor nulo para preencimento com
+			 *  base no retorno da consulta realizada.
+			 */
+			Projeto projeto = null;
+			
+			UsuarioDao userDao =  new UsuarioDao(Conexao.conectar());
+			Arraylist<Usuario> tsts = new Arraylist();
+			
+			
+		while (resultado.next()){
+			resultado.getString("fk_apelido_usuario");
+			Usuario participante = userDao.consultarUsuario(resultado.getString("fk_apelido_proprietario"));
+			tsts.add(participante);
+		}
+		
+		return tsts;
+		
+		} catch(SQLException ex) {
+			
+		}
+	}
+	
 	
 	//<-------------------------------------------------------------------------->//
 	
-	public void atualizarProjeto(String projetoNome, String apelido) {
+	public void atualizarProjeto(int idProjeto, String apelido) {
 		
 		//Preparando a String para atualização:
 		String atualizar = "UPDATE Projeto set nome =" + "? where fk_apelido_proprietario = ?";

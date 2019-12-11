@@ -72,7 +72,7 @@ public class Entrada{
 		
 		//icone abelha do jask
 		JLabel label = new JLabel();
-		label.setIcon(new ImageIcon(Cadastro.class.getResource("/view/logos/workingBee-CROP-blue-Jask_by_Miglena_Spasova.png")));;
+		label.setIcon(new ImageIcon(Cadastro.class.getResource("logo/workingBee-CROP-blue-Jask_by_Miglena_Spasova.png")));;
 		label.setBounds(100, 90, 200, 85);
 		painelPrincipal.add(label);
 		

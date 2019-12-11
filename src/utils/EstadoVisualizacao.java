@@ -1,8 +1,8 @@
 package utils;
 
-public enum EstadoVisualizacao {
+public enum EstadoVisualizacao{
 
-	enviado(1), recebido(2), visualizado(3);
+	Enviado(1), Recebido(2), Visualizado(3);
 	
 	public int estadoVisualizacao;
 	EstadoVisualizacao (int estadoVisualizacao) {

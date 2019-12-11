@@ -48,6 +48,11 @@ public class BoasVindas {
 		btnEntrar.setBounds(100, 350, 200, 35);
 		painel.add(btnEntrar);
 		
+		//<---------------------Acao botao entrada--------------------->//
+		
+		
+		//<------------------------------------------------------------>//
+		
 		// BOTÃO DE CADASTRO
 		JButton btnCadastro = new JButton("Cadastre-se");
 		btnCadastro.setFont(new Font("Calibri", Font.BOLD, 14));
@@ -58,6 +63,11 @@ public class BoasVindas {
 		//setBounds: positionX, positionY, width, height.
 		btnCadastro.setBounds(100, 395, 200, 35);
 		painel.add(btnCadastro);
+		
+		//<---------------------Acao botao entrada--------------------->//
+		
+		
+		//<------------------------------------------------------------>//
 		
 		frame.setVisible(true);
 	}

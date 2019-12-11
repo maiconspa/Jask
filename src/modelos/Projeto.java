@@ -31,14 +31,13 @@ public class Projeto {
 	/**
 	 * Atributo do tipo String pra armazenar o apelido do proprietário			do Projeto
 	 */
-	private String apelidoProprietario; // /!\ --------------------------------------------> Verificar como fazer isso.
+	private Usuario proprietario;
 	
 	/**
 	 * Atributo do tipo ArrayList pra armazenar os usuarios participantes		do Projeto
 	 */
-	private ArrayList<Usuario> usuarios; // /!\ --------------------------------------------> Verificar como fazer isso.
-										 // /!\ Como e um Array list não seria uma consulta apenas e nao um atributo ?
-	
+	private ArrayList<Usuario> usuarios;  // /!\ lista de id de usuário join lista de usuários
+								
 	//<---------------------------------------------------------------------------------------------------------------------------->//
 	
 	/**
@@ -54,11 +53,10 @@ public class Projeto {
 	 * @param apelidoProprietario	Armazena o Apelido do Proprietario	do Projeto
 	 * @param usuarios				Armazena os Usuarios atrelados	 	ao Projeto
 	 */
-	public Projeto(int idProjeto, String nomeProjeto, String apelidoProprietario, ArrayList<Usuario> usuarios) {
+	public Projeto(int idProjeto, String nomeProjeto, Usuario proprietario, ArrayList<Usuario> usuarios) {
 		this.idProjeto = idProjeto;
 		this.nomeProjeto = nomeProjeto;
-		this.usuarios = usuarios; // /!\ --------------------------------------------> Verificar como fazer isso.
-								  // /!\ Como e um Array list e possivelmente uma consulta, aqui não devia ser criado um metodo
+		this.usuarios = usuarios; // /!\ Como e um Array list e possivelmente uma consulta, aqui não devia ser criado um metodo
 								  //     para exibição dos usários ?
 	}
 	
@@ -89,8 +87,8 @@ public class Projeto {
 	 * Retorna o Apelido do Proprietario do Projeto
 	 * @return			   this.apelidoProprietario
 	 */
-	public String getApelidoProprietario() {
-		return this.apelidoProprietario;
+	public Usuario getProprietario() {
+		return this.proprietario;
 	}
 	
 	/**
@@ -128,8 +126,8 @@ public class Projeto {
 	 * Altera o Apelido do Proprieterio do Projeto
 	 * @param 				   apelidoProprietario
 	 */
-	public void setApelidoProprietario(String apelidoProprietario) {
-		this.apelidoProprietario = apelidoProprietario;
+	public void setProprietario(Usuario proprietario) {
+		this.proprietario = proprietario;
 	}
 	
 	/**
@@ -150,7 +148,7 @@ public class Projeto {
 		public String toString() {
 			return "Projeto{Id Projeto: " + this.idProjeto
 					+ ", Nome: " + this.nomeProjeto
-					+ ", Proprietário: " + this.apelidoProprietario
+					+ ", Proprietário: " + this.proprietario
 					+ ", Usuários: " + this.usuarios // /!\ --------------------------------------------> Verificar como fazer isso.
 				   +"}";							 // /!\ Por ser um Arraylist não deveria ter um metódo para trazer está infomação ?
 		}

@@ -1,6 +1,8 @@
 package modelos;
 import java.util.GregorianCalendar;
 
+import utils.EstadoVisualizacao;
+
 /**
  * Manipulação de mensagens
  * 
@@ -20,7 +22,7 @@ public class Mensagem {
     private String texto;
     private GregorianCalendar dhEnvio;
     private GregorianCalendar dhVisualizacao;
-    private String estadoVisualizacao;
+    private EstadoVisualizacao estadoVisualizacao;
 
 
     // Construtores:
@@ -37,7 +39,7 @@ public class Mensagem {
      * @param dhVisualizacao
      * @param estadoVisualizacao
      */
-    public Mensagem(int id, String texto, GregorianCalendar dhEnvio, GregorianCalendar dhVisualizacao, String estadoVisualizacao) {
+    public Mensagem(int id, String texto, GregorianCalendar dhEnvio, GregorianCalendar dhVisualizacao, EstadoVisualizacao estadoVisualizacao) {
         this.id = id;
         this.texto = texto;
         this.dhEnvio = dhEnvio;
@@ -65,7 +67,7 @@ public class Mensagem {
     public GregorianCalendar getDhVisualizacao() {
         return this.dhVisualizacao;
     }
-    public String getEstadoVisualizacao() {
+    public EstadoVisualizacao getEstadoVisualizacao() {
         return this.estadoVisualizacao;
     }
 
@@ -89,7 +91,7 @@ public class Mensagem {
     public void setDhVisualizacao(GregorianCalendar dhVisualizacao) {
         this.dhVisualizacao = dhVisualizacao;
     }
-    public void setEstadoVisualizacao(String estadoVisualizacao) {
+    public void setEstadoVisualizacao(EstadoVisualizacao estadoVisualizacao) {
         this.estadoVisualizacao = estadoVisualizacao;
     }
     
