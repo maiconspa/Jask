@@ -188,7 +188,7 @@ public class VisaoGeral {
 		btnViewProjetos.setBackground(null);
 		btnViewProjetos.setBorderPainted(false);
 		btnViewProjetos.setBounds(10, 0, 45, 45);
-		btnViewProjetos.setIcon(new ImageIcon(Cadastro.class.getResource("/view/icons/listProjects.png")));
+		btnViewProjetos.setIcon(new ImageIcon("icons/listProjects.png"));
 		navbar.add(btnViewProjetos);
 		
 		JButton btnViewColab = new JButton("");
@@ -196,8 +196,8 @@ public class VisaoGeral {
 		btnViewColab.setForeground(Color.WHITE);
 		btnViewColab.setBackground(null);
 		btnViewColab.setBorderPainted(false);
-		btnViewColab.setBounds(105, 0, 45, 45); //150
-		btnViewColab.setIcon(new ImageIcon(Cadastro.class.getResource("/view/icons/collaborators.png")));
+		btnViewColab.setBounds(105, 0, 45, 45);
+		btnViewColab.setIcon(new ImageIcon("icons/collaborators.png"));
 		navbar.add(btnViewColab);
 
 		
@@ -222,7 +222,7 @@ public class VisaoGeral {
 		btnViewChat.setBackground(null);
 		btnViewChat.setBorderPainted(false);
 		btnViewChat.setBounds(644, 0, 45, 45);
-		btnViewChat.setIcon(new ImageIcon(Cadastro.class.getResource("/view/icons/message.png")));
+		btnViewChat.setIcon(new ImageIcon("icons/message.png"));
 		navbar.add(btnViewChat);
 		
 		/**
@@ -234,7 +234,7 @@ public class VisaoGeral {
 		btnViewConfig.setBackground(null);
 		btnViewConfig.setBorderPainted(false);
 		btnViewConfig.setBounds(739, 0, 45, 45);
-		btnViewConfig.setIcon(new ImageIcon(Cadastro.class.getResource("/view/icons/moreHorizontal.png")));
+		btnViewConfig.setIcon(new ImageIcon("icons/moreHorizontal.png"));
 		navbar.add(btnViewConfig);
 		
 		

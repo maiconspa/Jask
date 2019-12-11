@@ -48,7 +48,7 @@ public class Entrada{
 					if(verificacaoApelido(txtApelido)) {
 						System.out.println("tem esse usuario ou email");
 						if(verificacaoSenha(txtApelido, txtSenha)) {
-							System.out.print("FOOOOOOOOOOOOOOOOOOOOI");
+							new VisaoGeral().composeVisaoGeral();
 						} 
 						
 					}
@@ -69,7 +69,7 @@ public class Entrada{
 		
 		if (user.getApelido().equals(txt.getText())) {
 			controle = true;
-		} 
+		}
 		
 		return controle;
 	}

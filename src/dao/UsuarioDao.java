@@ -88,9 +88,6 @@ public class UsuarioDao {
 				//quando precisa de retorno do banco "ResultSet"//
 				ResultSet resultado = pst.executeQuery();
 				
-				/**
-				 * // /!\ ---------------------- Perguntar ao professor o motivo desta instancia  ------------------------------------
-				 */
 				Usuario usuario = null;
 				
 				if (resultado.next()) {
@@ -110,13 +107,13 @@ public class UsuarioDao {
 					usuario.setFoto(foto); 
 					
 					
+					
 					return usuario;
 					
 				}
 				
 			} catch (SQLException ex) {
-				JOptionPane.showMessageDialog(null, 
-						"Problemas!","Dados incorretos", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null,"Problemas!","Dados incorretos", JOptionPane.WARNING_MESSAGE);
 				
 				//Imprimindo a pilha de erros
 				ex.printStackTrace();
