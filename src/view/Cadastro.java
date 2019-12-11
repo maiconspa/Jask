@@ -37,7 +37,7 @@ public class Cadastro{
 				if (outroFrame.equals("Voltar")) {
 					new BoasVindas().composeBoasVindas();
 				} else if (outroFrame.equals("Proximo")) {
-					
+					//
 					if(verificacaoApelido(txtApelido)) {
 						System.out.println("tem esse usuario ou email");
 						if(verificacaoSenha(txtApelido, txtSenha)) {
