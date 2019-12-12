@@ -217,10 +217,10 @@ public class UsuarioDao {
 	
 	//<--------------------------------------------------------------------------------------------------------------->
 	
-	public void imagemRandomica() {
+	public void imagemRandomica(String apelido) {
 		
 		UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
-		Usuario resultado = userDao.consultarUsuario("Bike");
+		Usuario resultado = userDao.consultarUsuario(apelido);
 		
 		//instância um objeto da classe Random usando o construtor padrão
         Random gerador = new Random();

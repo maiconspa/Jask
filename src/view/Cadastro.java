@@ -2,8 +2,13 @@ package view;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import dao.Conexao;
+import dao.UsuarioDao;
+import modelos.Usuario;
 
 import java.awt.Color;
 import javax.swing.JButton;
@@ -12,13 +17,13 @@ import javax.swing.JFileChooser;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.awt.event.ActionEvent;
 
 /**
@@ -27,8 +32,8 @@ import java.awt.event.ActionEvent;
  */
 
 public class Cadastro{
-	/*
-	private void proximajanela(JButton botao, JFrame frameAtual, String outroFrame, JTextField txtNome, JTextField txtEmail, JTextField txtTelefone, JTextField txtApelido, JTextField txtSenha, ) {
+
+	private void proximajanela(JButton botao, JFrame frameAtual, String outroFrame, JTextField txtNome, JTextField txtEmail, JTextField txtTelefone, JTextField txtApelido, JTextField txtSenha) {
 		botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -36,24 +41,21 @@ public class Cadastro{
 				
 				if (outroFrame.equals("Voltar")) {
 					new BoasVindas().composeBoasVindas();
-				} else if (outroFrame.equals("Proximo")) {
+				} else if(outroFrame.equals("Proximo")) {
 					
-					if(verificacaoApelido(txtApelido)) {
-						System.out.println("tem esse usuario ou email");
-						if(verificacaoSenha(txtApelido, txtSenha)) {
-							new VisaoGeral().composeVisaoGeral();
-						} 
-						
-					}
+					UsuarioDao uDao = new UsuarioDao(Conexao.conectar());
+					Usuario user = new Usuario(txtNome.getText(), txtEmail.getText(), txtTelefone.getText(), txtApelido.getText(), txtSenha.getText(), null);
+					uDao.cadastrarUsuario(user);
 					
-					//se a verificacao for bem sucedida:    new Entrada().composeEntrada();
-
+					JOptionPane.showMessageDialog(frameAtual, "Cadastrado com sucesso!");
+					new DecisaoInserirImagem().composeDecisao(txtApelido.getText());
+					
 				}
 				
 			}
 		});
 	}
-	*/
+
 	
 	
 	
@@ -181,7 +183,7 @@ public class Cadastro{
 		painel.add(lblSenha);
 		
 		
-		JTextField txtSenha = new JTextField();
+		JPasswordField txtSenha = new JPasswordField();
 		txtSenha.setBounds(100, 425, 200, 25);
 		txtSenha.setBorder(new LineBorder(Color.WHITE));
 		txtSenha.setColumns(10);
@@ -191,6 +193,9 @@ public class Cadastro{
 		frame.setVisible(true);
 		
 		
+		// BOTOES
+		proximajanela(btnBack, frame, "Voltar", null, null, null, null, null);
+		proximajanela(btnAvancar, frame, "Proximo", txtNomeCompleto, txtEmail, txtTelefone, txtApelido, txtSenha);
 	}
 	
 

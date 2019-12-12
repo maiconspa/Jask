@@ -14,17 +14,27 @@ import javax.swing.UIManager.LookAndFeelInfo;
 
 import dao.Conexao;
 import dao.UsuarioDao;
+import modelos.Usuario;
 import view.SelecaoFoto;
 
 public class DecisaoInserirImagem {
-
-	public void switchJanela(JButton botao, JFrame frameAtual, String opcao) {
+	
+	private String apelido;
+	
+	public DecisaoInserirImagem (String apelido) {
+		this.apelido = apelido;
+	}
+	
+	public void switchJanela(JButton botao, JFrame frameAtual, String opcao, String apelido) {
 		botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
+				Usuario user = userDao.consultarUsuario(apelido);
+				
 				
 				if (opcao.equals("não")) {
-					userDao.imagemRandomica();
+					userDao.imagemRandomica(user.getApelido());
+					new VisaoGeral().composeVisaoGeral();
 					frameAtual.dispose();
 				} else if (opcao.equals("sim")) {
 					new SelecaoFoto().composeSelecaoFoto();
@@ -34,9 +44,9 @@ public class DecisaoInserirImagem {
 		});
 	}
 	
-	
-	
-	public void composeDecisao() {
+	public void composeDecisao(String apelido) {
+		
+		
 		JFrame janela = new JFrame();
 		janela.setResizable(false);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,14 +93,16 @@ public class DecisaoInserirImagem {
 		
 		
 		// ACAO DE BOTOES
-		switchJanela(btnNao, janela, "não");
-		switchJanela(btnSim, janela, "sim");
+		switchJanela(btnNao, janela, "não", apelido);
+		switchJanela(btnSim, janela, "sim", apelido);
+		
+		System.out.println(apelido);
 	}
 	
 	
 	
-public static void main(String args []) {
-		
+public static void main(String args []) {	
+	
 		//Look and feel:
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -102,7 +114,7 @@ public static void main(String args []) {
 		} catch (Exception e) {}
 		
 		//Chamar método de composição de tela:
-		new DecisaoInserirImagem().composeDecisao();
+		new DecisaoInserirImagem(null).composeDecisao(null); //resolver
 		
 	}
 	
