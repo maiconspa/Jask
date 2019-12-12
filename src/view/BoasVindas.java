@@ -25,13 +25,14 @@ public class BoasVindas {
 		botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				frameAtual.hide();
 				
 				if (proximoFrame.equals("Cadastro")) {
 					new Cadastro().composeScreen();
 				} else if (proximoFrame.equals("Entrada")){
 					new Entrada().composeEntrada();
 				}
+
+				frameAtual.dispose();
 				
 			}
 		});
@@ -41,10 +42,9 @@ public class BoasVindas {
 	public void composeBoasVindas() {
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
-		frame.getContentPane().setBackground(Color.WHITE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400, 600);
 		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel painel = new JPanel();
 		painel.setSize(400, 600);

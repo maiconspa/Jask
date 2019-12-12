@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -32,13 +31,29 @@ import javax.swing.UIManager.LookAndFeelInfo;
  */
 public class Profile{
 	
+	private String apelido;
+	
+	
+	//CONSTRUTORES:
+	public Profile() {}
+	
+	public Profile(String apelido) {
+		this.apelido = apelido;
+	}
+	
+	//GET APELIDO:
+	public String getApelido() {
+		return this.apelido;
+	}
+	
 	UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
-	Usuario resultado = userDao.consultarUsuario("Bike");
+	Usuario resultado = userDao.consultarUsuario(getApelido());
 	
 
-	public void chamarImagem(JPanel painel, JTextField txtFile) {
+	public void chamarImagem(JPanel painel, JTextField txtFile, String apelido) {
+		
 		UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
-		Usuario resultado = userDao.consultarUsuario("Bike");
+		Usuario resultado = userDao.consultarUsuario(apelido);
 		
 		
 		//FOTO DO USUARIO:
@@ -55,25 +70,15 @@ public class Profile{
 							)
 						)
 					);
-			} else {
-				//Caso o usuário não tenha imagem, é definido uma padrão:
-				
-				userDao.imagemRandomica();
-				System.out.println("NAO TEM IMAGEM");
-				btFotoUsuario.setIcon(
-					new ImageIcon(
-						ImageIO.read(
-							resultado.getFoto()
-							)
-						)
-					);
 			}
 		} catch (SecurityException ex) {
+			System.out.println("ERRO DE SecurityException");
 			ex.printStackTrace();
 		} catch (IOException ex) {
+			System.out.println("ERRO DE IOException");
 			ex.printStackTrace();
 		}
-		//restante da label:
+		//restante do botão:
 		System.out.println(btFotoUsuario.getIcon());
 		btFotoUsuario.setBounds(75, 75, 250, 250);
 		painel.add(btFotoUsuario);
@@ -87,6 +92,7 @@ public class Profile{
 	
 	public void composeProfile() {
 		JFrame janelaChat = new JFrame();
+		janelaChat.setResizable(false);
 		janelaChat.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		janelaChat.setSize(400, 600);
 		janelaChat.setLocationRelativeTo(null);
@@ -97,8 +103,8 @@ public class Profile{
 		panel.setLayout(null);
 		janelaChat.setContentPane(panel);
 		
-		JLabel lblMensagens = new JLabel("Perfil");
-		lblMensagens.setBounds(10, 10, 150, 40);
+		JLabel lblMensagens = new JLabel("Perfil de " +getApelido());
+		lblMensagens.setBounds(10, 10, 390, 40);
 		lblMensagens.setFont(new Font("Tahoma", Font.BOLD, 25));
 		panel.add(lblMensagens);
 		
@@ -125,7 +131,7 @@ public class Profile{
 		
 		
 		//<------------------------  CHAMANDO DO BANCO  ---------------------------->\\
-		chamarImagem(panel, txtFile);
+		chamarImagem(panel, txtFile, getApelido());
 	}
 	
 	
@@ -140,7 +146,10 @@ public class Profile{
 		    }
 		} catch (Exception e) {}
 		
-		new Profile().composeProfile();
+		
+		//CHAMANDO COMPOSIÇAÕ DE TELA:
+		Profile p = new Profile();
+		p.composeProfile();
 	}
 	
 	

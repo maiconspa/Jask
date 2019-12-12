@@ -1,19 +1,16 @@
 package view;
 
 import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import dao.Conexao;
 import dao.ProjetoDao;
-import dao.UsuarioDao;
 
 import javax.swing.JTextField;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -24,7 +21,6 @@ import java.awt.Font;
 
 
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
@@ -36,78 +32,74 @@ import modelos.*;
  */
 public class VisaoGeral {
 	
-	//<----------------------------------- TEMAS ---------------------------------------->\\
-	// TEMA AZUL
-	/**
-	 * Array para utilização de codigo RGB para background do tema azul
-	 */
-	int bgBlueTheme [] = {205, 224, 231};
-	/**
-	 * Array para utilização de código RGB para background da navbar do tema azul
-	 */
-	int bgNavBlueTheme [] = {140, 185, 200};
-	/**
-	 * Array para utilização de código RGB para background dos JPanels internos
-	 */
-	int bgJpBlueTheme [] = {88, 97, 99};
+	private String apelido;
 	
-	// TEMA ESCURO
-	/**
-	 * Array para utilização de codigo RGB para background do tema ESCURO
-	 */
+	//CONSTRUTORES:
+	public VisaoGeral() {}
+	
+	public VisaoGeral(String apelido) {
+		this.apelido = apelido;
+	}
+	
+	public String getApelido() {
+		return this.apelido;
+	}
+	
+	//VARIÁVEIS DE CONTROLE DE TEMAS:
+	//TEMA AZUL
+	int bgBlueTheme [] = {20, 162, 251};
+	int bgNavBlueTheme [] = {63, 111, 163};
+	int bgJpBlueTheme [] = {212, 220, 229};
+	
+	//TEMA ESCURO
 	int bgDarkTheme [] = {0, 0, 0};
-	/**
-	 * Array para utilização de código RGB para background da navbar do tema ESCURO
-	 */
 	int bgNavDarkTheme [] = {100, 100, 100};
-	/**
-	 * Array para utilização de código RGB para background dos JPanels internos 
-	 */
 	int bgJpDarkTheme [] = {50, 50, 50};
 			
-	//Tema PADRÃO
-	/**
-	 * Array de cores RGB para o background da janela
-	 */
+	//TEMA DEFAULT (utilizado para substituição de valores)
 	int bg [] = {bgBlueTheme[0], bgBlueTheme[1], bgBlueTheme[2]};
-	/**
-	 * Array de cores RGB para o background da barra de navegação
-	 */
 	int bgNav [] = {bgNavBlueTheme[0], bgNavBlueTheme[1], bgNavBlueTheme[2]};
-	/**
-	 * Array de cores RGB para o background dos paineis internos
-	 */
 	int bgJp [] = {bgJpBlueTheme[0], bgJpBlueTheme[1], bgJpBlueTheme[2]};
 
-	
-	//<-------------------------------- COMPORTAMENTO(métodos) ------------------------------------------->\\
-	
-	private void switchTheme(JButton botao, String tema, JPanel nav, JPanel geral, JPanel paineis [], JLabel labels []) {
+	//MÉTODO PARA TROCA DE TEMA:
+	private void switchTheme(JButton botao, String tema, JPanel nav, JPanel geral, JPanel paineis [], JLabel labels [], JButton [] buttons) {
 		botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 				for (int i = 0; i < 3; i++) {
-					if (tema.equals("Just blue")) {
+					
+					if (tema.equals("azul")) {
+						System.out.println("a");
 						nav.setBackground(new Color(bgNavBlueTheme[0], bgNavBlueTheme[1], bgNavBlueTheme[2]));
 						geral.setBackground(new Color(bgBlueTheme[0], bgBlueTheme[1], bgBlueTheme[2]));
 						paineis [i].setBackground(new Color(bgJpBlueTheme[0], bgJpBlueTheme[1], bgJpBlueTheme[2]));
-						labels [i].setForeground(Color.BLACK);
-					} else if (tema.equals("Just black")) {
+						buttons [i].setForeground(Color.BLACK);
+						buttons [i].setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+					} else if (tema.equals("escuro")) {
+						System.out.println("b");
 						nav.setBackground(new Color(bgNavDarkTheme[0], bgNavDarkTheme[1], bgNavDarkTheme[2]));
 						geral.setBackground(new Color(bgDarkTheme[0], bgDarkTheme[1], bgDarkTheme[2]));
 						paineis [i].setBackground(new Color(bgJpDarkTheme[0], bgJpDarkTheme[1], bgJpDarkTheme[2]));
-						labels [i].setForeground(Color.WHITE);
+						buttons [i].setForeground(Color.WHITE);
+						buttons [i].setBorder(new LineBorder(new Color(255, 255, 255), 1, true));
+					}
+					for (int j = 0; j < labels.length; j++) {
+						if (tema.equals("azul")) {
+							System.out.println("a");
+							labels [j].setForeground(Color.BLACK);
+						} else if (tema.equals("escuro")) {
+							System.out.println("b");
+							labels [j].setForeground(Color.WHITE);
+						}
 					}
 				}
+				
 			}
 		});
 		
 	}
 	
-	/**
-	 * Chamar tela de chat para o primeiro plano, recebe um objeto do tipo JButton
-	 * @param botao
-	 */
+	
+	//MÉTODO QUE CHAMA A TELA DE CHAT:
 	public static void chamarChat(JButton botao) {
 		botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -116,21 +108,22 @@ public class VisaoGeral {
 		});
 	}
 	
-	public static void chamarExtProfile(JButton botao) {
+	
+	//MÉTODO QUE CHAMA A TELA DE PERFIL:
+	public static void chamarExtProfile(JButton botao, String apelido) {
 		botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new Profile().composeProfile();
+
+				System.out.println("chamandoo perfil de:" +apelido);
+				Profile p = new Profile(apelido);
+				
+				p.composeProfile();
 			}
 		});
 	}
 	
 	
-	/**
-	 * Função para realizar a troca de JPanels dentro da TelaPrincipal
-	 * @param botao
-	 * @param paineis
-	 * @param painel
-	 */
+	//MÉTODO PARA A TROCA DE PAINEIS INTERNOS (projetos... configurações...)
 	public static void switchPanel(JButton botao, JPanel paineis [], JPanel painel) {
 		botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -143,9 +136,8 @@ public class VisaoGeral {
 	}
 	
 	
-	//Para exibir a listagem de todos os projetos
-	
-	public static void instanciaProjeto(JButton botao, JPanel painel) {
+	//MÉTODO PARA LISTAR PROJETOS (em andamento /!\) : //troca de nome instanciaProjeto > listarProjetos
+	public static void listarProjetos(JButton botao, JPanel painel) {
 		botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -175,47 +167,39 @@ public class VisaoGeral {
 	}
 	
 	
-
-	
-	//<------------------------------------------------------------------->\\
-	
-	/**
-	 * Janela de Visão Geral do aplicativo
-	 * @return 
-	 */
-	
-	
-	
-	public void composeVisaoGeral(sTRING) {
-		/**
-		 * variavel para controle facilitado da largura de JFrame e seus componentes
-		 */
+	//COMPONENTES GRÁFICOS:
+	public void composeVisaoGeral() {
+		//VARIÁVEIS DE CONTROLE INTERNO:
 		int maxWidth = 800;
-		
-		/**
-		 * variavel para controle facilitado da altura de JFrame e seus componentes
-		 */
 		int maxHeight = 600;
+		int maxWidthPanels = maxWidth - (maxWidth/4);
+		int maxHeightPanels = maxHeight - (maxHeight/4);
 		
+		
+		//JFRAME:
 		JFrame janela = new JFrame();
 		janela.setResizable(false);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.setBounds(100, 100, maxWidth, maxHeight);
 		janela.setLocationRelativeTo(null);
 		
+		
+		//JPANEL PRINCIPAL:
 		JPanel painelPrincipal = new JPanel();
 		painelPrincipal.setBackground(new Color(bg[0], bg[1], bg[2]));
 		painelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
 		painelPrincipal.setLayout(null);
 		janela.setContentPane(painelPrincipal);
 		
-		//<------------- BARRA DE NAVEGAÇÃO (JPanel) --------------->\\
 		
+		//BARRA DE NAVEGAÇÃO (ícones e barra de pesquisa)
 		JPanel navbar = new JPanel();
 		navbar.setBounds(0, 0, maxWidth, 40);
 		navbar.setBackground(new Color (bgNav[0], bgNav[1], bgNav[2]));
 		painelPrincipal.add(navbar);
 		navbar.setLayout(null);
+		
+		System.out.println(getApelido() +"na VISAO GERAL");
 		
 		JButton btnViewProjetos = new JButton("");
 		btnViewProjetos.setToolTipText("Listar projetos");
@@ -235,10 +219,6 @@ public class VisaoGeral {
 		btnViewColab.setIcon(new ImageIcon("icons/collaborators.png"));
 		navbar.add(btnViewColab);
 
-		
-		/**
-		 * caixa de busca
-		 */
 		JTextField campoBusca = new JTextField();
 		campoBusca.setToolTipText("insira aqui um termo para buscar");
 		campoBusca.setHorizontalAlignment(SwingConstants.CENTER);
@@ -247,22 +227,23 @@ public class VisaoGeral {
 		campoBusca.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 0, true));
 		navbar.add(campoBusca);
 		
+		JButton btnPesquisa = new JButton();
+		btnPesquisa.setToolTipText("Pesquisar tarfeas e projetos");
+		btnPesquisa.setIcon(new ImageIcon("icons/search.png"));
+		btnPesquisa.setForeground(Color.WHITE);
+		btnPesquisa.setBorderPainted(false);
+		btnPesquisa.setBackground(null);
+		btnPesquisa.setBounds(510, 7, 30, 45);
+		navbar.add(btnPesquisa);
 		
-		/**
-		 * Botão de mensagens
-		 */
 		JButton btnViewChat = new JButton("");
 		btnViewChat.setToolTipText("Mensagens");
 		btnViewChat.setForeground(Color.WHITE);
-		btnViewChat.setBackground(null);
 		btnViewChat.setBorderPainted(false);
 		btnViewChat.setBounds(644, 0, 45, 45);
 		btnViewChat.setIcon(new ImageIcon("icons/message.png"));
 		navbar.add(btnViewChat);
 		
-		/**
-		 * Botão de configurações
-		 */
 		JButton btnViewConfig = new JButton("");
 		btnViewConfig.setToolTipText("Opções");
 		btnViewConfig.setForeground(Color.WHITE);
@@ -273,31 +254,26 @@ public class VisaoGeral {
 		navbar.add(btnViewConfig);
 		
 		
-		//<------------------------  JPANELS INTERNOS (troca utilizando switchPanel)  ---------------------------->\\
-		int maxWidthPanels = maxWidth - (maxWidth/4);
-		int maxHeightPanels = maxHeight - (maxHeight/4);
+		//JPANELs INTERNOS (visualização de projetos... configuraçãoes e etc):
 		
-		/**
-		 * Painel de exibição de projetos ativos
-		 */
+		//PAINEL DE PROJETOS:
 		JPanel painelProjetos = new JPanel();
 		painelProjetos.setBounds(maxWidth/8, 80, maxWidthPanels, maxHeightPanels);
 		painelProjetos.setBackground(new Color(bgJp[0], bgJp[1], bgJp[2]));
-		painelProjetos.setForeground(Color.white);
+		painelProjetos.setForeground(Color.BLACK);
 		painelProjetos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 0, true));
-		painelProjetos.setLayout(new FlowLayout());
+		painelProjetos.setLayout(null);
 		painelProjetos.setVisible(true);
 		painelPrincipal.add(painelProjetos);
 		
 		JLabel lblProjetos = new JLabel("Projetos Ativos");
 		lblProjetos.setBounds(10, 11, maxWidthPanels, 40);
-		painelProjetos.add(lblProjetos);
+		lblProjetos.setForeground(Color.BLACK);
 		lblProjetos.setFont(new Font("Tahoma", Font.BOLD, 30));
+		painelProjetos.add(lblProjetos);
 		
 		
-		/**
-		 * Painel de exibição de colaboradores
-		 */
+		//PAINEL DE TAREFAS (/!\ por enquanto é o de colaboradores):
 		JPanel painelColab = new JPanel();
 		painelColab.setBounds(maxWidth/8, 80, maxWidthPanels, maxHeightPanels);
 		painelColab.setBackground(new Color(bgJp[0], bgJp[1], bgJp[2]));
@@ -305,15 +281,14 @@ public class VisaoGeral {
 		painelColab.setVisible(false);
 		painelPrincipal.add(painelColab);
 		
-		JLabel lblCollab = new JLabel("Colaboradores");
+		JLabel lblCollab = new JLabel("Tarefas");
 		lblCollab.setBounds(10, 11, maxWidthPanels, 40);
-		painelColab.add(lblCollab);
+		lblCollab.setForeground(Color.BLACK);
 		lblCollab.setFont(new Font("Tahoma", Font.BOLD, 30));
+		painelColab.add(lblCollab);
 		
 		
-		/**
-		 * Painel de exibição de configurações
-		 */
+		//PAINEL DE CONFIGURAÇÕES:
 		JPanel painelConfig = new JPanel();
 		painelConfig.setBounds(maxWidth/8, 80, maxWidthPanels, maxHeightPanels);
 		painelConfig.setBackground(new Color(bgJp[0], bgJp[1], bgJp[2]));
@@ -321,29 +296,33 @@ public class VisaoGeral {
 		painelConfig.setVisible(false);
 		painelPrincipal.add(painelConfig);
 		
-		/**
-		 * Label de título do JPanel
-		 */
 		JLabel lblConfig = new JLabel("Configurações");
 		lblConfig.setBounds(10, 11, maxWidthPanels, 40);
+		lblConfig.setForeground(Color.BLACK);
 		lblConfig.setFont(new Font("Tahoma", Font.BOLD, 30));
 		painelConfig.add(lblConfig);
 		
-		JButton btnThemeJustBlue = new JButton("Just Blue");
-		btnThemeJustBlue.setToolTipText("Altera tema");
-		btnThemeJustBlue.setForeground(Color.WHITE);
-		btnThemeJustBlue.setBackground(null);
-		btnThemeJustBlue.setBounds(20, 60, 70, 20);
-		btnThemeJustBlue.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-		painelConfig.add(btnThemeJustBlue);
+		JLabel lblDica1 = new JLabel("Alterar tema:");
+		lblDica1.setBounds(30, 60, 120, 20);
+		lblDica1.setForeground(Color.BLACK);
+		lblDica1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		painelConfig.add(lblDica1);
 		
-		JButton btnThemeJustBlack = new JButton("Just Black");
-		btnThemeJustBlack.setToolTipText("Altera tema");
-		btnThemeJustBlack.setForeground(Color.WHITE);
-		btnThemeJustBlack.setBackground(null);
-		btnThemeJustBlack.setBounds(20, 85, 70, 20);
-		btnThemeJustBlack.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-		painelConfig.add(btnThemeJustBlack);
+		JButton btnTemaAzul = new JButton("azul");
+		btnTemaAzul.setToolTipText("Altera tema");
+		btnTemaAzul.setForeground(Color.BLACK);
+		btnTemaAzul.setBackground(null);
+		btnTemaAzul.setBounds(160, 60, 70, 20);
+		btnTemaAzul.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		painelConfig.add(btnTemaAzul);
+		
+		JButton btnTemaEscuro = new JButton("escuro");
+		btnTemaEscuro.setToolTipText("Altera tema");
+		btnTemaEscuro.setForeground(Color.BLACK);
+		btnTemaEscuro.setBackground(null);
+		btnTemaEscuro.setBounds(240, 60, 70, 20);
+		btnTemaEscuro.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		painelConfig.add(btnTemaEscuro);
 		
 		JButton btnExtProfile = new JButton("Perfil");
 		btnExtProfile.setToolTipText("Alterar denifições de perfil");
@@ -354,48 +333,37 @@ public class VisaoGeral {
 		painelConfig.add(btnExtProfile);
 		
 		
-		//Array com todos os JPanels internos para verificação de visibilidade
-		/**
-		 * Array de paineis
-		 */
+		//ARRAYS DE CONTROLE:
+		//JPanels internos para verificação de visibilidade
 		JPanel arrayPaineis [] = {painelProjetos, painelColab, painelConfig};
 		
-		//Array com todas as JLabels internas para alteração de tema
-		/**
-		 * Array de labels
-		 */
-		JLabel arrayLabels [] = {lblProjetos, lblCollab, lblConfig};
+		//JLabels internas para alteração de tema
+		JLabel arrayLabels [] = {lblProjetos, lblCollab, lblConfig, lblDica1};
 		
-		//<------------------------  AÇÕES DE BOTÕES  ---------------------------->\\
-		/**
-		 * Exibir chat ao clicar em btnViewChat
-		 */
+		//JLabels internas para alteração de tema
+		JButton arrayButtons [] = {btnTemaAzul, btnTemaEscuro};
+		
+		//CHAMADA DE AÇÕES DE BOTÕES:
+		
+		//chamar janelas externas:
 		chamarChat(btnViewChat);
+		chamarExtProfile(btnExtProfile, getApelido());
 		
-		/**
-		 * Exibir chat ao clicar em btnViewChat
-		 */
-		chamarExtProfile(btnExtProfile);
-		
-		/**
-		 * Adicionar ação ao botão btnViewProjetos
-		 */
+		//troca de paineis:
 		switchPanel(btnViewProjetos, arrayPaineis, painelProjetos);
-		/**
-		 * Adicionar ação ao botão btnViewColab
-		 */
 		switchPanel(btnViewColab, arrayPaineis, painelColab);
-		/**
-		 * Adicionar ação ao botão btnViewConfig
-		 */
 		switchPanel(btnViewConfig, arrayPaineis, painelConfig);
 		
-		switchTheme(btnThemeJustBlue, "Just blue", navbar, painelPrincipal, arrayPaineis, arrayLabels);
-		switchTheme(btnThemeJustBlack, "Just black", navbar, painelPrincipal, arrayPaineis, arrayLabels);
+		//troca de tema:
+		switchTheme(btnTemaAzul, "azul", navbar, painelPrincipal, arrayPaineis, arrayLabels, arrayButtons);
+		switchTheme(btnTemaEscuro, "escuro", navbar, painelPrincipal, arrayPaineis, arrayLabels, arrayButtons);
 		
-		instanciaProjeto(btnViewProjetos, painelProjetos);
+		//lista de projetos no JPanel de lista de projetos:
+		listarProjetos(btnViewProjetos, painelProjetos);
 		
-		//! setVisible
+		
+		//----------------------
+		//-- SET VISIBLE JFRAME:
 		janela.setVisible(true);
 	}
 
@@ -411,18 +379,20 @@ public class VisaoGeral {
 		    }
 		} catch (Exception e) {}
 		
-		
-		new VisaoGeral().composeVisaoGeral();
+		//CHAMADA DE COMPOSIÇÃO DE TELA:
+		VisaoGeral vg = new VisaoGeral();
+		vg.composeVisaoGeral();
 	}
 	
 	
 	
-	//<-------------------------ARRAYLIST DE PROJETOS--------------------------->//
-	
+	//<-------------------------ARRAYLIST DE PROJETOS (em andamento /!\) --------------------------->//
+/*
 	public void chamarProjetos(JPanel painel) {
 		
 		UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
 		Usuario resultado = userDao.consultarUsuario("Bike");
 		//	
 	}
+*/
 }

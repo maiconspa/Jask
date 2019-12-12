@@ -29,8 +29,24 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class SelecaoFoto {
+	
+	private String apelido;
+	
+	//CONSTRUTORES:
+	public SelecaoFoto() {}
+	
+	public SelecaoFoto(String apelido) {
+		this.apelido = apelido;
+	}
+	
+	//GET APELIDO:
+	public String getApelido() {
+		return this.apelido;
+	}
+	
+	
 	UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
-	Usuario resultado = userDao.consultarUsuario("Bike");
+	Usuario resultado = userDao.consultarUsuario(getApelido());
 	
 	
 	private void toVisaoGeral(JButton botao, JFrame frameAtual) {
@@ -38,8 +54,11 @@ public class SelecaoFoto {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				frameAtual.dispose();
-				new VisaoGeral().composeVisaoGeral();
 				
+				SelecaoFoto sf = new SelecaoFoto();
+				
+				VisaoGeral vg = new VisaoGeral(sf.getApelido());
+				vg.composeVisaoGeral();
 			}
 		});
 	}
@@ -49,8 +68,8 @@ public class SelecaoFoto {
 		JFrame janela = new JFrame();
 		janela.setResizable(false);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setSize(400, 600);
 		janela.setLocationRelativeTo(null);
-		janela.setBounds(100, 100, 400, 600);
 		
 		JPanel painel = new JPanel();
 		painel.setBackground(new Color(255, 255, 255));

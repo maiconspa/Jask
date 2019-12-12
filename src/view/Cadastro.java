@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.LineBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import dao.Conexao;
 import dao.UsuarioDao;
@@ -12,7 +11,6 @@ import modelos.Usuario;
 
 import java.awt.Color;
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -48,7 +46,9 @@ public class Cadastro{
 					uDao.cadastrarUsuario(user);
 					
 					JOptionPane.showMessageDialog(frameAtual, "Cadastrado com sucesso!");
-					new DecisaoInserirImagem().composeDecisao(txtApelido.getText());
+					
+					DecisaoInserirImagem dII = new DecisaoInserirImagem(txtApelido.getText());
+					dII.composeDecisao();
 					
 				}
 				
@@ -64,8 +64,8 @@ public class Cadastro{
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocationRelativeTo(null);
 		frame.setSize(400, 600);
+		frame.setLocationRelativeTo(null);
 		
 		
 		JPanel painel = new JPanel();
@@ -166,16 +166,6 @@ public class Cadastro{
 		txtApelido.setBorder(new LineBorder(Color.WHITE));
 		painel.add(txtApelido);
 		txtApelido.setColumns(10);
-		
-		
-		JButton btnVerificaApelido = new JButton();
-		btnVerificaApelido.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnVerificaApelido.setIcon(new ImageIcon("icons/search.png"));
-		btnVerificaApelido.setForeground(Color.BLACK);
-		btnVerificaApelido.setBackground(Color.WHITE);
-		btnVerificaApelido.setBounds(305, 371, 30, 30);
-		painel.add(btnVerificaApelido);
-		
 		
 		JLabel lblSenha = new JLabel();
 		lblSenha.setBounds(100, 408, 55, 16);

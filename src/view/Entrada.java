@@ -13,7 +13,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -46,11 +45,12 @@ public class Entrada{
 				} else if (outroFrame.equals("Proximo")) {
 					
 					if(verificacaoApelido(txtApelido)) {
-						System.out.println("tem esse usuario ou email");
+						System.out.println("tem esse usuario");
 						if(verificacaoSenha(txtApelido, txtSenha)) {
-							new VisaoGeral().composeVisaoGeral();
-						} 
-						
+							VisaoGeral vg = new VisaoGeral(txtApelido.getText());
+							System.out.println("entrou");
+							vg.composeVisaoGeral();
+						}
 					}
 					
 					//se a verificacao for bem sucedida:    new Entrada().composeEntrada();
@@ -93,8 +93,8 @@ public class Entrada{
 		JFrame janela = new JFrame();
 		janela.setResizable(false);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setSize(400, 600);
 		janela.setLocationRelativeTo(null);
-		janela.setBounds(100, 100, 400, 600);
 		
 		JPanel painelPrincipal = new JPanel();
 		painelPrincipal.setBackground(new Color(255, 255, 255));

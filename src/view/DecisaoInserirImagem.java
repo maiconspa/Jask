@@ -21,9 +21,20 @@ public class DecisaoInserirImagem {
 	
 	private String apelido;
 	
+	//construtor vazio
+	public DecisaoInserirImagem() {}
+	
+	//construtor que recebe o apelido ao chamar a classe
 	public DecisaoInserirImagem (String apelido) {
 		this.apelido = apelido;
 	}
+	
+	// get: pegar o apelido
+	public String getApelido() {
+		return this.apelido;
+	}
+	
+	
 	
 	public void switchJanela(JButton botao, JFrame frameAtual, String opcao, String apelido) {
 		botao.addActionListener(new ActionListener() {
@@ -34,24 +45,26 @@ public class DecisaoInserirImagem {
 				
 				if (opcao.equals("não")) {
 					userDao.imagemRandomica(user.getApelido());
-					new VisaoGeral().composeVisaoGeral();
+					VisaoGeral vg = new VisaoGeral(apelido);
+					vg.composeVisaoGeral();
 					frameAtual.dispose();
 				} else if (opcao.equals("sim")) {
-					new SelecaoFoto().composeSelecaoFoto();
+					SelecaoFoto sf = new SelecaoFoto(apelido);
+					sf.composeSelecaoFoto();
 					frameAtual.dispose();
 				}
 			}
 		});
 	}
 	
-	public void composeDecisao(String apelido) {
+	public void composeDecisao() {
 		
 		
 		JFrame janela = new JFrame();
 		janela.setResizable(false);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setSize(400, 600);
 		janela.setLocationRelativeTo(null);
-		janela.setBounds(100, 100, 400, 600);
 		
 		JPanel painel = new JPanel();
 		painel.setBackground(new Color(255, 255, 255));
@@ -114,7 +127,9 @@ public static void main(String args []) {
 		} catch (Exception e) {}
 		
 		//Chamar método de composição de tela:
-		new DecisaoInserirImagem(null).composeDecisao(null); //resolver
+		DecisaoInserirImagem dII = new DecisaoInserirImagem();
+		
+		dII.composeDecisao();
 		
 	}
 	
