@@ -33,7 +33,6 @@ public class Profile{
 	
 	private String apelido;
 	
-	
 	//CONSTRUTORES:
 	public Profile() {}
 	
@@ -49,7 +48,8 @@ public class Profile{
 	UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
 	Usuario resultado = userDao.consultarUsuario(getApelido());
 	
-
+	
+	
 	public void chamarImagem(JPanel painel, JTextField txtFile, String apelido) {
 		
 		UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
@@ -57,13 +57,24 @@ public class Profile{
 		
 		
 		//FOTO DO USUARIO:
-		JButton btFotoUsuario = new JButton();
-		btFotoUsuario.setBackground(Color.WHITE);
+		JButton btnFotoUsuario = new JButton();
+		btnFotoUsuario.setBackground(null);
 		//coleta da foto:
 		try {
 			if (resultado.getFoto() != null) {
 				System.out.println("TEM IMAGEM");
-				btFotoUsuario.setIcon(
+				btnFotoUsuario.setIcon(
+					new ImageIcon(
+						ImageIO.read(
+							resultado.getFoto()
+							)
+						)
+					);
+			} else {
+				//Caso o usuário não tenha imagem, é definido uma padrão:
+				userDao.imagemRandomica(apelido);
+				System.out.println("NAO TEM IMAGEM");
+				btnFotoUsuario.setIcon(
 					new ImageIcon(
 						ImageIO.read(
 							resultado.getFoto()
@@ -71,6 +82,7 @@ public class Profile{
 						)
 					);
 			}
+			System.out.println("IMAGEM:" +btnFotoUsuario.getIcon());
 		} catch (SecurityException ex) {
 			System.out.println("ERRO DE SecurityException");
 			ex.printStackTrace();
@@ -79,17 +91,15 @@ public class Profile{
 			ex.printStackTrace();
 		}
 		//restante do botão:
-		System.out.println(btFotoUsuario.getIcon());
-		btFotoUsuario.setBounds(75, 75, 250, 250);
-		painel.add(btFotoUsuario);
+		btnFotoUsuario.setBounds(75, 75, 250, 250);
+		painel.add(btnFotoUsuario);
 		
 		//Selecionar imagem:
-		selectImg(btFotoUsuario, txtFile, userDao, resultado);
+		selectImg(btnFotoUsuario, txtFile, userDao, resultado);
 	}
 	
 	
-	
-	
+	//COMPOR TELA:
 	public void composeProfile() {
 		JFrame janelaChat = new JFrame();
 		janelaChat.setResizable(false);
@@ -126,8 +136,6 @@ public class Profile{
 		
 		
 		//<------------------------  AÇÕES DE BOTÕES  ---------------------------->\\
-		
-		
 		
 		
 		//<------------------------  CHAMANDO DO BANCO  ---------------------------->\\

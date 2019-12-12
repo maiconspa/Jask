@@ -12,8 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
 
-import javax.swing.JOptionPane;
-
 /**
  * Classe DAO para o usuario
  * 
@@ -90,7 +88,7 @@ public class UsuarioDao {
 				
 				Usuario usuario = null;
 				
-				if (resultado.next()) {
+				if (resultado.next()){
 					usuario = new Usuario();
 					String nome = resultado.getString("nome");
 					String email = resultado.getString("email");
@@ -106,15 +104,8 @@ public class UsuarioDao {
 					usuario.setSenha(senha);
 					usuario.setFoto(foto); 
 					
-					
-					
 					return usuario;
-					
-				} else {
-					////Imprimindo mensagem de erro para apelidos inválidos
-					JOptionPane.showMessageDialog(null,"Problemas!","Dados incorretos", JOptionPane.WARNING_MESSAGE);
 				}
-				
 				
 			} catch (SQLException ex) {
 				
