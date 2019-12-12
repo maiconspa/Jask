@@ -55,7 +55,7 @@ public class DecisaoInserirImagem {
 		lblAviso.setBounds(95, 230, 250, 45);
 		painel.add(lblAviso);
 		
-		
+		//
 		// SIM
 		JButton btnSim = new JButton("SIM");
 		btnSim.setFont(new Font("Calibri", Font.BOLD, 14));
