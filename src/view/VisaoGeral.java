@@ -186,7 +186,7 @@ public class VisaoGeral {
 	
 	
 	
-	public void composeVisaoGeral() {
+	public void composeVisaoGeral(sTRING) {
 		/**
 		 * variavel para controle facilitado da largura de JFrame e seus componentes
 		 */
