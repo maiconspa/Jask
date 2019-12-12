@@ -165,7 +165,7 @@ public class VisaoGeral {
 				
 				for (int x = 0 ; x < colecaoProjeto.size() ; ++x ) {
 					
-					new JLabel(colecaoProjeto.get(x).getNomeProjeto()).setForeground(Color.WHITE);;
+					new JButton(colecaoProjeto.get(x).getNomeProjeto()).setForeground(Color.WHITE);
 					
 				}
 				
