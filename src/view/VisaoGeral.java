@@ -2,14 +2,15 @@ package view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import dao.Conexao;
+import dao.ProjetoDao;
 import dao.UsuarioDao;
-import modelos.Usuario;
 
 import javax.swing.JTextField;
 import javax.imageio.ImageIO;
@@ -24,6 +25,7 @@ import java.awt.Font;
 
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 import modelos.*;
@@ -103,7 +105,7 @@ public class VisaoGeral {
 	}
 	
 	/**
-	 * Chamar tela de chat para op primeiro plano, recebe um objeto do tipo JButton
+	 * Chamar tela de chat para o primeiro plano, recebe um objeto do tipo JButton
 	 * @param botao
 	 */
 	public static void chamarChat(JButton botao) {
@@ -139,6 +141,39 @@ public class VisaoGeral {
 			}
 		});
 	}
+	
+	
+	//Para exibir a listagem de todos os projetos
+	
+	public static void instanciaProjeto(JButton botao, JPanel painel) {
+		botao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				ProjetoDao projectDao = new ProjetoDao(Conexao.conectar());
+				
+				ArrayList<Projeto> colecaoProjeto = new ArrayList<>();
+				
+				try {
+					
+				colecaoProjeto = projectDao.listarProjeto();
+				
+				}catch (Exception e){
+					
+					e.printStackTrace();
+					
+				}
+				
+				for (int x = 0 ; x < colecaoProjeto.size() ; ++x ) {
+					
+					new JLabel(colecaoProjeto.get(x).getNomeProjeto()).setForeground(Color.WHITE);;
+					
+				}
+				
+				
+			}
+		});
+	}
+	
 	
 
 	
@@ -250,7 +285,7 @@ public class VisaoGeral {
 		painelProjetos.setBackground(new Color(bgJp[0], bgJp[1], bgJp[2]));
 		painelProjetos.setForeground(Color.white);
 		painelProjetos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 0, true));
-		painelProjetos.setLayout(null);
+		painelProjetos.setLayout(new FlowLayout());
 		painelProjetos.setVisible(true);
 		painelPrincipal.add(painelProjetos);
 		
@@ -357,6 +392,8 @@ public class VisaoGeral {
 		
 		switchTheme(btnThemeJustBlue, "Just blue", navbar, painelPrincipal, arrayPaineis, arrayLabels);
 		switchTheme(btnThemeJustBlack, "Just black", navbar, painelPrincipal, arrayPaineis, arrayLabels);
+		
+		instanciaProjeto(btnViewProjetos, painelProjetos);
 		
 		//! setVisible
 		janela.setVisible(true);

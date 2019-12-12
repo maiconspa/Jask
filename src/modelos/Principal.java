@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 import dao.Conexao;
@@ -34,21 +35,21 @@ public class Principal {
 		 * Consultando Usuario
 		 */
 		
-		
+		/*
 		UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
 		
-		Usuario resultadoUser = userDao.consultarUsuario("Bik");
+		Usuario resultadoUser = userDao.consultarUsuario("Bike");
 		
 		//LINHA DE COMANDO
 		System.out.println("Apelido: " + resultadoUser.getApelido());
-		
+		*/
 		//<---------------------------------------------------------------------------------------------------------------------------->//
 		
 		/**
 		 * @author Davi Fonseca
 		 * Inserindo uma imagem:
 		 */
-
+		/*
 		try {
 			UsuarioDao teste = new UsuarioDao(Conexao.conectar());
 			teste.armazenarImagens(new File("logo/default250.png"), "Bike"); // /!\ - Problemas ! 
@@ -57,7 +58,7 @@ public class Principal {
 		} catch (Exception e) {
 			e.printStackTrace();	
 		}
-
+		*/
 		
 		//<----------------------------------------------------------------------------------------------------->//
 		
@@ -104,6 +105,32 @@ public class Principal {
 		mensagem.dhToString(mensagem.getDhVisualizacao());
 		*/
 		
+		//<---------------------------------------------------------------------------------------------->
+		
+		//Teste listarProjeto
+		/*
+		ProjetoDao projectDao = new ProjetoDao(Conexao.conectar());
+		
+		ArrayList<Projeto> colecaoProjeto = new ArrayList<>();
+		
+		try {
+			
+		colecaoProjeto = projectDao.listarProjeto();
+		
+		}catch (Exception e){
+			
+			e.printStackTrace();
+			
+		}
+		
+		for (int x = 0 ; x < colecaoProjeto.size() ; ++x ) {
+			
+			//System.out.println(colecaoProjeto.get(x));
+			System.out.println((colecaoProjeto.get(x).getNomeProjeto()));
+			System.out.println((colecaoProjeto.get(x).getIdProjeto()));
+		}
+		
+		*/
 		//<---------------------------------------------------------------------------------------------->
 		
 		//System.out.println("Teste");

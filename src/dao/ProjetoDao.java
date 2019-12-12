@@ -169,11 +169,11 @@ public class ProjetoDao {
 	* @author Davi
 	* @throws SQLException
 	*/
-	public ArrayList<Projeto> listarProjeto(String nome) throws Exception {
+	public ArrayList<Projeto> listarProjeto() throws Exception {
 		
 		String select = "SELECT nome, id_projeto FROM Projeto";
 		
-		ArrayList<Projeto> colecaProjeto = new ArrayList<>();
+		ArrayList<Projeto> colecaoProjeto = new ArrayList<>();
 		
 		PreparedStatement pst = Conexao.conectar().prepareStatement(select);
 		ResultSet resultado = pst.executeQuery();
@@ -184,10 +184,10 @@ public class ProjetoDao {
 			projeto.setNomeProjeto(resultado.getString("nome"));
 			projeto.setIdProjeto(resultado.getInt("id_projeto"));
 			
-			colecaProjeto.add(projeto);
+			colecaoProjeto.add(projeto);
 		}
 		
-		return colecaProjeto;
+		return colecaoProjeto;
 	}
 	
 	//<-------------------------------------------------------------------------->//
