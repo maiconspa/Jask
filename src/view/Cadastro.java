@@ -28,7 +28,7 @@ import java.awt.event.ActionEvent;
 
 public class Cadastro{
 	/*
-	private void proximajanela(JButton botao, JFrame frameAtual, String outroFrame, JTextField txtNome, JTextField txtEmail, JTextField txtEmail, JTextField txtEmail,) {
+	private void proximajanela(JButton botao, JFrame frameAtual, String outroFrame, JTextField txtNome, JTextField txtEmail, JTextField txtTelefone, JTextField txtApelido, JTextField txtSenha, ) {
 		botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -37,7 +37,7 @@ public class Cadastro{
 				if (outroFrame.equals("Voltar")) {
 					new BoasVindas().composeBoasVindas();
 				} else if (outroFrame.equals("Proximo")) {
-					//
+					
 					if(verificacaoApelido(txtApelido)) {
 						System.out.println("tem esse usuario ou email");
 						if(verificacaoSenha(txtApelido, txtSenha)) {
@@ -53,8 +53,8 @@ public class Cadastro{
 			}
 		});
 	}
-	
 	*/
+	
 	
 	
 	
@@ -188,68 +188,12 @@ public class Cadastro{
 		painel.add(txtSenha);
 		
 		
-		JButton btnSelectImg = new JButton();
-		btnSelectImg.setIcon(new ImageIcon("icons/addImage.png"));
-		btnSelectImg.setForeground(Color.WHITE);
-		btnSelectImg.setBackground(Color.WHITE);
-		btnSelectImg.setText("");
-		btnSelectImg.setBorderPainted(false);
-		btnSelectImg.setBounds(100, 468, 40, 45);
-		painel.add(btnSelectImg);
-		
-		
-		JTextField txtFile = new JTextField();
-		txtFile.setText("Nada selecionado ainda...");
-		txtFile.setBorder(new LineBorder(Color.WHITE));
-		txtFile.setBounds(150, 482, 150, 20);
-		painel.add(txtFile);
-		txtFile.setColumns(10);
-		
 		frame.setVisible(true);
-		//<------------------------  AÇÕES DE BOTÕES  ---------------------------->\\
-		//Selecionar imagem:
-		selectImg(btnSelectImg, txtFile);
+		
 		
 	}
 	
-	//<-------------------------------- COMPORTAMENTO(métodos) ------------------------------------------->\\
-	/**
-	 * Abre janela de seleção de imagens, recebe um objeto do tipo JButton.
-	 */
-	public static void selectImg(JButton botao, JTextField campoDetexto) {
-		botao.addActionListener(new ActionListener() {
-			/**
-			 * variavel utilizada posteriormente para capturar o retorno de seleção (seja ele: selecionado OU não)
-			 */
-			private int retorno;
 
-			public void actionPerformed(ActionEvent e) {
-				//Instância do JFileChooser
-				JFileChooser jfc = new JFileChooser();
-				
-				//Definindo título da barra superior:
-				jfc.setDialogTitle("Selecionar imagem");
-				
-				//Restrição de tipo de arquivo (filtro de extensões, oculta arquivos com outras extensões, permitindo somente a seleção daquelas predefinidas):
-				jfc.setFileFilter(new FileNameExtensionFilter("Imagem", "jpg", "jpeg", "png"));
-				
-				//Restrição para seleção de arquivos ao invés de diretórios completos:
-				jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-				
-				//Abrir menu de contexto de seleção de arquivos:
-				retorno = jfc.showOpenDialog(jfc);
-				
-				//Alteração do campo "nada selecionado ainda..." de acordo com ter selecionado ou não alguma coisa
-				if (retorno == JFileChooser.APPROVE_OPTION) {
-					//Captura arquivo selecionado:
-					File file = jfc.getSelectedFile();
-					campoDetexto.setText(file.getPath());
-				}
-				
-				
-			}
-		});
-	}
 	
 	//<-------------------------------- --------------------------------------->\\
 	

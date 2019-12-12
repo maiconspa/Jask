@@ -225,10 +225,9 @@ public class UsuarioDao {
 		//instância um objeto da classe Random usando o construtor padrão
         Random gerador = new Random();
         
-        gerador.nextInt(3);
-        String numero = ""+gerador;
+        int numero = gerador.nextInt(3);
 
-		armazenarImagens(new File("imgDefault/default" +numero +".png"), resultado.getApelido());
+		armazenarImagens(new File("logo/default250-" +numero +".png"), resultado.getApelido());
 	}
 
 	//<--------------------------------------------------------------------------------------------------------------->
