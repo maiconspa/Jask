@@ -369,7 +369,7 @@ public class VisaoGeral {
 
 	
 	public static void main(String[] args) {
-		
+
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 		        if ("Metal".equals(info.getName())) {
@@ -383,9 +383,7 @@ public class VisaoGeral {
 		VisaoGeral vg = new VisaoGeral();
 		vg.composeVisaoGeral();
 	}
-	
-	
-	
+
 	//<-------------------------ARRAYLIST DE PROJETOS (em andamento /!\) --------------------------->//
 /*
 	public void chamarProjetos(JPanel painel) {
