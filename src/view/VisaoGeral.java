@@ -220,7 +220,7 @@ public class VisaoGeral {
 		btnExtProfile.setBackground(null);
 		btnExtProfile.setIcon(new ImageIcon("icons/userProfile.png"));
 		navbar.add(btnExtProfile);
-		
+/*		
 		JTextField campoBusca = new JTextField();
 		campoBusca.setToolTipText("insira aqui um termo para buscar");
 		campoBusca.setHorizontalAlignment(SwingConstants.CENTER);
@@ -228,7 +228,7 @@ public class VisaoGeral {
 		campoBusca.setColumns(10);
 		campoBusca.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 0, true));
 		navbar.add(campoBusca);
-		
+*/		
 		JButton btnPesquisa = new JButton();
 		btnPesquisa.setToolTipText("Pesquisar tarfeas e projetos");
 		btnPesquisa.setIcon(new ImageIcon("icons/search.png"));
