@@ -169,7 +169,6 @@ public class UsuarioDao {
 		this.conexao = Conexao.conectar();
 		
 		try {
-			
 			pst = conexao.prepareStatement(selectImg);
 			pst.setString(1, apelido);
 			
@@ -232,7 +231,7 @@ public class UsuarioDao {
 		/**
 		 * Criando a String de atualização
 		 */
-		String atualizar = "UPDATE Usuario SET nome = ?, email = ?, telefone = ?, senha = ? WHERE apelido = ?";
+		String atualizar = "UPDATE Usuario SET nome = '?', email = '?', telefone = '?', senha = '?' WHERE apelido = '?'";
 		
 		try (PreparedStatement pst = conexao.prepareStatement(atualizar)) {
 			

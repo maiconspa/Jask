@@ -10,6 +10,8 @@ import javax.swing.border.LineBorder;
 
 import dao.Conexao;
 import dao.ProjetoDao;
+import dao.TarefaDao;
+import dao.UsuarioDao;
 
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
@@ -19,7 +21,6 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -121,6 +122,28 @@ public class VisaoGeral {
 			}
 		});
 	}
+	
+	
+	//MÉTODO QUE CRIA UM NOVO PROJETO:
+		public static void criaProjeto(JButton botao, String apelido, JTextField nomeProjeto) {
+			botao.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					int id = 0;
+					
+					UsuarioDao ud = new UsuarioDao(Conexao.conectar());
+					Usuario u = ud.consultarUsuario(apelido);
+					
+					
+					System.out.println("criando projeto:" +apelido);
+					ProjetoDao pd = new ProjetoDao(Conexao.conectar());
+					
+					
+					Projeto p = new Projeto(id, nomeProjeto.getText(), u);
+					pd.cadastrarProjeto(p);
+					
+				}
+			});
+		}
 	
 	
 	//MÉTODO PARA A TROCA DE PAINEIS INTERNOS (projetos... configurações...)
@@ -235,7 +258,6 @@ public class VisaoGeral {
 		
 		
 		//JPANELs INTERNOS (visualização de projetos... configuraçãoes e etc):
-		
 		//PAINEL DE PROJETOS:
 		JPanel painelProjetos = new JPanel();
 		painelProjetos.setBounds(maxWidth/8, 80, maxWidthPanels, maxHeightPanels);
@@ -252,9 +274,10 @@ public class VisaoGeral {
 		lblProjetos.setFont(new Font("Tahoma", Font.BOLD, 30));
 		painelProjetos.add(lblProjetos);
 		
+		
+		//EXIBIÇÃO DE PROJETOS
 		ProjetoDao projectDao = new ProjetoDao(Conexao.conectar());
 		ArrayList<Projeto> colecaoProjeto = new ArrayList<>();
-		
 		
 		int posicao = 60;
 		
@@ -276,20 +299,85 @@ public class VisaoGeral {
 			painelProjetos.add(temp);
 		}
 		
+		//ADICIONAR PROJETOS:
+		JTextField txtAddProjetos = new JTextField();
+		txtAddProjetos.setText("projeto");
+		txtAddProjetos.setEnabled(true);
+		txtAddProjetos.setBounds(350, 90, 200, 25);
+		txtAddProjetos.setBorder(new LineBorder(Color.BLACK));
+		painelProjetos.add(txtAddProjetos);
 		
-		//PAINEL DE TAREFAS (/!\ por enquanto é o de colaboradores):
-		JPanel painelColab = new JPanel();
-		painelColab.setBounds(maxWidth/8, 80, maxWidthPanels, maxHeightPanels);
-		painelColab.setBackground(new Color(bgJp[0], bgJp[1], bgJp[2]));
-		painelColab.setLayout(null);
-		painelColab.setVisible(false);
-		painelPrincipal.add(painelColab);
+		//btn ADICIONAR PROJETOS
+		JButton btnAlterar = new JButton();
+		btnAlterar.setToolTipText("Confirmar alteração de dados");
+		btnAlterar.setText("Confirmar");
+		btnAlterar.setForeground(Color.BLACK);
+		btnAlterar.setBackground(Color.WHITE);
+		btnAlterar.setBounds(480, 120, 70, 20);
+		btnAlterar.setBorder(new LineBorder(Color.WHITE, 1, true));
+		painelProjetos.add(btnAlterar);
+		
+		
+		//PAINEL DE TAREFAS:
+		JPanel painelTarefas = new JPanel();
+		painelTarefas.setBounds(maxWidth/8, 80, maxWidthPanels, maxHeightPanels);
+		painelTarefas.setBackground(new Color(bgJp[0], bgJp[1], bgJp[2]));
+		painelTarefas.setLayout(null);
+		painelTarefas.setVisible(false);
+		painelPrincipal.add(painelTarefas);
 		
 		JLabel lblCollab = new JLabel("Tarefas");
 		lblCollab.setBounds(10, 11, maxWidthPanels, 40);
 		lblCollab.setForeground(Color.BLACK);
 		lblCollab.setFont(new Font("Tahoma", Font.BOLD, 30));
-		painelColab.add(lblCollab);
+		painelTarefas.add(lblCollab);
+		
+		//EXIBIÇÃO DE TAREFAS:
+		TarefaDao tarefaDao = new TarefaDao(Conexao.conectar());
+		ArrayList<Tarefa> colecaoTarefa = new ArrayList<>();
+		
+		int p = 60;
+		
+		try {
+			colecaoTarefa = tarefaDao.listarTarefas();	
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		for (int x = 0 ; x < colecaoTarefa.size() ; x++ ) {
+			JButton tempT = new JButton(colecaoTarefa.get(x).getTitulo());
+			tempT.setBounds(10, p + (x*30), 150, 25);
+			tempT.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			tempT.setBackground(null);
+			tempT.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+			tempT.setFont(new Font("Tahoma", Font.BOLD, 12));
+			painelTarefas.add(tempT);
+		}
+		
+		//ADICIONAR PROJETOS:
+		JTextField txtAddTarefas = new JTextField();
+		txtAddTarefas.setText("tarefa");
+		txtAddTarefas.setEnabled(true);
+		txtAddTarefas.setBounds(350, 90, 200, 25);
+		txtAddTarefas.setBorder(new LineBorder(Color.BLACK));
+		painelTarefas.add(txtAddTarefas);
+		
+		//btn ADICIONAR PROJETOS
+		JButton btnAlterarT = new JButton();
+		btnAlterarT.setToolTipText("Confirmar alteração de dados");
+		btnAlterarT.setText("Confirmar");
+		btnAlterarT.setForeground(Color.BLACK);
+		btnAlterarT.setBackground(Color.WHITE);
+		btnAlterarT.setBounds(480, 120, 70, 20);
+		btnAlterarT.setBorder(new LineBorder(Color.WHITE, 1, true));
+		painelTarefas.add(btnAlterarT);
+		
+		
+		
+		
+		
 		
 		
 		//PAINEL DE CONFIGURAÇÕES:
@@ -331,7 +419,7 @@ public class VisaoGeral {
 		
 		//ARRAYS DE CONTROLE:
 		//JPanels internos para verificação de visibilidade
-		JPanel arrayPaineis [] = {painelProjetos, painelColab, painelConfig};
+		JPanel arrayPaineis [] = {painelProjetos, painelTarefas, painelConfig};
 		
 		//JLabels internas para alteração de tema
 		JLabel arrayLabels [] = {lblProjetos, lblCollab, lblConfig, lblDica1};
@@ -347,12 +435,17 @@ public class VisaoGeral {
 		
 		//troca de paineis:
 		switchPanel(btnViewProjetos, arrayPaineis, painelProjetos);
-		switchPanel(btnViewColab, arrayPaineis, painelColab);
+		switchPanel(btnViewColab, arrayPaineis, painelTarefas);
 		switchPanel(btnViewConfig, arrayPaineis, painelConfig);
 		
 		//troca de tema:
 		switchTheme(btnTemaAzul, "azul", navbar, painelPrincipal, arrayPaineis, arrayLabels, arrayButtons);
 		switchTheme(btnTemaEscuro, "escuro", navbar, painelPrincipal, arrayPaineis, arrayLabels, arrayButtons);
+		
+		
+		//CRIA PROJETO
+		criaProjeto(btnAlterar, apelido, txtAddProjetos);
+		
 		
 		
 		//----------------------
@@ -378,12 +471,5 @@ public class VisaoGeral {
 	}
 
 	//<-------------------------ARRAYLIST DE PROJETOS (em andamento /!\) --------------------------->//
-/*
-	public void chamarProjetos(JPanel painel) {
-		
-		UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
-		Usuario resultado = userDao.consultarUsuario("Bike");
-		//	
-	}
-*/
+
 }

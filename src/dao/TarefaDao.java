@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import modelos.*;
 import utils.EstadoTarefa;
@@ -190,4 +191,31 @@ public class TarefaDao {
 				e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
+	//listar TAREFAS
+	public ArrayList<Tarefa> listarTarefas() throws Exception {
+		System.out.println("TO NO METODO DE LISTAR");
+		String select = "SELECT titulo, id_tarefa FROM Tarefa";
+		
+		ArrayList<Tarefa> colecaoTarefa = new ArrayList<>();
+		
+		PreparedStatement pst = Conexao.conectar().prepareStatement(select);
+		ResultSet resultado = pst.executeQuery();
+		
+		while(resultado.next()) {
+			
+			Tarefa tarefa = new Tarefa();
+			tarefa.setTitulo((resultado.getString("titulo")));
+			tarefa.setIdTarefa(resultado.getInt("id_tarefa"));
+			
+			colecaoTarefa.add(tarefa);
+		}
+		
+		return colecaoTarefa;
+	}
+	
+	
 }

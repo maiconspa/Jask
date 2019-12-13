@@ -85,7 +85,7 @@ public class Entrada{
 		}
 		
 		return controle;
-	}	
+	}
 	
 	
 	public void composeEntrada() {

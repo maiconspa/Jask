@@ -60,6 +60,14 @@ public class Projeto {
 								  //     para exibição dos usários ?
 	}
 	
+	public Projeto(int idProjeto, String nomeProjeto, Usuario proprietario) {
+		idProjeto = 0;
+		this.idProjeto = idProjeto;
+		this.nomeProjeto = nomeProjeto;
+		this.usuarios = usuarios; // /!\ Como e um Array list e possivelmente uma consulta, aqui não devia ser criado um metodo
+								  //     para exibição dos usários ?
+	}
+	
 	//<---------------------------------------------------------------------------------------------------------------------------->//
 	
 	/**
