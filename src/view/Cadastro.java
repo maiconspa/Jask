@@ -84,8 +84,7 @@ public class Cadastro{
 		
 		JButton btnBack = new JButton();
 		btnBack.setForeground(Color.WHITE);
-		btnBack.setBackground(Color.WHITE);
-		btnBack.setText("");
+		btnBack.setBackground(null);
 		btnBack.setIcon(new ImageIcon("icons/arrowBack.png"));
 		btnBack.setBounds(22, 26, 45, 45);
 		btnBack.setBorderPainted(false); //método para retirar as bordas do JButton e deixar somente a imagem.
@@ -103,9 +102,8 @@ public class Cadastro{
 		JButton btnAvancar = new JButton();
 		btnAvancar.setIcon(new ImageIcon("icons/arrowFoward.png"));
 		btnAvancar.setForeground(Color.WHITE);
-		btnAvancar.setText("");
 		btnAvancar.setBorderPainted(false);
-		btnAvancar.setBackground(Color.WHITE);
+		btnAvancar.setBackground(null);
 		btnAvancar.setBounds(320, 26, 45, 45);
 		painel.add(btnAvancar);
 		

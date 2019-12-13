@@ -87,9 +87,8 @@ public class SelecaoFoto {
 		JButton btnAvancar = new JButton();
 		btnAvancar.setIcon(new ImageIcon("icons/arrowFoward.png"));
 		btnAvancar.setForeground(Color.WHITE);
-		btnAvancar.setText("");
 		btnAvancar.setBorderPainted(false);
-		btnAvancar.setBackground(Color.WHITE);
+		btnAvancar.setBackground(null);
 		btnAvancar.setBounds(320, 26, 45, 45);
 		painel.add(btnAvancar);
 		
@@ -101,7 +100,6 @@ public class SelecaoFoto {
 		btnSelectImg.setIcon(new ImageIcon("icons/addImage.png"));
 		btnSelectImg.setForeground(Color.WHITE);
 		btnSelectImg.setBackground(Color.WHITE);
-		btnSelectImg.setText("");
 		btnSelectImg.setBorderPainted(false);
 		btnSelectImg.setBounds(75, 200, 250, 250);
 		painel.add(btnSelectImg);

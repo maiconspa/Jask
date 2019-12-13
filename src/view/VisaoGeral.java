@@ -19,8 +19,7 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JLabel;
 import java.awt.Font;
-
-
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -48,14 +47,14 @@ public class VisaoGeral {
 	
 	//VARIÁVEIS DE CONTROLE DE TEMAS:
 	//TEMA AZUL
-	int bgBlueTheme [] = {20, 162, 251};
+	int bgBlueTheme [] = {212, 220, 229}; //{20, 162, 251};
 	int bgNavBlueTheme [] = {63, 111, 163};
 	int bgJpBlueTheme [] = {212, 220, 229};
 	
 	//TEMA ESCURO
-	int bgDarkTheme [] = {0, 0, 0};
-	int bgNavDarkTheme [] = {100, 100, 100};
-	int bgJpDarkTheme [] = {50, 50, 50};
+	int bgDarkTheme [] = {50, 50, 50}; //{0, 0, 0};
+	int bgNavDarkTheme [] = {20, 20, 20}; //{100, 100, 100};
+	int bgJpDarkTheme [] = {50, 50, 50}; //{50, 50, 50};
 			
 	//TEMA DEFAULT (utilizado para substituição de valores)
 	int bg [] = {bgBlueTheme[0], bgBlueTheme[1], bgBlueTheme[2]};
@@ -149,6 +148,7 @@ public class VisaoGeral {
 		//JFRAME:
 		JFrame janela = new JFrame();
 		janela.setResizable(false);
+		//janela.setIconImage(Toolkit.getDefaultToolkit().getImage("logo/bee_square.png"));
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.setBounds(100, 100, maxWidth, maxHeight);
 		janela.setLocationRelativeTo(null);
@@ -171,24 +171,33 @@ public class VisaoGeral {
 		
 		System.out.println(getApelido() +"na VISAO GERAL");
 		
-		JButton btnViewProjetos = new JButton("");
+		JButton btnViewProjetos = new JButton();
 		btnViewProjetos.setToolTipText("Listar projetos");
 		btnViewProjetos.setForeground(Color.WHITE);
 		btnViewProjetos.setBackground(null);
 		btnViewProjetos.setBorderPainted(false);
-		btnViewProjetos.setBounds(10, 0, 45, 45);
+		btnViewProjetos.setBounds(10, -2, 45, 45);
 		btnViewProjetos.setIcon(new ImageIcon("icons/listProjects.png"));
 		navbar.add(btnViewProjetos);
 		
 		JButton btnViewColab = new JButton("");
-		btnViewColab.setToolTipText("Colaboradores");
+		btnViewColab.setToolTipText("Tarefas");
 		btnViewColab.setForeground(Color.WHITE);
 		btnViewColab.setBackground(null);
 		btnViewColab.setBorderPainted(false);
 		btnViewColab.setBounds(105, 0, 45, 45);
-		btnViewColab.setIcon(new ImageIcon("icons/collaborators.png"));
+		btnViewColab.setIcon(new ImageIcon("icons/tarefas.png"));
 		navbar.add(btnViewColab);
 
+		JButton btnExtProfile = new JButton();
+		btnExtProfile.setToolTipText("Acessar perfil");
+		btnExtProfile.setForeground(Color.WHITE);
+		btnExtProfile.setBorderPainted(false);
+		btnExtProfile.setBounds(250, 0, 45, 45);
+		btnExtProfile.setBackground(null);
+		btnExtProfile.setIcon(new ImageIcon("icons/userProfile.png"));
+		navbar.add(btnExtProfile);
+		
 		JTextField campoBusca = new JTextField();
 		campoBusca.setToolTipText("insira aqui um termo para buscar");
 		campoBusca.setHorizontalAlignment(SwingConstants.CENTER);
@@ -221,7 +230,7 @@ public class VisaoGeral {
 		btnViewConfig.setBackground(null);
 		btnViewConfig.setBorderPainted(false);
 		btnViewConfig.setBounds(739, 0, 45, 45);
-		btnViewConfig.setIcon(new ImageIcon("icons/moreHorizontal.png"));
+		btnViewConfig.setIcon(new ImageIcon("icons/settings.png"));
 		navbar.add(btnViewConfig);
 		
 		
@@ -318,14 +327,6 @@ public class VisaoGeral {
 		btnTemaEscuro.setBounds(240, 60, 70, 20);
 		btnTemaEscuro.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		painelConfig.add(btnTemaEscuro);
-		
-		JButton btnExtProfile = new JButton("Perfil");
-		btnExtProfile.setToolTipText("Alterar denifições de perfil");
-		btnExtProfile.setForeground(Color.WHITE);
-		btnExtProfile.setBackground(null);
-		btnExtProfile.setBounds(20, 110, 70, 20);
-		btnExtProfile.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-		painelConfig.add(btnExtProfile);
 		
 		
 		//ARRAYS DE CONTROLE:

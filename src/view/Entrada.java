@@ -111,9 +111,9 @@ public class Entrada{
 		painelPrincipal.add(lblVoltar);
 		
 		//Botao de voltar
-		JButton btnBack = new JButton("");
+		JButton btnBack = new JButton();
 		btnBack.setForeground(Color.WHITE);
-		btnBack.setBackground(Color.WHITE);
+		btnBack.setBackground(null);
 		btnBack.setIcon(new ImageIcon("icons/arrowBack.png"));
 		btnBack.setBounds(22, 26, 45, 45);
 		btnBack.setBorderPainted(false); //método para retirar as bordas do JButton e deixar somente a imagem.
@@ -126,11 +126,11 @@ public class Entrada{
 		lblNext.setBounds(320, 12, 45, 16);
 		painelPrincipal.add(lblNext);
 		//botao de avançar
-		JButton btnNext = new JButton("");
+		JButton btnNext = new JButton();
 		btnNext.setIcon(new ImageIcon("icons/arrowFoward.png"));
 		btnNext.setForeground(Color.WHITE);
 		btnNext.setBorderPainted(false);
-		btnNext.setBackground(Color.WHITE);
+		btnNext.setBackground(null);
 		btnNext.setBounds(320, 26, 45, 45);
 		painelPrincipal.add(btnNext);
 		
