@@ -198,7 +198,7 @@ public class ProjetoDao {
 	
 	/**
 	* Método para listar os meus projetos
-	* @param titulo
+	* @param apelido
 	* @author Davi
 	* @throws SQLException
 	*/
