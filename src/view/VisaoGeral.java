@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Cursor;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -136,37 +137,6 @@ public class VisaoGeral {
 	}
 	
 	
-	//MÉTODO PARA LISTAR PROJETOS (em andamento /!\) : //troca de nome instanciaProjeto > listarProjetos
-	public static void listarProjetos(JButton botao, JPanel painel) {
-		botao.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				ProjetoDao projectDao = new ProjetoDao(Conexao.conectar());
-				
-				ArrayList<Projeto> colecaoProjeto = new ArrayList<>();
-				
-				try {
-					
-				colecaoProjeto = projectDao.listarProjeto();
-				
-				}catch (Exception e){
-					
-					e.printStackTrace();
-					
-				}
-				
-				for (int x = 0 ; x < colecaoProjeto.size() ; ++x ) {
-					
-					new JButton(colecaoProjeto.get(x).getNomeProjeto()).setForeground(Color.WHITE);
-					
-				}
-				
-				
-			}
-		});
-	}
-	
-	
 	//COMPONENTES GRÁFICOS:
 	public void composeVisaoGeral() {
 		//VARIÁVEIS DE CONTROLE INTERNO:
@@ -233,7 +203,7 @@ public class VisaoGeral {
 		btnPesquisa.setForeground(Color.WHITE);
 		btnPesquisa.setBorderPainted(false);
 		btnPesquisa.setBackground(null);
-		btnPesquisa.setBounds(510, 7, 30, 45);
+		btnPesquisa.setBounds(510, 7, 30, 30);
 		navbar.add(btnPesquisa);
 		
 		JButton btnViewChat = new JButton("");
@@ -241,6 +211,7 @@ public class VisaoGeral {
 		btnViewChat.setForeground(Color.WHITE);
 		btnViewChat.setBorderPainted(false);
 		btnViewChat.setBounds(644, 0, 45, 45);
+		btnViewChat.setBackground(null);
 		btnViewChat.setIcon(new ImageIcon("icons/message.png"));
 		navbar.add(btnViewChat);
 		
@@ -261,16 +232,40 @@ public class VisaoGeral {
 		painelProjetos.setBounds(maxWidth/8, 80, maxWidthPanels, maxHeightPanels);
 		painelProjetos.setBackground(new Color(bgJp[0], bgJp[1], bgJp[2]));
 		painelProjetos.setForeground(Color.BLACK);
-		painelProjetos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 0, true));
+		painelProjetos.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		painelProjetos.setLayout(null);
 		painelProjetos.setVisible(true);
 		painelPrincipal.add(painelProjetos);
 		
-		JLabel lblProjetos = new JLabel("Projetos Ativos");
+		JLabel lblProjetos = new JLabel("Meus Projetos");
 		lblProjetos.setBounds(10, 11, maxWidthPanels, 40);
 		lblProjetos.setForeground(Color.BLACK);
 		lblProjetos.setFont(new Font("Tahoma", Font.BOLD, 30));
 		painelProjetos.add(lblProjetos);
+		
+		ProjetoDao projectDao = new ProjetoDao(Conexao.conectar());
+		ArrayList<Projeto> colecaoProjeto = new ArrayList<>();
+		
+		
+		int posicao = 60;
+		
+		try {
+			colecaoProjeto = projectDao.listarProjeto();	
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		for (int x = 0 ; x < colecaoProjeto.size() ; x++ ) {
+			JButton temp = new JButton(colecaoProjeto.get(x).getNomeProjeto());
+			temp.setBounds(10, posicao + (x*30), 150, 25);
+			temp.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			temp.setBackground(null);
+			temp.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+			temp.setFont(new Font("Tahoma", Font.BOLD, 12));
+			painelProjetos.add(temp);
+		}
 		
 		
 		//PAINEL DE TAREFAS (/!\ por enquanto é o de colaboradores):
@@ -357,9 +352,6 @@ public class VisaoGeral {
 		//troca de tema:
 		switchTheme(btnTemaAzul, "azul", navbar, painelPrincipal, arrayPaineis, arrayLabels, arrayButtons);
 		switchTheme(btnTemaEscuro, "escuro", navbar, painelPrincipal, arrayPaineis, arrayLabels, arrayButtons);
-		
-		//lista de projetos no JPanel de lista de projetos:
-		listarProjetos(btnViewProjetos, painelProjetos);
 		
 		
 		//----------------------

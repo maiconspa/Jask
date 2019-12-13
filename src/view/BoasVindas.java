@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Cursor;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -53,8 +54,8 @@ public class BoasVindas {
 		frame.setContentPane(painel);
 		
 		// LOGOTIPO JASK
-		JLabel iconJask = new JLabel("");
-		iconJask.setIcon(new ImageIcon(BoasVindas.class.getResource("/view/logos/crop-blue.png")));
+		JLabel iconJask = new JLabel();
+		iconJask.setIcon(new ImageIcon("logo/crop-blue.png"));
 		iconJask.setBounds(125, 80, 300, 300);
 		painel.add(iconJask);
 		
@@ -66,6 +67,7 @@ public class BoasVindas {
 		btnEntrar.setBackground(new Color(46,204,113));
 		//setBounds: positionX, positionY, width, height.
 		btnEntrar.setBounds(100, 350, 200, 35);
+		btnEntrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		painel.add(btnEntrar);
 		
 		// BOTÃO DE CADASTRO

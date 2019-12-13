@@ -123,10 +123,13 @@ public class ProjetoDao {
 		return null;
 	
 	}
-
+	
+	//<-------------------------------------------------------------------------->//
+	
+	/*
 	public ArrayList<Usuario> colecaoUsuarios(int idProjeto) {
 		
-		String consulta = "SELECT * FROM Item_usuario_projeto WHERE fk_id_projeto = ? ";
+		
 		
 		try (PreparedStatement pst = conexao.prepareStatement(consulta)) {
 			
@@ -135,10 +138,10 @@ public class ProjetoDao {
 			//quando precisa de retorno do banco "ResultSet"//
 			ResultSet resultado = pst.executeQuery();
 			
-			/**
+			/*
 			 * 	Instanciando um objeto com valor nulo para preencimento com
 			 *  base no retorno da consulta realizada.
-			 */
+			 *//*
 			Projeto projeto = null;
 			
 			UsuarioDao userDao =  new UsuarioDao(Conexao.conectar());
@@ -160,6 +163,7 @@ public class ProjetoDao {
 		
 		return null;
 	}
+	*/
 	
 	//<-------------------------------------------------------------------------->//
 	
@@ -188,6 +192,38 @@ public class ProjetoDao {
 		}
 		
 		return colecaoProjeto;
+	}
+	
+	//<-------------------------------------------------------------------------->//
+	
+	/**
+	* Método para listar os meus projetos
+	* @param titulo
+	* @author Davi
+	* @throws SQLException
+	*/
+	
+	String select = "SELECT * FROM Item_usuario_projeto where fk_apelido_usuario = ?";
+	
+	
+	
+	public ArrayList<Projeto> listarmeusProjetos(String apelido) throws Exception {
+		
+		ArrayList<Projeto> colecaoMeusProjetos = new ArrayList<>();
+		
+		PreparedStatement pst = Conexao.conectar().prepareStatement(select);
+		ResultSet resultado = pst.executeQuery();
+		
+		while(resultado.next()) {
+			
+			Projeto projeto = new Projeto();
+			projeto.setNomeProjeto(resultado.getString("nome"));
+			projeto.setIdProjeto(resultado.getInt("fk_id_projeto"));
+			
+			colecaoMeusProjetos.add(projeto);
+		}
+		
+		return colecaoMeusProjetos;
 	}
 	
 	//<-------------------------------------------------------------------------->//
