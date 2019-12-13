@@ -148,7 +148,7 @@ public class VisaoGeral {
 		//JFRAME:
 		JFrame janela = new JFrame();
 		janela.setResizable(false);
-		//janela.setIconImage(Toolkit.getDefaultToolkit().getImage("logo/bee_square.png"));
+		//janela.setIconImage(Toolkit.getDefaultToolkit().getImage("logo/bee_square.png"));//
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.setBounds(100, 100, maxWidth, maxHeight);
 		janela.setLocationRelativeTo(null);
