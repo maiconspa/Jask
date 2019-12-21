@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 /**
  * Classe DAO para o usuario
  * 
@@ -223,7 +225,7 @@ public class UsuarioDao {
 	/**
 	 * Método para atualizar o usuario
 	 * @param usuario
-	 * @author Cayoni
+	 * @author Davi Fonseca
 	 * @throws SQLException 
 	 */
 	public void atualizarUsuario(String nome, String email, String telefone, String senha, String apelido) throws SQLException {
@@ -231,7 +233,7 @@ public class UsuarioDao {
 		/**
 		 * Criando a String de atualização
 		 */
-		String atualizar = "UPDATE Usuario SET nome = '?', email = '?', telefone = '?', senha = '?' WHERE apelido = '?'";
+		String atualizar = "UPDATE Usuario SET nome = ?, email = ?, telefone = ?, senha = ? WHERE apelido = ?";
 		
 		try (PreparedStatement pst = conexao.prepareStatement(atualizar)) {
 			
@@ -241,9 +243,11 @@ public class UsuarioDao {
 			pst.setString(4, senha);
 			pst.setString(5, apelido);
 			
-			//quando precisa de retorno do banco "ResultSet"//
-			ResultSet resultado = pst.executeQuery();
+			pst.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Dados atualizados com sucesso", "Atualização", JOptionPane.WARNING_MESSAGE);
 			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

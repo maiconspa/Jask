@@ -98,14 +98,15 @@ public class Profile{
 				
 				System.out.println("ENTROU NO METODO DE ALTERAR PEFIL");
 				UsuarioDao uDao = new UsuarioDao(Conexao.conectar());
+				
 				try {
+					System.out.println(txtNome.getText()+" "+txtEmail.getText()+" "+txtTelefone.getText()+" "+txtSenha.getText()+" "+apelido);
 					uDao.atualizarUsuario(txtNome.getText(), txtEmail.getText(), txtTelefone.getText(), txtSenha.getText(), apelido);
+					
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				JOptionPane.showMessageDialog(frameAtual, "Alterado com sucesso! :)");
 			}
 		});
 	}

@@ -430,6 +430,7 @@ public class VisaoGeral {
 		lblCollab.setFont(new Font("Tahoma", Font.BOLD, 30));
 		painelTarefas.add(lblCollab);
 		
+		//Tenso
 		if (getApelido().contentEquals("Davi")) {
 		
 		//EXIBIÇÃO DE TAREFAS:

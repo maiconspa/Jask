@@ -107,7 +107,11 @@ public class Principal {
 		
 		//<---------------------------------------------------------------------------------------------->
 		
-		//Teste listarProjeto
+
+		/**
+		 * @author Davi Fonseca
+		 * Listando os Projetos:
+		 */
 		/*
 		ProjetoDao projectDao = new ProjetoDao(Conexao.conectar());
 		
