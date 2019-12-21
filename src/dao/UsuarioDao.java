@@ -129,7 +129,7 @@ public class UsuarioDao {
 	
 	public void armazenarImagens(File foto, String apelido) {
 			
-		//Preparando a String para insecao:
+		//Preparando a String para insercao:
 		String inserir = "Update Usuario SET foto ="
 				+ "? WHERE apelido = ?";
 		

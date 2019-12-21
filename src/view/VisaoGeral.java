@@ -3,11 +3,13 @@ package view;
 import java.awt.Color;
 import java.awt.Cursor;
 
+import utils.EstadoTarefa;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import utils.Prioridade;
 import dao.Conexao;
 import dao.ProjetoDao;
 import dao.TarefaDao;
@@ -26,6 +28,8 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 import modelos.*;
+import utils.EstadoTarefa;
+import utils.Prioridade;
 
 /**
  * Tela de visão geral do projeto, interações com tarefas, mensagens e etc.
@@ -83,6 +87,7 @@ public class VisaoGeral {
 						buttons [i].setForeground(Color.WHITE);
 						buttons [i].setBorder(new LineBorder(new Color(255, 255, 255), 1, true));
 					}
+					
 					for (int j = 0; j < labels.length; j++) {
 						if (tema.equals("azul")) {
 							System.out.println("a");
@@ -98,6 +103,80 @@ public class VisaoGeral {
 		});
 		
 	}
+	
+	//
+	public void atualiza(JPanel painel, JButton botao) {
+		botao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+
+				//EXIBIÇÃO DE PROJETOS
+				ProjetoDao projectDao = new ProjetoDao(Conexao.conectar());
+				ArrayList<Projeto> colecaoProjeto = new ArrayList<>();
+				
+				int posicao = 60;
+				
+				try {
+					colecaoProjeto = projectDao.listarProjeto();	
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				for (int x = 0 ; x < colecaoProjeto.size() ; x++ ) {
+					JButton temp = new JButton(colecaoProjeto.get(x).getNomeProjeto());
+					temp.setBounds(10, posicao + (x*30), 150, 25);
+					temp.setCursor(new Cursor(Cursor.HAND_CURSOR));
+					temp.setBackground(null);
+					temp.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+					temp.setFont(new Font("Tahoma", Font.BOLD, 12));
+					painel.add(temp);
+				}
+				
+				
+				
+			}
+		});
+	}
+	
+	
+	//
+	public void atualizaT(JPanel painel, JButton botao) {
+		botao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+
+				//EXIBIÇÃO DE TAREFAS:
+				TarefaDao tarefaDao = new TarefaDao(Conexao.conectar());
+				ArrayList<Tarefa> colecaoTarefa = new ArrayList<>();
+				
+				int p = 60;
+				
+				try {
+					colecaoTarefa = tarefaDao.listarTarefas();	
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				for (int x = 0 ; x < colecaoTarefa.size() ; x++ ) {
+					JButton tempT = new JButton(colecaoTarefa.get(x).getTitulo());
+					tempT.setBounds(10, p + (x*30), 150, 25);
+					tempT.setCursor(new Cursor(Cursor.HAND_CURSOR));
+					tempT.setBackground(null);
+					tempT.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+					tempT.setFont(new Font("Tahoma", Font.BOLD, 12));
+					painel.add(tempT);
+				}
+				
+				
+				
+			}
+		});
+	}
+	
 	
 	
 	//MÉTODO QUE CHAMA A TELA DE CHAT:
@@ -145,6 +224,27 @@ public class VisaoGeral {
 			});
 		}
 	
+		
+		/*
+		public static void criaT(JButton botao, String apelido, JTextField nometarefa) {
+			botao.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					int id = 0;
+					
+					UsuarioDao ud = new UsuarioDao(Conexao.conectar());
+					Usuario u = ud.consultarUsuario(apelido);
+					
+					
+					System.out.println("criando tarefa:" +apelido);
+					TarefaDao td = new TarefaDao(Conexao.conectar());
+					
+					Tarefa t = new Tarefa(5000, u, EstadoTarefa.Pendente.estadoTarefa, nomeTarefa.getText(), "", 1;
+					pd.cadastrarProjeto(p);
+					
+				}
+			});
+		}*/
+		
 	
 	//MÉTODO PARA A TROCA DE PAINEIS INTERNOS (projetos... configurações...)
 	public static void switchPanel(JButton botao, JPanel paineis [], JPanel painel) {
@@ -220,15 +320,8 @@ public class VisaoGeral {
 		btnExtProfile.setBackground(null);
 		btnExtProfile.setIcon(new ImageIcon("icons/userProfile.png"));
 		navbar.add(btnExtProfile);
-/*		
-		JTextField campoBusca = new JTextField();
-		campoBusca.setToolTipText("insira aqui um termo para buscar");
-		campoBusca.setHorizontalAlignment(SwingConstants.CENTER);
-		campoBusca.setBounds(302, 7, 200, 26);
-		campoBusca.setColumns(10);
-		campoBusca.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 0, true));
-		navbar.add(campoBusca);
-*/		
+
+		
 		JButton btnPesquisa = new JButton();
 		btnPesquisa.setToolTipText("Pesquisar tarfeas e projetos");
 		btnPesquisa.setIcon(new ImageIcon("icons/search.png"));
@@ -274,6 +367,7 @@ public class VisaoGeral {
 		lblProjetos.setFont(new Font("Tahoma", Font.BOLD, 30));
 		painelProjetos.add(lblProjetos);
 		
+		if (getApelido().equals("Davi")) {
 		
 		//EXIBIÇÃO DE PROJETOS
 		ProjetoDao projectDao = new ProjetoDao(Conexao.conectar());
@@ -298,6 +392,7 @@ public class VisaoGeral {
 			temp.setFont(new Font("Tahoma", Font.BOLD, 12));
 			painelProjetos.add(temp);
 		}
+		}
 		
 		//ADICIONAR PROJETOS:
 		JTextField txtAddProjetos = new JTextField();
@@ -317,6 +412,9 @@ public class VisaoGeral {
 		btnAlterar.setBorder(new LineBorder(Color.WHITE, 1, true));
 		painelProjetos.add(btnAlterar);
 		
+		atualiza(painelProjetos, btnAlterar);
+		
+		
 		
 		//PAINEL DE TAREFAS:
 		JPanel painelTarefas = new JPanel();
@@ -331,6 +429,8 @@ public class VisaoGeral {
 		lblCollab.setForeground(Color.BLACK);
 		lblCollab.setFont(new Font("Tahoma", Font.BOLD, 30));
 		painelTarefas.add(lblCollab);
+		
+		if (getApelido().contentEquals("Davi")) {
 		
 		//EXIBIÇÃO DE TAREFAS:
 		TarefaDao tarefaDao = new TarefaDao(Conexao.conectar());
@@ -355,7 +455,7 @@ public class VisaoGeral {
 			tempT.setFont(new Font("Tahoma", Font.BOLD, 12));
 			painelTarefas.add(tempT);
 		}
-		
+		}
 		//ADICIONAR PROJETOS:
 		JTextField txtAddTarefas = new JTextField();
 		txtAddTarefas.setText("tarefa");
@@ -446,6 +546,9 @@ public class VisaoGeral {
 		//CRIA PROJETO
 		criaProjeto(btnAlterar, apelido, txtAddProjetos);
 		
+		
+		//CRIA T
+		// /!\ criaT(btnAlterarT, apelido, txtAddTarefas);
 		
 		
 		//----------------------

@@ -41,14 +41,14 @@ public class ProjetoDao {
 	
 	public void cadastrarProjeto(Projeto projeto) {
 	
-		String inserir = "INSERT INTO Projeto(nomeProjeto, apelidoProprietario)"
+		String inserir = "INSERT INTO Projeto(nome, fk_apelido_proprietario)"
 				+ "VALUES (?, ?)";
 		
 		/*Objeto de execucao de comando SQL para */
 		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {
 			
-			pst.setString(1,	projeto.getNomeProjeto());
-			pst.setString(2,	projeto.getProprietario().getApelido());
+			pst.setString(1,projeto.getNomeProjeto());
+			pst.setString(2,"Davi");
 			
 			/**
 			 * Comando para executar a String no banco de dados
@@ -249,6 +249,9 @@ public class ProjetoDao {
 			//quando precisa de retorno do banco "ResultSet"//
 			ResultSet resultado = pst.executeQuery();
 					
+		} catch(Exception e) {
+			//Imprimido a pilha de erros:
+			e.printStackTrace();
 		}
 				
 	}

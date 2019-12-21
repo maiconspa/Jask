@@ -2,12 +2,16 @@ package view;
 
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
@@ -35,6 +39,29 @@ public class Chat{
 		panel.setBounds(10, 11, 364, 539);
 		painelPrincipal.add(panel);
 		panel.setLayout(null);
+		
+		JButton btnViewProjetos = new JButton();
+		btnViewProjetos.setForeground(Color.WHITE);
+		btnViewProjetos.setBackground(null);
+		btnViewProjetos.setBorderPainted(false);
+		btnViewProjetos.setBounds(100, 100, 144, 200);
+		btnViewProjetos.setIcon(new ImageIcon("logo/raposo.jpg"));
+		janelaChat.add(btnViewProjetos);
+		
+		JTextField campoBusca = new JTextField();
+		campoBusca.setToolTipText("insira aqui um termo para buscar");
+		campoBusca.setHorizontalAlignment(SwingConstants.CENTER);
+		campoBusca.setBounds(80, 470, 200, 60);
+		campoBusca.setColumns(10);
+		campoBusca.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+		janelaChat.add(campoBusca);
+		
+		JButton btnViewProjetosa = new JButton();
+		btnViewProjetosa.setForeground(Color.WHITE);
+		btnViewProjetosa.setBackground(Color.BLACK);
+		btnViewProjetosa.setBorderPainted(false);
+		btnViewProjetosa.setBounds(80, 300, 40, 60);
+		janelaChat.add(btnViewProjetosa);
 		
 		JLabel lblMensagens = new JLabel("Mensagens");
 		lblMensagens.setBounds(10, 11, 150, 37);

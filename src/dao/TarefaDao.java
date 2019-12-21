@@ -41,7 +41,7 @@ public class TarefaDao {
 		try (PreparedStatement pst = conexao.prepareStatement(inserir)) {
 			
 			pst.setInt(1,	 idProjeto);
-			pst.setString(2, tarefa.getProprietario().getApelido());
+			pst.setString(2, "Davi");
 			pst.setInt(3, tarefa.getEstado().estadoTarefa);
 			pst.setString(4, tarefa.getTitulo());
 			pst.setString(5, tarefa.getDescricao());
@@ -161,6 +161,9 @@ public class TarefaDao {
 			//quando precisa de retorno do banco "ResultSet"//
 			ResultSet resultado = pst.executeQuery();
 					
+		} catch (Exception e) {
+			//Imprimido a pilha de erros:
+			e.printStackTrace();
 		}
 				
 	}
