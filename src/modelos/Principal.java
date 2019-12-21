@@ -138,6 +138,9 @@ public class Principal {
 		//<---------------------------------------------------------------------------------------------->
 		
 		//System.out.println("Teste");
+		String apelido = "Lari";
+		String select = "SELECT titulo, id_tarefa from Tarefa where fk_apelido_proprietario = "+apelido;
+		System.out.println(select);
 		
 		//<---------------------------------------------------------------------------------------------->
 		

@@ -31,6 +31,7 @@ public class TarefaDao {
 	
 	/**
 	 * Metodo de criacao de uma Tarefa
+	 * @author Davi Fonseca
 	 * @param tarefa
 	 */
 	public void cadastrarTarefa(Tarefa tarefa, int idProjeto) {
@@ -68,6 +69,7 @@ public class TarefaDao {
 	
 	/**
 	 * Metodos de consultas
+	 * @author Davi Fonseca
 	 * @param apelido
 	 */
 	public Tarefa consultarTarefa(int id) {
@@ -138,7 +140,7 @@ public class TarefaDao {
 	/**
 	* Método para alterar a tarefa
 	* @param titulo
-	* @author Cayoni
+	* @author Davi Fonseca
 	* @throws SQLException
 	*/
 	public void atualizarTarefa(String estado, String titulo, String descricao, int prioridade, String apelido) throws SQLException {
@@ -156,10 +158,7 @@ public class TarefaDao {
 			pst.setInt(4, prioridade);
 			pst.setString(5, apelido);
 					
-					
-					
-			//quando precisa de retorno do banco "ResultSet"//
-			ResultSet resultado = pst.executeQuery();
+			pst.executeUpdate();
 					
 		} catch (Exception e) {
 			//Imprimido a pilha de erros:
@@ -199,9 +198,9 @@ public class TarefaDao {
 	
 	
 	//listar TAREFAS
-	public ArrayList<Tarefa> listarTarefas() throws Exception {
+	public ArrayList<Tarefa> listarTarefas(String apelido) throws Exception {
 		System.out.println("TO NO METODO DE LISTAR");
-		String select = "SELECT titulo, id_tarefa FROM Tarefa";
+		String select = "SELECT titulo, id_tarefa from Tarefa where fk_apelido_proprietario = '"+apelido+"'";
 		
 		ArrayList<Tarefa> colecaoTarefa = new ArrayList<>();
 		

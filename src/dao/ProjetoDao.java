@@ -173,9 +173,9 @@ public class ProjetoDao {
 	* @author Davi
 	* @throws SQLException
 	*/
-	public ArrayList<Projeto> listarProjeto() throws Exception {
+	public ArrayList<Projeto> listarProjeto(String apelido) throws Exception {
 		
-		String select = "SELECT nome, id_projeto FROM Projeto";
+		String select = "SELECT nome, id_projeto FROM Projeto WHERE fk_apelido_proprietario ='"+apelido+"'";
 		
 		ArrayList<Projeto> colecaoProjeto = new ArrayList<>();
 		

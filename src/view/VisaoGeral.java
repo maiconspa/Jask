@@ -117,7 +117,7 @@ public class VisaoGeral {
 				int posicao = 60;
 				
 				try {
-					colecaoProjeto = projectDao.listarProjeto();	
+					colecaoProjeto = projectDao.listarProjeto(getApelido());	
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -140,8 +140,6 @@ public class VisaoGeral {
 		});
 	}
 	
-	
-	//
 	public void atualizaT(JPanel painel, JButton botao) {
 		botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -154,7 +152,7 @@ public class VisaoGeral {
 				int p = 60;
 				
 				try {
-					colecaoTarefa = tarefaDao.listarTarefas();	
+					colecaoTarefa = tarefaDao.listarTarefas(getApelido());	
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -367,8 +365,6 @@ public class VisaoGeral {
 		lblProjetos.setFont(new Font("Tahoma", Font.BOLD, 30));
 		painelProjetos.add(lblProjetos);
 		
-		if (getApelido().equals("Davi")) {
-		
 		//EXIBIÇÃO DE PROJETOS
 		ProjetoDao projectDao = new ProjetoDao(Conexao.conectar());
 		ArrayList<Projeto> colecaoProjeto = new ArrayList<>();
@@ -376,7 +372,7 @@ public class VisaoGeral {
 		int posicao = 60;
 		
 		try {
-			colecaoProjeto = projectDao.listarProjeto();	
+			colecaoProjeto = projectDao.listarProjeto(getApelido());	
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -391,7 +387,6 @@ public class VisaoGeral {
 			temp.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 			temp.setFont(new Font("Tahoma", Font.BOLD, 12));
 			painelProjetos.add(temp);
-		}
 		}
 		
 		//ADICIONAR PROJETOS:
@@ -430,8 +425,10 @@ public class VisaoGeral {
 		lblCollab.setFont(new Font("Tahoma", Font.BOLD, 30));
 		painelTarefas.add(lblCollab);
 		
-		//Tenso
-		if (getApelido().contentEquals("Davi")) {
+		//<-------------------------------------------------------------------------------------------------------------->
+		
+		// To Aqui
+		//if (getApelido().contentEquals("Davi")) {
 		
 		//EXIBIÇÃO DE TAREFAS:
 		TarefaDao tarefaDao = new TarefaDao(Conexao.conectar());
@@ -440,7 +437,7 @@ public class VisaoGeral {
 		int p = 60;
 		
 		try {
-			colecaoTarefa = tarefaDao.listarTarefas();	
+			colecaoTarefa = tarefaDao.listarTarefas(getApelido());	
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -456,7 +453,10 @@ public class VisaoGeral {
 			tempT.setFont(new Font("Tahoma", Font.BOLD, 12));
 			painelTarefas.add(tempT);
 		}
-		}
+		//}
+		
+		//<-------------------------------------------------------------------------------------------------------------->
+		
 		//ADICIONAR PROJETOS:
 		JTextField txtAddTarefas = new JTextField();
 		txtAddTarefas.setText("tarefa");
@@ -475,11 +475,7 @@ public class VisaoGeral {
 		btnAlterarT.setBorder(new LineBorder(Color.WHITE, 1, true));
 		painelTarefas.add(btnAlterarT);
 		
-		
-		
-		
-		
-		
+		//<-------------------------------------------------------------------------------------------------------------->
 		
 		//PAINEL DE CONFIGURAÇÕES:
 		JPanel painelConfig = new JPanel();
