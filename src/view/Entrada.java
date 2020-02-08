@@ -45,10 +45,10 @@ public class Entrada{
 				} else if (outroFrame.equals("Proximo")) {
 					
 					if(verificacaoApelido(txtApelido)) {
-						System.out.println("tem esse usuario");
+						System.out.println("Usuário Existente.");
 						if(verificacaoSenha(txtApelido, txtSenha)) {
 							VisaoGeral vg = new VisaoGeral(txtApelido.getText());
-							System.out.println("entrou");
+							System.out.println("Login efetuado com sucesso.");
 							vg.composeVisaoGeral();
 						}
 					}
