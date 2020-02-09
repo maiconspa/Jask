@@ -52,8 +52,6 @@ public class Entrada{
 							vg.composeVisaoGeral();
 						}
 					}
-					
-					//se a verificacao for bem sucedida:    new Entrada().composeEntrada();
 
 				}
 				
@@ -89,7 +87,6 @@ public class Entrada{
 	
 	
 	public void composeEntrada() {
-		
 		JFrame janela = new JFrame();
 		janela.setResizable(false);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

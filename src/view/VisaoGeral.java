@@ -259,20 +259,24 @@ public class VisaoGeral {
 	
 	//COMPONENTES GRÁFICOS:
 	public void composeVisaoGeral() {
-		//VARIÁVEIS DE CONTROLE INTERNO:
-		int maxWidth = 800;
-		int maxHeight = 600;
-		int maxWidthPanels = maxWidth - (maxWidth/4);
-		int maxHeightPanels = maxHeight - (maxHeight/4);
+		ProjetoDao projectDao = new ProjetoDao(Conexao.conectar());
+		
+		//INICIALIZANDO COMPONENTES
+		//JFrame
+		JFrame mainFrame = new JFrame();
+		
+		//JPanel
+		
+		//JButton
+		JButton tempTasks = null;
 		
 		
 		//JFRAME:
-		JFrame janela = new JFrame();
-		janela.setResizable(false);
-		//janela.setIconImage(Toolkit.getDefaultToolkit().getImage("logo/bee_square.png"));//
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		janela.setBounds(100, 100, maxWidth, maxHeight);
-		janela.setLocationRelativeTo(null);
+		
+		mainFrame.setResizable(false);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.setBounds(100, 100, 800, 600);
+		mainFrame.setLocationRelativeTo(null);
 		
 		
 		//JPANEL PRINCIPAL:
@@ -280,12 +284,12 @@ public class VisaoGeral {
 		painelPrincipal.setBackground(new Color(bg[0], bg[1], bg[2]));
 		painelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
 		painelPrincipal.setLayout(null);
-		janela.setContentPane(painelPrincipal);
+		mainFrame.setContentPane(painelPrincipal);
 		
 		
 		//BARRA DE NAVEGAÇÃO (ícones e barra de pesquisa)
 		JPanel navbar = new JPanel();
-		navbar.setBounds(0, 0, maxWidth, 40);
+		navbar.setBounds(0, 0, 800, 40);
 		navbar.setBackground(new Color (bgNav[0], bgNav[1], bgNav[2]));
 		painelPrincipal.add(navbar);
 		navbar.setLayout(null);
@@ -351,7 +355,7 @@ public class VisaoGeral {
 		//JPANELs INTERNOS (visualização de projetos... configuraçãoes e etc):
 		//PAINEL DE PROJETOS:
 		JPanel painelProjetos = new JPanel();
-		painelProjetos.setBounds(maxWidth/8, 80, maxWidthPanels, maxHeightPanels);
+		painelProjetos.setBounds(100, 80, 600, 450);
 		painelProjetos.setBackground(new Color(bgJp[0], bgJp[1], bgJp[2]));
 		painelProjetos.setForeground(Color.BLACK);
 		painelProjetos.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
@@ -360,16 +364,13 @@ public class VisaoGeral {
 		painelPrincipal.add(painelProjetos);
 		
 		JLabel lblProjetos = new JLabel("Meus Projetos");
-		lblProjetos.setBounds(10, 11, maxWidthPanels, 40);
+		lblProjetos.setBounds(10, 11, 590, 40);
 		lblProjetos.setForeground(Color.BLACK);
 		lblProjetos.setFont(new Font("Tahoma", Font.BOLD, 30));
 		painelProjetos.add(lblProjetos);
-		
 		//EXIBIÇÃO DE PROJETOS
-		ProjetoDao projectDao = new ProjetoDao(Conexao.conectar());
-		ArrayList<Projeto> colecaoProjeto = new ArrayList<>();
 		
-		int posicao = 60;
+		ArrayList<Projeto> colecaoProjeto = new ArrayList<>();
 		
 		try {
 			colecaoProjeto = projectDao.listarProjeto(getApelido());	
@@ -380,16 +381,17 @@ public class VisaoGeral {
 		
 		
 		for (int x = 0 ; x < colecaoProjeto.size() ; x++ ) {
-			JButton temp = new JButton(colecaoProjeto.get(x).getNomeProjeto());
-			temp.setBounds(10, posicao + (x*30), 150, 25);
-			temp.setCursor(new Cursor(Cursor.HAND_CURSOR));
-			temp.setBackground(null);
-			temp.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-			temp.setFont(new Font("Tahoma", Font.BOLD, 12));
-			painelProjetos.add(temp);
+			JButton tempProject = new JButton(colecaoProjeto.get(x).getNomeProjeto());
+			tempProject.setBounds(10, 60 + (x*30), 150, 25);
+			tempProject.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			tempProject.setForeground(Color.WHITE);
+			tempProject.setBackground(Color.GRAY);
+			tempProject.setBorder(new LineBorder(Color.WHITE, 1, true));
+			tempProject.setFont(new Font("Tahoma", Font.BOLD, 12));
+			painelProjetos.add(tempProject);
 		}
 		
-		//ADICIONAR PROJETOS:
+		//CAMPO DE TEXTO PARA ADICIONAR PROJETOS:
 		JTextField txtAddProjetos = new JTextField();
 		txtAddProjetos.setText("projeto");
 		txtAddProjetos.setEnabled(true);
@@ -397,38 +399,33 @@ public class VisaoGeral {
 		txtAddProjetos.setBorder(new LineBorder(Color.BLACK));
 		painelProjetos.add(txtAddProjetos);
 		
-		//btn ADICIONAR PROJETOS
-		JButton btnAlterar = new JButton();
-		btnAlterar.setToolTipText("Confirmar alteração de dados");
-		btnAlterar.setText("Confirmar");
-		btnAlterar.setForeground(Color.BLACK);
-		btnAlterar.setBackground(Color.WHITE);
-		btnAlterar.setBounds(480, 120, 70, 20);
-		btnAlterar.setBorder(new LineBorder(Color.WHITE, 1, true));
-		painelProjetos.add(btnAlterar);
-		
-		atualiza(painelProjetos, btnAlterar);
+		//BOTÃO PARA ADICIONAR NOVOS PROJETOS
+		JButton btnAddProjeto = new JButton();
+		btnAddProjeto.setToolTipText("Adicionar novo projeto");
+		btnAddProjeto.setText("Confirmar");
+		btnAddProjeto.setForeground(Color.BLACK);
+		btnAddProjeto.setBackground(Color.WHITE);
+		btnAddProjeto.setBounds(480, 120, 70, 20);
+		btnAddProjeto.setBorder(new LineBorder(Color.WHITE, 1, true));
+		painelProjetos.add(btnAddProjeto);
 		
 		
 		
 		//PAINEL DE TAREFAS:
 		JPanel painelTarefas = new JPanel();
-		painelTarefas.setBounds(maxWidth/8, 80, maxWidthPanels, maxHeightPanels);
+		painelTarefas.setBounds(100, 80, 800, 600);
 		painelTarefas.setBackground(new Color(bgJp[0], bgJp[1], bgJp[2]));
 		painelTarefas.setLayout(null);
 		painelTarefas.setVisible(false);
 		painelPrincipal.add(painelTarefas);
 		
 		JLabel lblCollab = new JLabel("Tarefas");
-		lblCollab.setBounds(10, 11, maxWidthPanels, 40);
+		lblCollab.setBounds(10, 11, 800, 40);
 		lblCollab.setForeground(Color.BLACK);
 		lblCollab.setFont(new Font("Tahoma", Font.BOLD, 30));
 		painelTarefas.add(lblCollab);
 		
 		//<-------------------------------------------------------------------------------------------------------------->
-		
-		// To Aqui
-		//if (getApelido().contentEquals("Davi")) {
 		
 		//EXIBIÇÃO DE TAREFAS:
 		TarefaDao tarefaDao = new TarefaDao(Conexao.conectar());
@@ -445,13 +442,13 @@ public class VisaoGeral {
 		
 		
 		for (int x = 0 ; x < colecaoTarefa.size() ; x++ ) {
-			JButton tempT = new JButton(colecaoTarefa.get(x).getTitulo());
-			tempT.setBounds(10, p + (x*30), 150, 25);
-			tempT.setCursor(new Cursor(Cursor.HAND_CURSOR));
-			tempT.setBackground(null);
-			tempT.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-			tempT.setFont(new Font("Tahoma", Font.BOLD, 12));
-			painelTarefas.add(tempT);
+			tempTasks = new JButton(colecaoTarefa.get(x).getTitulo());
+			tempTasks.setBounds(10, p + (x*30), 150, 25);
+			tempTasks.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			tempTasks.setBackground(null);
+			tempTasks.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+			tempTasks.setFont(new Font("Tahoma", Font.BOLD, 12));
+			painelTarefas.add(tempTasks);
 		}
 		//}
 		
@@ -479,14 +476,14 @@ public class VisaoGeral {
 		
 		//PAINEL DE CONFIGURAÇÕES:
 		JPanel painelConfig = new JPanel();
-		painelConfig.setBounds(maxWidth/8, 80, maxWidthPanels, maxHeightPanels);
+		painelConfig.setBounds(100, 80, 600, 450);
 		painelConfig.setBackground(new Color(bgJp[0], bgJp[1], bgJp[2]));
 		painelConfig.setLayout(null);
 		painelConfig.setVisible(false);
 		painelPrincipal.add(painelConfig);
 		
 		JLabel lblConfig = new JLabel("Configurações");
-		lblConfig.setBounds(10, 11, maxWidthPanels, 40);
+		lblConfig.setBounds(10, 11, 600, 40);
 		lblConfig.setForeground(Color.BLACK);
 		lblConfig.setFont(new Font("Tahoma", Font.BOLD, 30));
 		painelConfig.add(lblConfig);
@@ -526,7 +523,7 @@ public class VisaoGeral {
 		
 		//CHAMADA DE AÇÕES DE BOTÕES:
 		
-		//chamar janelas externas:
+		//chamar mainFrames externas:
 		chamarChat(btnViewChat);
 		chamarExtProfile(btnExtProfile, getApelido());
 		
@@ -541,16 +538,15 @@ public class VisaoGeral {
 		
 		
 		//CRIA PROJETO
-		criaProjeto(btnAlterar, apelido, txtAddProjetos);
+		criaProjeto(btnAddProjeto, apelido, txtAddProjetos);
 		
-		
-		//CRIA T
-		// /!\ criaT(btnAlterarT, apelido, txtAddTarefas);
+		//ATUALIZA LISTA DE PROJETOS
+		atualiza(painelProjetos, btnAddProjeto);
 		
 		
 		//----------------------
 		//-- SET VISIBLE JFRAME:
-		janela.setVisible(true);
+		mainFrame.setVisible(true);
 	}
 
 	
