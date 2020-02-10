@@ -22,6 +22,9 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -78,7 +81,7 @@ public class VisaoGeral {
 						geral.setBackground(new Color(bgBlueTheme[0], bgBlueTheme[1], bgBlueTheme[2]));
 						paineis [i].setBackground(new Color(bgJpBlueTheme[0], bgJpBlueTheme[1], bgJpBlueTheme[2]));
 						buttons [i].setForeground(Color.BLACK);
-						buttons [i].setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+						buttons [i].setBorder(new LineBorder(Color.BLACK, 1, true));
 					} else if (tema.equals("escuro")) {
 						System.out.println("b");
 						nav.setBackground(new Color(bgNavDarkTheme[0], bgNavDarkTheme[1], bgNavDarkTheme[2]));
@@ -129,7 +132,7 @@ public class VisaoGeral {
 					temp.setBounds(10, posicao + (x*30), 150, 25);
 					temp.setCursor(new Cursor(Cursor.HAND_CURSOR));
 					temp.setBackground(null);
-					temp.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+					temp.setBorder(new LineBorder(Color.BLACK, 1, true));
 					temp.setFont(new Font("Tahoma", Font.BOLD, 12));
 					painel.add(temp);
 				}
@@ -164,7 +167,7 @@ public class VisaoGeral {
 					tempT.setBounds(10, p + (x*30), 150, 25);
 					tempT.setCursor(new Cursor(Cursor.HAND_CURSOR));
 					tempT.setBackground(null);
-					tempT.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+					tempT.setBorder(new LineBorder(Color.BLACK, 1, true));
 					tempT.setFont(new Font("Tahoma", Font.BOLD, 12));
 					painel.add(tempT);
 				}
@@ -202,27 +205,78 @@ public class VisaoGeral {
 	
 	
 	//MÉTODO QUE CRIA UM NOVO PROJETO:
-		public static void criaProjeto(JButton botao, String apelido, JTextField nomeProjeto) {
-			botao.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					int id = 0;
-					
-					UsuarioDao ud = new UsuarioDao(Conexao.conectar());
-					Usuario u = ud.consultarUsuario(apelido);
-					
-					
-					System.out.println("criando projeto:" +apelido);
-					ProjetoDao pd = new ProjetoDao(Conexao.conectar());
-					
-					
-					Projeto p = new Projeto(id, nomeProjeto.getText(), u);
-					pd.cadastrarProjeto(p);
-					
-				}
-			});
-		}
+	public static void criaProjeto(JButton botao, String apelido, JTextField nomeProjeto) {
+		botao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int id = 0;
+				
+				UsuarioDao ud = new UsuarioDao(Conexao.conectar());
+				Usuario u = ud.consultarUsuario(apelido);
+				
+				
+				System.out.println("criando projeto:" +apelido);
+				ProjetoDao pd = new ProjetoDao(Conexao.conectar());
+				
+				
+				Projeto p = new Projeto(id, nomeProjeto.getText(), u);
+				pd.cadastrarProjeto(p);
+				
+			}
+		});
+	}
 	
+
+	//MÉTODO QUE BUSCA TAREFAS DE ACORDO COM O PROJETO CLICADO:
+	public static void consultaTarefas(JButton botao, String apelido) {
+		botao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String nomeProjeto = botao.getText();
+				
+				JFrame janelaTarefas = new JFrame();
+				janelaTarefas.setResizable(false);
+				janelaTarefas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				janelaTarefas.setSize(400, 300);
+				janelaTarefas.setLocationRelativeTo(null);
+				
+				JPanel painelTarefas  = new JPanel();
+				painelTarefas.setBounds(0, 0, 400, 300);
+				painelTarefas.setLayout(null);
+				janelaTarefas.add(painelTarefas);
+				painelTarefas.setVisible(true);
 		
+				TarefaDao tarefaDao = new TarefaDao(Conexao.conectar());
+  				ArrayList<Tarefa> colecaoTarefa = new ArrayList<>();				
+  				
+  				try {
+					colecaoTarefa = tarefaDao.listarTarefas(apelido);	
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+  				//
+  				// MÉTODO DE CRIAR TAREFAS PRATICAMENTE PRONTO, FALTA PASSAR O NOME DO PROJETO SELECIONADO PARA CONSULTAR SOMENTE SUAS TAREFAS 
+  				// E IMPLEMENTAR ISSO NO BOTAO "TEMPORARIO"
+  				//
+  				
+  				Tarefa arrayTarefas []= new Tarefa[colecaoTarefa.size()] ;
+				
+				for (int x = 0 ; x < colecaoTarefa.size() ; x++ ) {
+					arrayTarefas [x] = colecaoTarefa.get(x);
+				}
+				
+				
+				
+				JList lista = new JList(arrayTarefas);
+				painelTarefas.add(lista);
+				
+			}
+		});
+	}
+	
+	
+	
 		/*
 		public static void criaT(JButton botao, String apelido, JTextField nometarefa) {
 			botao.addActionListener(new ActionListener() {
@@ -305,14 +359,14 @@ public class VisaoGeral {
 		btnViewProjetos.setIcon(new ImageIcon("icons/listProjects.png"));
 		navbar.add(btnViewProjetos);
 		
-		JButton btnViewColab = new JButton("");
-		btnViewColab.setToolTipText("Tarefas");
-		btnViewColab.setForeground(Color.WHITE);
-		btnViewColab.setBackground(null);
-		btnViewColab.setBorderPainted(false);
-		btnViewColab.setBounds(105, 0, 45, 45);
-		btnViewColab.setIcon(new ImageIcon("icons/tarefas.png"));
-		navbar.add(btnViewColab);
+//		JButton btnViewColab = new JButton("");
+//		btnViewColab.setToolTipText("Tarefas");
+//		btnViewColab.setForeground(Color.WHITE);
+//		btnViewColab.setBackground(null);
+//		btnViewColab.setBorderPainted(false);
+//		btnViewColab.setBounds(105, 0, 45, 45);
+//		btnViewColab.setIcon(new ImageIcon("icons/tarefas.png"));
+//		navbar.add(btnViewColab);
 
 		JButton btnExtProfile = new JButton();
 		btnExtProfile.setToolTipText("Acessar perfil");
@@ -358,7 +412,7 @@ public class VisaoGeral {
 		painelProjetos.setBounds(100, 80, 600, 450);
 		painelProjetos.setBackground(new Color(bgJp[0], bgJp[1], bgJp[2]));
 		painelProjetos.setForeground(Color.BLACK);
-		painelProjetos.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
+		painelProjetos.setBorder(new LineBorder(Color.BLACK, 0, true));
 		painelProjetos.setLayout(null);
 		painelProjetos.setVisible(true);
 		painelPrincipal.add(painelProjetos);
@@ -412,65 +466,65 @@ public class VisaoGeral {
 		
 		
 		//PAINEL DE TAREFAS:
-		JPanel painelTarefas = new JPanel();
-		painelTarefas.setBounds(100, 80, 800, 600);
-		painelTarefas.setBackground(new Color(bgJp[0], bgJp[1], bgJp[2]));
-		painelTarefas.setLayout(null);
-		painelTarefas.setVisible(false);
-		painelPrincipal.add(painelTarefas);
+//		JPanel painelTarefas = new JPanel();
+//		painelTarefas.setBounds(100, 80, 800, 600);
+//		painelTarefas.setBackground(new Color(bgJp[0], bgJp[1], bgJp[2]));
+//		painelTarefas.setLayout(null);
+//		painelTarefas.setVisible(false);
+//		painelPrincipal.add(painelTarefas);
 		
-		JLabel lblCollab = new JLabel("Tarefas");
-		lblCollab.setBounds(10, 11, 800, 40);
-		lblCollab.setForeground(Color.BLACK);
-		lblCollab.setFont(new Font("Tahoma", Font.BOLD, 30));
-		painelTarefas.add(lblCollab);
+//		JLabel lblCollab = new JLabel("Tarefas");
+//		lblCollab.setBounds(10, 11, 800, 40);
+//		lblCollab.setForeground(Color.BLACK);
+//		lblCollab.setFont(new Font("Tahoma", Font.BOLD, 30));
+//		painelTarefas.add(lblCollab);
 		
-		//<-------------------------------------------------------------------------------------------------------------->
-		
-		//EXIBIÇÃO DE TAREFAS:
-		TarefaDao tarefaDao = new TarefaDao(Conexao.conectar());
-		ArrayList<Tarefa> colecaoTarefa = new ArrayList<>();
-		
-		int p = 60;
-		
-		try {
-			colecaoTarefa = tarefaDao.listarTarefas(getApelido());	
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		for (int x = 0 ; x < colecaoTarefa.size() ; x++ ) {
-			tempTasks = new JButton(colecaoTarefa.get(x).getTitulo());
-			tempTasks.setBounds(10, p + (x*30), 150, 25);
-			tempTasks.setCursor(new Cursor(Cursor.HAND_CURSOR));
-			tempTasks.setBackground(null);
-			tempTasks.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-			tempTasks.setFont(new Font("Tahoma", Font.BOLD, 12));
-			painelTarefas.add(tempTasks);
-		}
+//
+//		
+//		//EXIBIÇÃO DE TAREFAS:
+//		TarefaDao tarefaDao = new TarefaDao(Conexao.conectar());
+//		ArrayList<Tarefa> colecaoTarefa = new ArrayList<>();
+//		
+//		int p = 60;
+//		
+//		try {
+//			colecaoTarefa = tarefaDao.listarTarefas(getApelido());	
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		
+//		for (int x = 0 ; x < colecaoTarefa.size() ; x++ ) {
+//			tempTasks = new JButton(colecaoTarefa.get(x).getTitulo());
+//			tempTasks.setBounds(10, p + (x*30), 150, 25);
+//			tempTasks.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//			tempTasks.setBackground(null);
+//			tempTasks.setBorder(new LineBorder(Color.BLACK, 1, true));
+//			tempTasks.setFont(new Font("Tahoma", Font.BOLD, 12));
+//			painelTarefas.add(tempTasks);
+//		}
 		//}
 		
 		//<-------------------------------------------------------------------------------------------------------------->
 		
-		//ADICIONAR PROJETOS:
-		JTextField txtAddTarefas = new JTextField();
-		txtAddTarefas.setText("tarefa");
-		txtAddTarefas.setEnabled(true);
-		txtAddTarefas.setBounds(350, 90, 200, 25);
-		txtAddTarefas.setBorder(new LineBorder(Color.BLACK));
-		painelTarefas.add(txtAddTarefas);
-		
-		//btn ADICIONAR PROJETOS
-		JButton btnAlterarT = new JButton();
-		btnAlterarT.setToolTipText("Confirmar alteração de dados");
-		btnAlterarT.setText("Confirmar");
-		btnAlterarT.setForeground(Color.BLACK);
-		btnAlterarT.setBackground(Color.WHITE);
-		btnAlterarT.setBounds(480, 120, 70, 20);
-		btnAlterarT.setBorder(new LineBorder(Color.WHITE, 1, true));
-		painelTarefas.add(btnAlterarT);
+//		//ADICIONAR tarefas:
+//		JTextField txtAddTarefas = new JTextField();
+//		txtAddTarefas.setText("tarefa");
+//		txtAddTarefas.setEnabled(true);
+//		txtAddTarefas.setBounds(350, 90, 200, 25);
+//		txtAddTarefas.setBorder(new LineBorder(Color.BLACK));
+//		painelTarefas.add(txtAddTarefas);
+//		
+//		//btn ADICIONAR tarefas
+//		JButton btnAlterarT = new JButton();
+//		btnAlterarT.setToolTipText("Confirmar alteração de dados");
+//		btnAlterarT.setText("Confirmar");
+//		btnAlterarT.setForeground(Color.BLACK);
+//		btnAlterarT.setBackground(Color.WHITE);
+//		btnAlterarT.setBounds(480, 120, 70, 20);
+//		btnAlterarT.setBorder(new LineBorder(Color.WHITE, 1, true));
+//		painelTarefas.add(btnAlterarT);
 		
 		//<-------------------------------------------------------------------------------------------------------------->
 		
@@ -499,7 +553,7 @@ public class VisaoGeral {
 		btnTemaAzul.setForeground(Color.BLACK);
 		btnTemaAzul.setBackground(null);
 		btnTemaAzul.setBounds(160, 60, 70, 20);
-		btnTemaAzul.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		btnTemaAzul.setBorder(new LineBorder(Color.BLACK, 1, true));
 		painelConfig.add(btnTemaAzul);
 		
 		JButton btnTemaEscuro = new JButton("escuro");
@@ -507,16 +561,16 @@ public class VisaoGeral {
 		btnTemaEscuro.setForeground(Color.BLACK);
 		btnTemaEscuro.setBackground(null);
 		btnTemaEscuro.setBounds(240, 60, 70, 20);
-		btnTemaEscuro.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		btnTemaEscuro.setBorder(new LineBorder(Color.BLACK, 1, true));
 		painelConfig.add(btnTemaEscuro);
 		
 		
 		//ARRAYS DE CONTROLE:
 		//JPanels internos para verificação de visibilidade
-		JPanel arrayPaineis [] = {painelProjetos, painelTarefas, painelConfig};
+		JPanel arrayPaineis [] = {painelProjetos, painelConfig};
 		
 		//JLabels internas para alteração de tema
-		JLabel arrayLabels [] = {lblProjetos, lblCollab, lblConfig, lblDica1};
+		JLabel arrayLabels [] = {lblProjetos, lblConfig, lblDica1};
 		
 		//JLabels internas para alteração de tema
 		JButton arrayButtons [] = {btnTemaAzul, btnTemaEscuro};
@@ -529,7 +583,7 @@ public class VisaoGeral {
 		
 		//troca de paineis:
 		switchPanel(btnViewProjetos, arrayPaineis, painelProjetos);
-		switchPanel(btnViewColab, arrayPaineis, painelTarefas);
+//		switchPanel(btnViewColab, arrayPaineis, painelTarefas);
 		switchPanel(btnViewConfig, arrayPaineis, painelConfig);
 		
 		//troca de tema:
@@ -539,6 +593,8 @@ public class VisaoGeral {
 		
 		//CRIA PROJETO
 		criaProjeto(btnAddProjeto, apelido, txtAddProjetos);
+		
+//ainda em testes//		consultaTarefas(btnTempProjects, apelido);
 		
 		//ATUALIZA LISTA DE PROJETOS
 		atualiza(painelProjetos, btnAddProjeto);
