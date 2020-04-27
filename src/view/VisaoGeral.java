@@ -2,19 +2,16 @@ package view;
 
 import java.awt.Color;
 import java.awt.Cursor;
-
 import utils.EstadoTarefa;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-
 import utils.Prioridade;
 import dao.Conexao;
 import dao.ProjetoDao;
 import dao.TarefaDao;
 import dao.UsuarioDao;
-
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -195,7 +192,7 @@ public class VisaoGeral {
 		botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				System.out.println("chamandoo perfil de:" +apelido);
+				System.out.println("chamando o perfil de:"+apelido);
 				Profile p = new Profile(apelido);
 				
 				p.composeProfile();
@@ -348,7 +345,7 @@ public class VisaoGeral {
 		painelPrincipal.add(navbar);
 		navbar.setLayout(null);
 		
-		System.out.println(getApelido() +"na VISAO GERAL");
+		System.out.println(getApelido() +" na VISAO GERAL");
 		
 		JButton btnViewProjetos = new JButton();
 		btnViewProjetos.setToolTipText("Listar projetos");
