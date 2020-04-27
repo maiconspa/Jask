@@ -3,19 +3,19 @@ CREATE DATABASE Jask;
 USE Jask;
 
 CREATE TABLE Usuario(
-nome varchar(60) not null, 
-email varchar(200) not null unique, 
-telefone varchar(20),
-apelido varchar(20) primary key unique,
-senha varchar(100) not null,
-foto longblob
+	nome varchar(60) not null, 
+	email varchar(200) not null unique, 
+	telefone varchar(20),
+	apelido varchar(20) primary key unique,
+	senha varchar(100) not null,
+	foto longblob
 );
 
 CREATE TABLE Projeto(
-id_projeto serial,
-nome varchar(30),
-fk_apelido_proprietario varchar(20),
-foreign key (fk_apelido_proprietario) references Usuario(apelido)
+	id_projeto serial,
+	nome varchar(30),
+	fk_apelido_proprietario varchar(20),
+	foreign key (fk_apelido_proprietario) references Usuario(apelido)
 );
 
 CREATE TABLE Item_usuario_projeto(
