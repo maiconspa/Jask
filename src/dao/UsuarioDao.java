@@ -208,16 +208,10 @@ public class UsuarioDao {
 	//<--------------------------------------------------------------------------------------------------------------->
 	
 	public void imagemRandomica(String apelido) {
-		
-		UsuarioDao userDao = new UsuarioDao(Conexao.conectar());
-		Usuario resultado = userDao.consultarUsuario(apelido);
-		
 		//instância um objeto da classe Random usando o construtor padrão
         Random gerador = new Random();
-        
-        int numero = gerador.nextInt(3);
 
-		armazenarImagens(new File("logo/default250-" +numero +".png"), resultado.getApelido());
+		armazenarImagens(new File("logo/default250-" + gerador.nextInt(3) +".png"), apelido);
 	}
 
 	//<--------------------------------------------------------------------------------------------------------------->
