@@ -6,5 +6,6 @@
   <img alt="Project programing languages count" src="https://img.shields.io/github/languages/count/maiconspa/Jask?color=9cb">
 </p>
 
-
-Aplicativo de gerenciamento de projetos com o paradigma Kanban.
+<p align="center">
+  Aplicativo de gerenciamento de projetos com o paradigma Kanban.
+</p>
